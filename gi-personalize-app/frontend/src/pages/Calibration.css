@@ -1,0 +1,179 @@
+/* Calibration.css */
+
+.calibration-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calibration-container h1 {
+  margin-bottom: 24px;
+  font-size: 28px;
+  text-align: center;
+}
+
+/* Intro step */
+.calibration-intro {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.calibration-intro p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.calibration-intro ul {
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.calibration-intro li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.start-calibration-button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Instructions step */
+.calibration-instructions {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.calibration-instructions h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.instruction-steps {
+  margin-bottom: 32px;
+  padding-left: 24px;
+}
+
+.instruction-steps li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.glucose-readings-form {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.glucose-readings-form h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.reading-input {
+  margin-bottom: 16px;
+}
+
+.reading-input label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.submit-readings-button {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* Result step */
+.calibration-result {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.calibration-result h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.result-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.result-card p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.calibration-factor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.factor-value {
+  font-size: 40px;
+  font-weight: 700;
+  color: #0984e3;
+  margin-bottom: 8px;
+}
+
+.factor-label {
+  font-size: 16px;
+  color: #636e72;
+}
+
+.result-explanation {
+  font-style: italic;
+  background-color: #dfe6e9;
+  padding: 16px;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.next-steps {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  color: #2d3436;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .calibration-container h1 {
+    font-size: 24px;
+  }
+  
+  .calibration-intro,
+  .calibration-instructions,
+  .calibration-result {
+    padding: 16px;
+  }
+  
+  .calibration-factor {
+    margin: 16px 0;
+  }
+  
+  .factor-value {
+    font-size: 32px;
+  }
+}

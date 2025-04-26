@@ -1,0 +1,294 @@
+/* Dashboard.css */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.greeting-section {
+  margin-bottom: 16px;
+}
+
+.greeting-section h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  color: #2d3436;
+}
+
+.subtitle {
+  color: #636e72;
+  margin-top: 0;
+  font-size: 16px;
+}
+
+/* Personalization card */
+.personalization-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.personalization-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.personalization-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.level-badge {
+  background-color: #0984e3;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #f1f2f6;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #0984e3;
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+.personalization-tip {
+  color: #636e72;
+  margin-bottom: 20px;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.main-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: #0984e3;
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.main-action:hover {
+  background-color: #0773c6;
+  transform: translateY(-2px);
+}
+
+.secondary-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.action-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-button span {
+  margin-top: 8px;
+  font-weight: 500;
+  color: #4a4a4a;
+}
+
+/* Recent meals */
+.recent-meals {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.recent-meals h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.meals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meal-card {
+  display: flex;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.meal-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.meal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meal-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.food-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.food-tag {
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.meal-time {
+  font-size: 12px;
+  color: #636e72;
+  margin-top: 8px;
+}
+
+.no-meals {
+  text-align: center;
+  padding: 32px 0;
+  color: #636e72;
+}
+
+.no-meals p {
+  margin-bottom: 16px;
+}
+
+/* Tips section */
+.tips-section {
+  margin-top: 24px;
+}
+
+.tips-section h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.tip-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+}
+
+.tip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: #fdcb6e;
+  border-radius: 24px;
+  color: #664500;
+  flex-shrink: 0;
+}
+
+.tip-content h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tip-content p {
+  margin: 0;
+  color: #636e72;
+  font-size: 14px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .secondary-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .personalization-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .level-badge {
+    align-self: flex-start;
+  }
+  
+  .secondary-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .meal-card {
+    flex-direction: column;
+  }
+  
+  .meal-image {
+    width: 100%;
+    height: 140px;
+  }
+  
+  .tip-card {
+    flex-direction: column;
+  }
+  
+  .tip-icon {
+    margin-bottom: 8px;
+  }
+}

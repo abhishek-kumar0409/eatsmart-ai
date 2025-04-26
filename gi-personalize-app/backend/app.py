@@ -1,0 +1,421 @@
+"""
+Main Flask application entry point for GI Personalize app with Swagger API documentation.
+"""
+import os
+import sys
+import uuid
+import json
+import logging
+from datetime import datetime
+from typing import Dict, Any, List, Optional
+
+from flask import Flask, request
+from flask_restx import Api, Resource, fields
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import FileStorage
+
+# Configuration
+class Config:
+    """
+    Base configuration class.
+    """
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'development_secret_key_change_in_production')
+    DEBUG = False
+    TESTING = False
+    
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
+    USER_DATA_FOLDER = os.path.join(BASE_DIR, 'user_data')
+    LOG_FOLDER = os.path.join(BASE_DIR, 'logs')
+    
+    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB max upload size
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+# Validation Utilities
+def validate_user_data(data: Dict[str, Any], required_fields: bool = True) -> Optional[str]:
+    """
+    Validate user profile data.
+    """
+    # Validation rules
+    if required_fields:
+        required = ['name', 'age', 'gender', 'height', 'weight']
+        for field in required:
+            if field not in data:
+                return f"Missing required field: {field}"
+    
+    # Specific field validations
+    if 'name' in data and len(data['name'].strip()) < 2:
+        return "Name is too short"
+    
+    if 'age' in data:
+        try:
+            age = int(data['age'])
+            if age < 0 or age > 120:
+                return "Invalid age"
+        except (ValueError, TypeError):
+            return "Age must be a valid number"
+    
+    return None
+
+def validate_glucose_readings(readings: list) -> Optional[str]:
+    """
+    Validate glucose readings.
+    """
+    if not isinstance(readings, list):
+        return "Glucose readings must be a list"
+    
+    if len(readings) < 2:
+        return "At least two glucose readings are required for calibration"
+    
+    return None
+
+# Mock Utility Functions (to be replaced with actual implementations)
+def identify_food_in_image(image_path: str) -> List[Dict[str, Any]]:
+    """
+    Mock food identification function.
+    """
+    return [
+        {
+            "name": "apple",
+            "confidence": 0.85,
+            "base_gi": 36
+        }
+    ]
+
+def lookup_gi(food_name: str) -> float:
+    """
+    Look up base Glycemic Index for a food item.
+    """
+    food_gi_database = {
+        "apple": 36,
+        "banana": 51,
+        "bread": 70
+    }
+    return food_gi_database.get(food_name.lower(), 50)
+
+def personalize_gi_impact(base_gi: float, user_profile: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Personalize GI impact based on user profile.
+    """
+    personalization_factor = 1.0
+    
+    # Simple personalization logic
+    if user_profile.get('diabetes_type') == 'type2':
+        personalization_factor *= 1.2
+    
+    personalized_gi_score = base_gi * personalization_factor
+    
+    return {
+        "base_gi": base_gi,
+        "personalized_gi_score": round(personalized_gi_score, 2)
+    }
+
+# Database Utility Functions (File-based storage)
+def save_user_data(user_id: str, user_data: Dict[str, Any]):
+    """
+    Save user data to a JSON file.
+    """
+    filepath = os.path.join(Config.USER_DATA_FOLDER, f"{user_id}.json")
+    os.makedirs(Config.USER_DATA_FOLDER, exist_ok=True)
+    
+    with open(filepath, 'w') as f:
+        json.dump(user_data, f, indent=4)
+
+def get_user_data(user_id: str) -> Optional[Dict[str, Any]]:
+    """
+    Retrieve user data from JSON file.
+    """
+    filepath = os.path.join(Config.USER_DATA_FOLDER, f"{user_id}.json")
+    
+    if not os.path.exists(filepath):
+        return None
+    
+    with open(filepath, 'r') as f:
+        return json.load(f)
+
+# Create Flask Application
+def create_app(config_class=Config):
+    """
+    Application factory function.
+    """
+    # Initialize Flask app
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+    
+    # Configure logging
+    os.makedirs(config_class.LOG_FOLDER, exist_ok=True)
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(os.path.join(config_class.LOG_FOLDER, 'app.log')),
+            logging.StreamHandler()
+        ]
+    )
+    logger = logging.getLogger(__name__)
+
+    # Initialize Flask-RESTX
+    authorizations = {
+        'apikey': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'X-API-KEY'
+        }
+    }
+    api = Api(app, 
+              version='1.0', 
+              title='GI Personalize API',
+              description='API for Personalized Glycemic Index Tracking',
+              doc='/swagger',
+              authorizations=authorizations,
+              security='apikey')
+
+    # Define API models
+    user_profile_model = api.model('UserProfile', {
+        'name': fields.String(required=True, description='User\'s full name'),
+        'age': fields.Integer(required=True, description='User\'s age'),
+        'gender': fields.String(required=True, description='User\'s gender'),
+        'height': fields.Float(required=True, description='User height in cm'),
+        'weight': fields.Float(required=True, description='User weight in kg')
+    })
+
+    glucose_reading_model = api.model('GlucoseReading', {
+        'timestamp': fields.DateTime(required=True, description='Timestamp of glucose reading'),
+        'value': fields.Float(required=True, description='Glucose level')
+    })
+
+    food_analysis_model = api.model('FoodAnalysis', {
+        'food_name': fields.String(required=True, description='Identified food name'),
+        'confidence': fields.Float(description='Confidence of food identification'),
+        'base_gi': fields.Float(description='Base Glycemic Index'),
+        'personalized_gi': fields.Raw(description='Personalized GI impact')
+    })
+
+    # Health Check Namespace
+    health_ns = api.namespace('health', description='Health Check Endpoints')
+
+    @health_ns.route('')
+    class HealthCheck(Resource):
+        def get(self):
+            """Health check endpoint"""
+            return {'status': 'healthy'}
+
+    # Users Namespace
+    users_ns = api.namespace('users', description='User Profile Management')
+
+    @users_ns.route('')
+    class UserCreation(Resource):
+        @api.expect(user_profile_model)
+        def post(self):
+            """Create a new user profile"""
+            try:
+                data = request.json
+                
+                # Validate user data
+                validation_error = validate_user_data(data)
+                if validation_error:
+                    return {'error': validation_error}, 400
+                
+                # Generate unique user ID
+                user_id = str(uuid.uuid4())
+                
+                # Calculate BMI
+                data['bmi'] = data['weight'] / ((data['height']/100) ** 2)
+                
+                # Create user profile
+                user_profile = {
+                    "user_id": user_id,
+                    "profile": data,
+                    "meals": [],
+                    "calibration": {},
+                    "created_at": datetime.now().isoformat()
+                }
+                
+                # Save user profile
+                save_user_data(user_id, user_profile)
+                
+                return {"user_id": user_id}, 201
+            
+            except Exception as e:
+                logger.error(f"Error creating user: {str(e)}", exc_info=True)
+                return {"error": "Failed to create user"}, 500
+
+    @users_ns.route('/<string:user_id>')
+    class UserManagement(Resource):
+        def get(self, user_id):
+            """Get user profile"""
+            try:
+                user_data = get_user_data(user_id)
+                
+                if not user_data:
+                    return {"error": "User not found"}, 404
+                
+                return {
+                    "user_id": user_data["user_id"],
+                    "profile": user_data["profile"],
+                    "created_at": user_data["created_at"]
+                }, 200
+            
+            except Exception as e:
+                logger.error(f"Error getting user {user_id}: {str(e)}", exc_info=True)
+                return {"error": "Failed to get user profile"}, 500
+
+    # Food Analysis Namespace
+    food_ns = api.namespace('food', description='Food Analysis Endpoints')
+
+    @food_ns.route('/analyze')
+    class FoodAnalysis(Resource):
+        @api.expect(api.parser().add_argument('food_image', location='files', type=FileStorage, required=True),
+                    api.parser().add_argument('user_id', location='form', required=True))
+        def post(self):
+            """Analyze food image and provide personalized GI info"""
+            try:
+                # Parse arguments
+                parser = api.parser()
+                parser.add_argument('food_image', location='files', type=FileStorage, required=True)
+                parser.add_argument('user_id', location='form', required=True)
+                args = parser.parse_args()
+                
+                file = args['food_image']
+                user_id = args['user_id']
+                
+                # Validate user
+                user_data = get_user_data(user_id)
+                if not user_data:
+                    return {"error": "User not found"}, 404
+                
+                # Save the file
+                filename = secure_filename(f"{user_id}_{datetime.now().strftime('%Y%m%d%H%M%S')}_{file.filename}")
+                filepath = os.path.join(Config.UPLOAD_FOLDER, filename)
+                os.makedirs(Config.UPLOAD_FOLDER, exist_ok=True)
+                file.save(filepath)
+                
+                # Identify food in the image
+                food_items = identify_food_in_image(filepath)
+                
+                # Get personalized GI values
+                results = []
+                for food in food_items:
+                    # Look up base GI value
+                    base_gi = lookup_gi(food['name'])
+                    
+                    # Personalize GI impact
+                    personalized = personalize_gi_impact(base_gi, user_data['profile'])
+                    
+                    # Add to results
+                    food_result = {
+                        "food_name": food['name'],
+                        "confidence": food.get('confidence', 0.5),
+                        "base_gi": base_gi,
+                        "personalized_gi": personalized
+                    }
+                    results.append(food_result)
+                
+                # Save this analysis to user history
+                meal_id = str(uuid.uuid4())
+                meal_data = {
+                    "meal_id": meal_id,
+                    "timestamp": datetime.now().isoformat(),
+                    "food_items": results,
+                    "image_path": filepath
+                }
+                user_data['meals'].append(meal_data)
+                
+                # Save updated user data
+                save_user_data(user_id, user_data)
+                
+                return {
+                    "meal_id": meal_id,
+                    "results": results
+                }, 200
+            
+            except Exception as e:
+                logger.error(f"Error analyzing food: {str(e)}", exc_info=True)
+                return {"error": "Failed to analyze food"}, 500
+
+    # Calibration Namespace
+    calibration_ns = api.namespace('calibration', description='Glucose Calibration Endpoints')
+
+    @calibration_ns.route('/<string:user_id>')
+    class CalibrationSubmission(Resource):
+        @api.expect(api.model('CalibrationSubmission', {
+            'glucose_readings': fields.List(fields.Nested(glucose_reading_model), required=True)
+        }))
+        def post(self, user_id):
+            """Submit calibration meal data"""
+            try:
+                # Check if user exists
+                user_data = get_user_data(user_id)
+                if not user_data:
+                    return {"error": "User not found"}, 404
+                
+                # Get glucose readings from request
+                data = request.json
+                if 'glucose_readings' not in data:
+                    return {"error": "Missing glucose readings"}, 400
+                
+                glucose_readings = data['glucose_readings']
+                
+                # Validate glucose readings
+                validation_error = validate_glucose_readings(glucose_readings)
+                if validation_error:
+                    return {"error": validation_error}, 400
+                
+                # Calculate a simple calibration factor
+                initial_reading = glucose_readings[0]['value']
+                peak_reading = max(reading['value'] for reading in glucose_readings)
+                calibration_factor = peak_reading / initial_reading
+                
+                # Update user profile with calibration data
+                user_data['calibration'] = {
+                    "calibration_factor": round(max(0.8, min(1.5, calibration_factor)), 2),
+                    "timestamp": datetime.now().isoformat(),
+                    "readings": glucose_readings
+                }
+                
+                # Save updated profile
+                save_user_data(user_id, user_data)
+                
+                return {
+                    "calibration_factor": user_data['calibration']['calibration_factor'],
+                    "message": "Calibration completed successfully"
+                }, 200
+            
+            except Exception as e:
+                logger.error(f"Error processing calibration for user {user_id}: {str(e)}", exc_info=True)
+                return {"error": "Failed to process calibration"}, 500
+
+    return app
+
+def main():
+    """
+    Main entry point for the application.
+    Configures and runs the Flask development server.
+    """
+    # Create application
+    app = create_app()
+    
+    # Determine port
+    port = int(os.environ.get('PORT', 5000))
+    
+    # Run the application
+    try:
+        print(f"Starting GI Personalize API on port {port}")
+        print(f"Swagger UI available at: http://localhost:{port}/swagger")
+        
+        # Run with debug and extra reload options
+        app.run(
+            host='0.0.0.0', 
+            port=port, 
+            debug=True,
+            use_reloader=True
+        )
+    except Exception as e:
+        logging.error(f"Failed to start application: {e}")
+        sys.exit(1)
+
+if __name__ == '__main__':
+    main()
+
+# Add this at the module level
+app = create_app()

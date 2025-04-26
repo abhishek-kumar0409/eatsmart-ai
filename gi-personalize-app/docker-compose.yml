@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    restart: always
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - ./backend/user_data:/app/user_data
+      - ./backend/data:/app/data
+      - ./backend/logs:/app/logs
+    environment:
+      - FLASK_ENV=${FLASK_ENV:-production}
+      - FLASK_APP=app.py
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-for-dev}
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./frontend/build:/usr/share/nginx/html
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+      - frontend

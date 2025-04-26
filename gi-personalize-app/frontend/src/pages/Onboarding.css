@@ -1,0 +1,137 @@
+/* Onboarding.css */
+
+.onboarding-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px;
+  background-color: #f5f7fa;
+}
+
+.onboarding-card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  padding: 32px;
+}
+
+.onboarding-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.onboarding-header h1 {
+  margin: 0 0 8px;
+  color: #0984e3;
+  font-size: 28px;
+}
+
+.onboarding-header .subtitle {
+  color: #636e72;
+  margin: 0 0 24px;
+}
+
+.step-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #dfe6e9;
+  color: #636e72;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.step.active {
+  background-color: #0984e3;
+  color: white;
+}
+
+.step-line {
+  height: 2px;
+  width: 40px;
+  background-color: #dfe6e9;
+  margin: 0 8px;
+}
+
+.form-step {
+  margin-bottom: 24px;
+}
+
+.form-step h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 22px;
+  color: #2d3436;
+}
+
+.radio-group {
+  display: flex;
+  gap: 24px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio-label input {
+  margin-right: 8px;
+}
+
+.optional-info {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #dfe6e9;
+}
+
+.optional-info p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #636e72;
+  font-style: italic;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.back-button, 
+.next-button, 
+.submit-button {
+  flex: 1;
+  max-width: 180px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .onboarding-card {
+    padding: 24px 16px;
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+  }
+  
+  .back-button, 
+  .next-button, 
+  .submit-button {
+    max-width: none;
+  }
+}
