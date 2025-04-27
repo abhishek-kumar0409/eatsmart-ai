@@ -52,11 +52,12 @@ api = Api(app,
 # Define API namespaces
 health_ns = api.namespace('api/health', description='Health Check Endpoints')
 users_ns = api.namespace('api/users', description='User Profile Management')
-food_ns = api.namespace('api/analyze', description='Food Analysis Endpoints')
+food_ns = api.namespace('api/food', description='Food Analysis Endpoints')
 calibration_ns = api.namespace('api/calibration', description='Glucose Calibration Endpoints')
 meals_ns = api.namespace('api/meals', description='Meal Management')
 
 # Define API models
+
 user_profile_model = api.model('UserProfile', {
     'name': fields.String(required=True, description='User\'s full name'),
     'age': fields.Integer(required=True, description='User\'s age'),
@@ -205,7 +206,7 @@ class UserManagement(Resource):
             logger.error(f"Error updating user {user_id}: {str(e)}", exc_info=True)
             return {"error": "Failed to update user profile"}, 500
 
-@food_ns.route('/food')
+@food_ns.route('/analyze')
 class FoodAnalysis(Resource):
     @api.doc(params={'food_image': 'Food image file', 'user_id': 'User ID'})
     def post(self):
