@@ -209,6 +209,7 @@ class UserManagement(Resource):
 @food_ns.route('/analyze')
 class FoodAnalysis(Resource):
     @api.doc(params={'food_image': 'Food image file', 'user_id': 'User ID'})
+    @api.expect(api.parser().add_argument('food_image', location='files', type='file', required=True, help='Food image file'))
     def post(self):
         """Analyze food image and provide personalized GI info"""
         try:

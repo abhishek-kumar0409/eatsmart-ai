@@ -41,7 +41,7 @@ const FoodAnalysis = ({ user }) => {
       formData.append('food_image', selectedFile);
       formData.append('user_id', user.user_id);
       
-      const response = await axios.post('/api/analyze/food', formData, {
+      const response = await axios.post('/api/food/analyze', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
