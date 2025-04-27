@@ -70,12 +70,12 @@ const Onboarding = ({ onLogin }) => {
       // Create a copy of the form data and convert height and weight to numbers
       const processedData = {
         ...formData,
-        height: parseFloat(formData.height),
-        weight: parseFloat(formData.weight),
-        age: parseInt(formData.age, 10)
+        height: Number(formData.height),
+        weight: Number(formData.weight),
+        age: Number(formData.age)
       };
       
-      const response = await axios.post('/api/users', formData);
+      const response = await axios.post('/api/users', processedData);
       
       onLogin(response.data);
     } catch (error) {
