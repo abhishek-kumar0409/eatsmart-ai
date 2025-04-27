@@ -124,7 +124,7 @@ class UserCreation(Resource):
             
             # Calculate BMI
             data['bmi'] = float(data['weight']) / ((float(data['height'])/100) ** 2)
-            print(f"BMI Calculation Results: ---> {data[bmi]}")
+            print(f"BMI Calculation Results: ---> {data['bmi']}")
             
             # Create user profile
             user_profile = {

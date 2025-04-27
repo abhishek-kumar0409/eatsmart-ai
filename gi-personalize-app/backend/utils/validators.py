@@ -31,7 +31,7 @@ def validate_user_data(data, required_fields=True):
         except ValueError:
             return "Age must be a number"
     
-    # Validate sex
+    # Validate gender
     if 'gender' in data and data['gender'] not in ['male', 'female']:
         return "Gender must be either 'male' or 'female'"
     

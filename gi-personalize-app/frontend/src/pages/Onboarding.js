@@ -74,7 +74,7 @@ const Onboarding = ({ onLogin }) => {
       const processedData = {
         name: formData.name,
         age: Number(formData.age),
-        gender: formData.gender, // Make sure this is gender not sex
+        gender: formData.gender, 
         height: Number(formData.height),
         weight: Number(formData.weight),
         activity_level: formData.activity_level,

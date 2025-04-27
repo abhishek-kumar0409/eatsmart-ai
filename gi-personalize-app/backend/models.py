@@ -85,8 +85,8 @@ def calculate_baseline_risk_factor(user_profile):
         risk_factor *= 1.1  # Slightly higher concern for high GI foods when trying to lose weight
     
     # Adjust based on sex (women typically have higher insulin sensitivity)
-    sex = user_profile.get('sex', None)
-    if sex == 'female':
+    gender = user_profile.get('gender', None)
+    if gender == 'female':
         risk_factor *= 0.95
     
     return risk_factor
