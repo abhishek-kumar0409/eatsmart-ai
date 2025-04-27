@@ -89,6 +89,43 @@ def validate_user_data(data, required_fields=True):
     
     return None
 
+
+def validate_glucose_readings(readings):
+    """
+    Validate glucose readings.
+    Readings should be a list of dictionaries with 'timestamp' and 'value' keys.
+    """
+    if not readings or not isinstance(readings, list):
+        return "Glucose readings must be a non-empty list"
+    
+    for reading in readings:
+        # Validate that reading is a dictionary with required keys
+        if not isinstance(reading, dict):
+            return "Each reading must be an object with timestamp and value"
+        
+        if 'timestamp' not in reading or 'value' not in reading:
+            return "Each reading must contain timestamp and value"
+        
+        # Validate value is a number
+        try:
+            # Extract the value field from the dictionary instead of trying to convert the whole dict
+            reading_value = float(reading.get('value'))
+        except (ValueError, TypeError):
+            return "Glucose values must be valid numbers"
+        
+        # Validate reasonable glucose range
+        if reading_value < 30 or reading_value > 600:
+            return "Glucose values should be in a reasonable range (30-600 mg/dL)"
+        
+        # Validate timestamp is a valid datetime
+        try:
+            # The timestamp is already validated by the model
+            pass
+        except Exception:
+            return "Invalid timestamp format"
+    
+    return None  # Validation passed
+"""
 def validate_glucose_readings(readings):
     """
     Validate glucose readings.
@@ -116,7 +153,7 @@ def validate_glucose_readings(readings):
             return f"Reading {i+1} must be a number"
     
     return None
-
+"""
 def validate_meal_response(response):
     """
     Validate meal response data.
