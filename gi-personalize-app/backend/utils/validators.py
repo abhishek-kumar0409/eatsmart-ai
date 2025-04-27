@@ -125,35 +125,7 @@ def validate_glucose_readings(readings):
             return "Invalid timestamp format"
     
     return None  # Validation passed
-"""
-def validate_glucose_readings(readings):
-    """
-    Validate glucose readings.
-    
-    Args:
-        readings (list): Glucose readings
-        
-    Returns:
-        str: Error message or None if valid
-    """
-    if not isinstance(readings, list):
-        return "Glucose readings must be a list"
-    
-    if len(readings) != 5:
-        return "Must provide 5 glucose readings (fasting, 30min, 60min, 90min, 120min)"
-    
-    # Validate each reading
-    for i, reading in enumerate(readings):
-        try:
-            reading = float(reading)
-            # Validate range (50-400 mg/dL or 2.8-22.2 mmol/L)
-            if reading < 2.8 and reading > 22.2 and reading < 50 and reading > 400:
-                return f"Reading {i+1} is out of valid range (50-400 mg/dL or 2.8-22.2 mmol/L)"
-        except ValueError:
-            return f"Reading {i+1} must be a number"
-    
-    return None
-"""
+
 def validate_meal_response(response):
     """
     Validate meal response data.
