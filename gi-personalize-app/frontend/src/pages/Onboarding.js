@@ -66,6 +66,15 @@ const Onboarding = ({ onLogin }) => {
     setLoading(true);
     
     try {
+
+      // Create a copy of the form data and convert height and weight to numbers
+      const processedData = {
+        ...formData,
+        height: parseFloat(formData.height),
+        weight: parseFloat(formData.weight),
+        age: parseInt(formData.age, 10)
+      };
+      
       const response = await axios.post('/api/users', formData);
       
       onLogin(response.data);

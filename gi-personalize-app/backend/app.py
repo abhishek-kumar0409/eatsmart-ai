@@ -221,6 +221,18 @@ def create_app(config_class=Config):
                 
                 # Calculate BMI
                 data['bmi'] = data['weight'] / ((data['height']/100) ** 2)
+
+                # Convert string values to float before calculation
+                try:
+                    weight = float(data['weight'])
+                    height = float(data['height'])
+                
+                    # Calculate BMI
+                    data['bmi'] = weight / ((height/100) ** 2)
+
+                except (ValueError, TypeError):
+                    return {'error': 'Height and weight must be valid numbers'}, 400
+
                 
                 # Create user profile
                 user_profile = {
