@@ -10,6 +10,8 @@ const Dashboard = ({ user }) => {
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
+    // Add this console log to inspect the user object structure
+    console.log("User object in Dashboard:", user);
     fetchMealHistory();
   }, []);
   
