@@ -87,7 +87,7 @@ const Onboarding = ({ onLogin }) => {
       console.log("Sending data to:", '/api/users');
       console.log("Payload:", processedData); 
       
-      const response = await axios.post('/users', processedData);
+      const response = await axios.post('/api/users', processedData);
 
       console.log("Response:", response);
     
