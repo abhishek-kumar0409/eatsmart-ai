@@ -13,9 +13,9 @@ from flask_restx import Api, Resource, fields
 
 # Import modules
 from utils.database import get_user_data, save_user_data, initialize_database
-from utils.food_recognition import identify_food_in_image, get_nutritional_info
+from utils.food_recognition import identify_food_in_image
 from utils.validators import validate_user_data, validate_glucose_readings
-import ml_models
+import models
 from config import Config
 
 # Configure logging
@@ -132,11 +132,7 @@ class UserCreation(Resource):
                 "user_id": user_id,
                 "profile": data,
                 "meals": [],
-                "calibration": {
-                    # Add default calibration based on profile
-                    "calibration_factor": 1.0,
-                    "timestamp": datetime.now().isoformat()
-                },
+                "calibration": {},
                 "created_at": datetime.now().isoformat()
             }
             
@@ -246,41 +242,22 @@ class FoodAnalysis(Resource):
                 # Get personalized GI values
                 results = []
                 for food in food_items:
-                    # Get nutritional info for the food
-                    nutritional_info = get_nutritional_info(food['name'])
+                    # Look up base GI value
+                    base_gi = models.lookup_gi(food['name'])
                     
-                    # Look up base GI value from database or use default
-                    # First try to read from the GI database using pandas
-                    try:
-                        import pandas as pd
-                        gi_data = pd.read_csv(os.path.join('data', 'gi_database.csv'))
-                        gi_row = gi_data[gi_data['food_name'] == food['name']]
-                        if not gi_row.empty:
-                            base_gi = float(gi_row.iloc[0]['glycemic_index'])
-                        else:
-                            # Use default moderate GI if not found
-                            base_gi = 50
-                    except Exception as e:
-                        logger.warning(f"Error reading GI database: {str(e)}")
-                        base_gi = 50
+                    # Personalize GI impact
+                    personalized = models.personalize_gi_impact(base_gi, user_data['profile'])
                     
-                    # Create food item with nutritional info
-                    food_item = {
-                        "name": food['name'],
-                        "base_gi": base_gi,
-                        "nutritional_info": nutritional_info
-                    }
+                    # Apply calibration factor if available
+                    if 'calibration' in user_data and 'calibration_factor' in user_data['calibration']:
+                        personalized['personalized_gi_score'] *= user_data['calibration']['calibration_factor']
                     
-                    # Personalize GI impact using ML model
-                    personalized = ml_models.personalize_gi_impact(base_gi, user_data['profile'])
-                    
-                    # Add food analysis result
+                    # Add to results
                     food_result = {
                         "food_name": food['name'],
                         "confidence": food['confidence'],
                         "base_gi": base_gi,
-                        "personalized_gi": personalized,
-                        "nutritional_info": nutritional_info
+                        "personalized_gi": personalized
                     }
                     results.append(food_result)
                 
@@ -338,15 +315,14 @@ class CalibrationSubmission(Resource):
             if validation_error:
                 return {"error": validation_error}, 400
             
-            # Process calibration meal using ML model
-            response_factor = ml_models.process_calibration_meal(glucose_readings)
+            # Process calibration meal
+            response_factor = models.process_calibration_meal(glucose_readings)
             
             # Update user profile with calibration data
             user_data['calibration'] = {
                 "calibration_factor": response_factor,
                 "timestamp": datetime.now().isoformat(),
-                "readings": glucose_readings,
-                "auto_calibrated": True
+                "readings": glucose_readings
             }
             
             # Save updated profile
@@ -360,62 +336,6 @@ class CalibrationSubmission(Resource):
         except Exception as e:
             logger.error(f"Error processing calibration for user {user_id}: {str(e)}", exc_info=True)
             return {"error": "Failed to process calibration"}, 500
-
-    def get(self, user_id):
-        """Get calibration status"""
-        try:
-            # Check if user exists
-            user_data = get_user_data(user_id)
-            if not user_data:
-                return {"error": "User not found"}, 404
-            
-            # Check if calibration exists
-            if 'calibration' not in user_data or not user_data['calibration']:
-                # Auto-calibrate based on user profile
-                profile = user_data['profile']
-                
-                # Generate simulated glucose readings based on profile
-                fasting_glucose = float(profile.get('fasting_glucose', 5.0))
-                hba1c = float(profile.get('hba1c', 5.5))
-                age = float(profile.get('age', 35))
-                bmi = float(profile.get('bmi', 25.0))
-                
-                # Simple auto-calibration factor based on profile
-                # Higher values indicate higher sensitivity to carbs
-                diabetes_risk = 1.0
-                if hba1c > 6.0:
-                    diabetes_risk = 1.5
-                if fasting_glucose > 6.0:
-                    diabetes_risk += 0.3
-                if age > 50:
-                    diabetes_risk += 0.2
-                if bmi > 30:
-                    diabetes_risk += 0.3
-                
-                # Normalize to reasonable range (0.5 - 2.0)
-                auto_factor = max(0.5, min(2.0, diabetes_risk))
-                
-                # Save auto-calibration
-                user_data['calibration'] = {
-                    "calibration_factor": auto_factor,
-                    "timestamp": datetime.now().isoformat(),
-                    "auto_calibrated": True
-                }
-                
-                save_user_data(user_id, user_data)
-                
-                return {
-                    "calibration_factor": auto_factor,
-                    "auto_calibrated": True,
-                    "message": "Auto-calibration completed"
-                }, 200
-            
-            # Return existing calibration
-            return user_data['calibration'], 200
-            
-        except Exception as e:
-            logger.error(f"Error getting calibration for user {user_id}: {str(e)}", exc_info=True)
-            return {"error": "Failed to get calibration status"}, 500
 
 @meals_ns.route('/<string:user_id>/<string:meal_id>/response')
 class MealResponse(Resource):
@@ -445,14 +365,14 @@ class MealResponse(Resource):
             model_updated = False
             meals_with_responses = [m for m in user_data['meals'] if 'user_response' in m]
             
-            if len(meals_with_responses) >= 3:  # Reduced from 5 to 3 for demonstration
+            if len(meals_with_responses) >= 5:
                 # Prepare training data
-                feature_data, response_data = ml_models.prepare_training_data(meals_with_responses)
+                feature_data, response_data = models.prepare_training_data(meals_with_responses)
                 
                 # Train model if we have enough data
                 if len(feature_data) > 0 and len(response_data) > 0:
                     # Update user's personalized model
-                    model_updated = ml_models.update_user_model(user_id, feature_data, response_data)
+                    model_updated = models.update_user_model(user_id, feature_data, response_data)
                     
                     # Record model update
                     if model_updated:
@@ -501,3 +421,4 @@ if __name__ == '__main__':
 
 # Add this at the module level
 app = create_app()
+

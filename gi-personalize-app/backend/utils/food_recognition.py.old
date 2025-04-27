@@ -6,7 +6,6 @@ import logging
 import json
 import random
 from config import Config
-from utils.gi_database import lookup_gi, get_food_nutritional_info
 
 logger = logging.getLogger(__name__)
 
@@ -14,20 +13,10 @@ logger = logging.getLogger(__name__)
 # For demo purposes, we'll use a simplified mock implementation
 
 # Load food categories database
-def load_food_categories():
-    try:
-        with open(os.path.join('data', 'gi_database.csv'), 'r') as f:
-            # Skip header
-            next(f)
-            food_categories = [line.split(',')[0] for line in f]
-        return food_categories
-    except Exception as e:
-        logger.error(f"Error loading food categories: {str(e)}", exc_info=True)
-        # Return some default categories
-        return ["rice", "bread", "potato", "apple", "banana", "carrot", "chicken", "beef", "milk", "yogurt"]
-
-# Get the food categories
-food_categories = load_food_categories()
+with open(os.path.join('data', 'gi_database.csv'), 'r') as f:
+    # Skip header
+    next(f)
+    food_categories = [line.split(',')[0] for line in f]
 
 def identify_food_in_image(image_path):
     """
@@ -53,16 +42,8 @@ def identify_food_in_image(image_path):
         
         # Get random food items
         results = []
-        used_foods = set()  # To avoid duplicates
-        
         for _ in range(num_items):
-            # Keep selecting until we get a unique food
-            while True:
-                food_name = random.choice(food_categories)
-                if food_name not in used_foods:
-                    used_foods.add(food_name)
-                    break
-                    
+            food_name = random.choice(food_categories)
             confidence = round(random.uniform(0.7, 0.98), 2)  # Random confidence score
             results.append({
                 "name": food_name,
@@ -87,16 +68,29 @@ def get_nutritional_info(food_name):
     Returns:
         dict: Nutritional information or None if not found
     """
-    # Try to get from our GI database
-    nutritional_info = get_food_nutritional_info(food_name)
+    # In a real application, you would query a nutrition database
+    # For this demo, we'll return hardcoded values
     
-    if nutritional_info:
-        return nutritional_info
+    # Try to find in our GI database
+    import pandas as pd
+    try:
+        gi_database = pd.read_csv(os.path.join('data', 'gi_database.csv'))
+        result = gi_database[gi_database['food_name'].str.contains(food_name, case=False)]
+        
+        if len(result) > 0:
+            row = result.iloc[0]
+            return {
+                "carbs": row.get('carbs_per_serving', 15),
+                "protein": row.get('protein_per_serving', 5),
+                "fat": row.get('fat_per_serving', 3),
+                "fiber": row.get('fiber_per_serving', 1),
+                "serving_size": row.get('serving_size_g', 100)
+            }
+    except Exception as e:
+        logger.error(f"Error getting nutritional info from database: {str(e)}", exc_info=True)
     
     # Fallback to generic values
     return {
-        "gi": lookup_gi(food_name),
-        "gl": 10,  # Default glycemic load
         "carbs": 15,
         "protein": 5,
         "fat": 3,
