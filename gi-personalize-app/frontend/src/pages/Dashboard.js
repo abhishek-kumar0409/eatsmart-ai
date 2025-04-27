@@ -57,7 +57,7 @@ const Dashboard = ({ user }) => {
     <div className="dashboard-container">
       <div className="greeting-section">
         <h1>
-          Hello, {user.profile.first_name || 'there'}!
+          Hello, {user.profile.name || 'there'}!
         </h1>
         <p className="subtitle">Here's your personal GI dashboard</p>
       </div>
