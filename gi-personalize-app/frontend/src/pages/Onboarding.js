@@ -88,8 +88,15 @@ const Onboarding = ({ onLogin }) => {
       console.log("Payload:", processedData); 
       
       const response = await axios.post('/api/users', processedData);
-
       console.log("Response:", response);
+    
+      // Construct a complete user object here to pass to the login handler
+      const userData = {
+        user_id: response.data.user_id,
+        profile: processedData,  // Use the processed data we just sent
+        calibration: {},
+        created_at: new Date().toISOString()
+      };
     
       onLogin(response.data);
 
