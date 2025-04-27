@@ -43,18 +43,18 @@ authorizations = {
 }
 api = Api(app, 
           version='1.0', 
-          title='GI Personalize API',
+          title='EATSMART-AI',
           description='API for Personalized Glycemic Index Tracking',
           doc='/swagger',
           authorizations=authorizations,
           security='apikey')
 
 # Define API namespaces
-health_ns = api.namespace('api/health', description='Health Check Endpoints')
-users_ns = api.namespace('api/users', description='User Profile Management')
-food_ns = api.namespace('api/food', description='Food Analysis Endpoints')
-calibration_ns = api.namespace('api/calibration', description='Glucose Calibration Endpoints')
-meals_ns = api.namespace('api/meals', description='Meal Management')
+health_ns = api.namespace('health', description='Health Check Endpoints')
+users_ns = api.namespace('users', description='User Profile Management')
+food_ns = api.namespace('food', description='Food Analysis Endpoints')
+calibration_ns = api.namespace('calibration', description='Glucose Calibration Endpoints')
+meals_ns = api.namespace('meals', description='Meal Management')
 
 # Define API models
 

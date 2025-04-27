@@ -84,14 +84,19 @@ const Onboarding = ({ onLogin }) => {
         ...(formData.hba1c ? { hba1c: Number(formData.hba1c) } : {}),
         ...(formData.fasting_glucose ? { fasting_glucose: Number(formData.fasting_glucose) } : {})
       };
-    
-      const response = await axios.post('/api/users', processedData);
+      console.log("Sending data to:", '/api/users');
+      console.log("Payload:", processedData); 
+      
+      const response = await axios.post('/users', processedData);
+
+      console.log("Response:", response);
     
       onLogin(response.data);
+
     } catch (error) {
       console.error('Error creating user:', error);
       console.error('Error response:', error.response?.data); // Log the full error response
-    
+      console.error('Response status:', error.response?.status);
       // Show more detailed error message if available
       if (error.response && error.response.data && error.response.data.error) {
         setError(error.response.data.error);
