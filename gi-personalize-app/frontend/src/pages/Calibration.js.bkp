@@ -27,6 +27,9 @@ const Calibration = ({ user }) => {
     setStep('instructions');
   };
   
+
+
+  // Update the handleSubmitReadings function in Calibration.js
   const handleSubmitReadings = async () => {
     // Validate readings
     for (const key in glucoseReadings) {
@@ -35,43 +38,42 @@ const Calibration = ({ user }) => {
         return;
       }
     }
-    
+
     setLoading(true);
     setError(null);
-    
+
     try {
       // Format readings as expected by the backend
-      const currentTime = new Date();
       const readings = [
         {
-          timestamp: new Date(currentTime).toISOString(),
+          timestamp: new Date().toISOString(),
           value: parseFloat(glucoseReadings.fasting)
         },
         {
-          timestamp: new Date(currentTime.getTime() + 30*60000).toISOString(),
+          timestamp: new Date().toISOString(),
           value: parseFloat(glucoseReadings.thirtyMin)
         },
         {
-          timestamp: new Date(currentTime.getTime() + 60*60000).toISOString(),
+          timestamp: new Date().toISOString(),
           value: parseFloat(glucoseReadings.sixtyMin)
         },
         {
-          timestamp: new Date(currentTime.getTime() + 90*60000).toISOString(),
+          timestamp: new Date().toISOString(),
           value: parseFloat(glucoseReadings.ninetyMin)
         },
         {
-          timestamp: new Date(currentTime.getTime() + 120*60000).toISOString(),
+          timestamp: new Date().toISOString(),
           value: parseFloat(glucoseReadings.twoHour)
         }
       ];
-      
+
       const response = await axios.post(`/api/calibration/${user.user_id}`, {
         glucose_readings: readings
       });
-      
+
       setResult(response.data);
       setStep('result');
-    } catch (error) {
+    }   catch (error) {
       console.error('Error submitting calibration:', error);
       if (error.response && error.response.data && error.response.data.error) {
         setError(error.response.data.error);

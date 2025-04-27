@@ -66,12 +66,13 @@ const Onboarding = ({ onLogin }) => {
     setLoading(true);
     
     try {
-      // Convert string values to numbers to avoid backend type errors
+
+      // Create a copy of the form data and convert height and weight to numbers
       const processedData = {
         ...formData,
-        age: Number(formData.age),
         height: Number(formData.height),
-        weight: Number(formData.weight)
+        weight: Number(formData.weight),
+        age: Number(formData.age)
       };
       
       const response = await axios.post('/api/users', processedData);

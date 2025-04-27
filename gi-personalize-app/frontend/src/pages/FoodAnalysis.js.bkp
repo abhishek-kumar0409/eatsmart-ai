@@ -25,28 +25,31 @@ const FoodAnalysis = ({ user }) => {
     reader.readAsDataURL(file);
   };
   
+  
+  // Update the handleSubmit function in FoodAnalysis.js
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+  
     if (!selectedFile) {
       setError('Please select an image to analyze');
       return;
     }
-    
+  
     setAnalyzing(true);
     setError(null);
-    
+  
     try {
       const formData = new FormData();
       formData.append('food_image', selectedFile);
       formData.append('user_id', user.user_id);
-      
-      const response = await axios.post('/api/analyze/food', formData, {
+    
+      // Adjusted to match backend endpoint
+      const response = await axios.post('/api/food/analyze', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-      
+    
       setResults(response.data);
     } catch (error) {
       console.error('Error analyzing food:', error);
@@ -60,6 +63,7 @@ const FoodAnalysis = ({ user }) => {
     }
   };
   
+  
   const handleReset = () => {
     setSelectedFile(null);
     setPreview(null);
@@ -69,9 +73,7 @@ const FoodAnalysis = ({ user }) => {
   
   const handleLogResponse = async (mealId, response) => {
     try {
-      await axios.post(`/api/meals/${user.user_id}/${mealId}/response`, {
-        response: response
-      });
+      await axios.post(`/api/meals/${user.user_id}/${mealId}/response`, response);
       alert('Thank you for your feedback! Your personalized model will be updated.');
     } catch (error) {
       console.error('Error logging response:', error);
@@ -172,19 +174,19 @@ const FoodAnalysis = ({ user }) => {
             <h3>How did this food affect you?</h3>
             <div className="feedback-buttons">
               <button 
-                onClick={() => handleLogResponse(results.meal_id, 'less_than_expected')}
+                onClick={() => handleLogResponse(results.meal_id, { response: 'less_than_expected' })}
                 className="btn btn-secondary feedback-button"
               >
                 Less impact than expected
               </button>
               <button 
-                onClick={() => handleLogResponse(results.meal_id, 'as_expected')}
+                onClick={() => handleLogResponse(results.meal_id, { response: 'as_expected' })}
                 className="btn btn-secondary feedback-button"
               >
                 As expected
               </button>
               <button 
-                onClick={() => handleLogResponse(results.meal_id, 'more_than_expected')}
+                onClick={() => handleLogResponse(results.meal_id, { response: 'more_than_expected' })}
                 className="btn btn-secondary feedback-button"
               >
                 More impact than expected

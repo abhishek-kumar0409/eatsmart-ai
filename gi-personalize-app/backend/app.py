@@ -1,307 +1,239 @@
 """
 Main Flask application entry point for GI Personalize app with Swagger API documentation.
 """
+from flask import Flask, request, jsonify
 import os
-import sys
 import uuid
 import json
 import logging
 from datetime import datetime
-from typing import Dict, Any, List, Optional
-
-from flask import Flask, request
-from flask_restx import Api, Resource, fields
 from werkzeug.utils import secure_filename
-from werkzeug.datastructures import FileStorage
+import numpy as np
+from flask_restx import Api, Resource, fields
 
-# Configuration
-class Config:
-    """
-    Base configuration class.
-    """
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'development_secret_key_change_in_production')
-    DEBUG = False
-    TESTING = False
-    
-    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-    UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
-    USER_DATA_FOLDER = os.path.join(BASE_DIR, 'user_data')
-    LOG_FOLDER = os.path.join(BASE_DIR, 'logs')
-    
-    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB max upload size
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+# Import modules
+from utils.database import get_user_data, save_user_data, initialize_database
+from utils.food_recognition import identify_food_in_image
+from utils.validators import validate_user_data, validate_glucose_readings
+import models
+from config import Config
 
-# Validation Utilities
-def validate_user_data(data: Dict[str, Any], required_fields: bool = True) -> Optional[str]:
-    """
-    Validate user profile data.
-    """
-    # Validation rules
-    if required_fields:
-        required = ['name', 'age', 'gender', 'height', 'weight']
-        for field in required:
-            if field not in data:
-                return f"Missing required field: {field}"
-    
-    # Specific field validations
-    if 'name' in data and len(data['name'].strip()) < 2:
-        return "Name is too short"
-    
-    if 'age' in data:
-        try:
-            age = int(data['age'])
-            if age < 0 or age > 120:
-                return "Invalid age"
-        except (ValueError, TypeError):
-            return "Age must be a valid number"
-    
-    return None
-
-def validate_glucose_readings(readings: list) -> Optional[str]:
-    """
-    Validate glucose readings.
-    """
-    if not isinstance(readings, list):
-        return "Glucose readings must be a list"
-    
-    if len(readings) < 2:
-        return "At least two glucose readings are required for calibration"
-    
-    return None
-
-# Mock Utility Functions (to be replaced with actual implementations)
-def identify_food_in_image(image_path: str) -> List[Dict[str, Any]]:
-    """
-    Mock food identification function.
-    """
-    return [
-        {
-            "name": "apple",
-            "confidence": 0.85,
-            "base_gi": 36
-        }
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(os.path.join('logs', 'app.log')),
+        logging.StreamHandler()
     ]
+)
+logger = logging.getLogger(__name__)
 
-def lookup_gi(food_name: str) -> float:
-    """
-    Look up base Glycemic Index for a food item.
-    """
-    food_gi_database = {
-        "apple": 36,
-        "banana": 51,
-        "bread": 70
+# Initialize Flask app
+app = Flask(__name__)
+app.config.from_object(Config)
+
+# Initialize Flask-RESTX API with Swagger documentation
+authorizations = {
+    'apikey': {
+        'type': 'apiKey',
+        'in': 'header',
+        'name': 'X-API-KEY'
     }
-    return food_gi_database.get(food_name.lower(), 50)
+}
+api = Api(app, 
+          version='1.0', 
+          title='GI Personalize API',
+          description='API for Personalized Glycemic Index Tracking',
+          doc='/swagger',
+          authorizations=authorizations,
+          security='apikey')
 
-def personalize_gi_impact(base_gi: float, user_profile: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Personalize GI impact based on user profile.
-    """
-    personalization_factor = 1.0
-    
-    # Simple personalization logic
-    if user_profile.get('diabetes_type') == 'type2':
-        personalization_factor *= 1.2
-    
-    personalized_gi_score = base_gi * personalization_factor
-    
-    return {
-        "base_gi": base_gi,
-        "personalized_gi_score": round(personalized_gi_score, 2)
-    }
+# Define API namespaces
+health_ns = api.namespace('api/health', description='Health Check Endpoints')
+users_ns = api.namespace('api/users', description='User Profile Management')
+food_ns = api.namespace('api/analyze', description='Food Analysis Endpoints')
+calibration_ns = api.namespace('api/calibration', description='Glucose Calibration Endpoints')
+meals_ns = api.namespace('api/meals', description='Meal Management')
 
-# Database Utility Functions (File-based storage)
-def save_user_data(user_id: str, user_data: Dict[str, Any]):
-    """
-    Save user data to a JSON file.
-    """
-    filepath = os.path.join(Config.USER_DATA_FOLDER, f"{user_id}.json")
-    os.makedirs(Config.USER_DATA_FOLDER, exist_ok=True)
-    
-    with open(filepath, 'w') as f:
-        json.dump(user_data, f, indent=4)
+# Define API models
+user_profile_model = api.model('UserProfile', {
+    'name': fields.String(required=True, description='User\'s full name'),
+    'age': fields.Integer(required=True, description='User\'s age'),
+    'gender': fields.String(required=True, description='User\'s gender'),
+    'height': fields.Float(required=True, description='User height in cm'),
+    'weight': fields.Float(required=True, description='User weight in kg'),
+    'activity_level': fields.String(description='Activity level'),
+    'diabetes_status': fields.String(description='Diabetes status'),
+    'weight_goal': fields.String(description='Weight management goal'),
+    'hba1c': fields.Float(description='HbA1c percentage'),
+    'fasting_glucose': fields.Float(description='Fasting glucose level')
+})
 
-def get_user_data(user_id: str) -> Optional[Dict[str, Any]]:
-    """
-    Retrieve user data from JSON file.
-    """
-    filepath = os.path.join(Config.USER_DATA_FOLDER, f"{user_id}.json")
-    
-    if not os.path.exists(filepath):
-        return None
-    
-    with open(filepath, 'r') as f:
-        return json.load(f)
+glucose_reading_model = api.model('GlucoseReading', {
+    'timestamp': fields.DateTime(required=True, description='Timestamp of glucose reading'),
+    'value': fields.Float(required=True, description='Glucose level')
+})
 
-# Create Flask Application
-def create_app(config_class=Config):
-    """
-    Application factory function.
-    """
-    # Initialize Flask app
-    app = Flask(__name__)
-    app.config.from_object(config_class)
-    
-    # Configure logging
-    os.makedirs(config_class.LOG_FOLDER, exist_ok=True)
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(os.path.join(config_class.LOG_FOLDER, 'app.log')),
-            logging.StreamHandler()
-        ]
-    )
-    logger = logging.getLogger(__name__)
+food_analysis_model = api.model('FoodAnalysis', {
+    'food_name': fields.String(required=True, description='Identified food name'),
+    'confidence': fields.Float(description='Confidence of food identification'),
+    'base_gi': fields.Float(description='Base Glycemic Index'),
+    'personalized_gi': fields.Raw(description='Personalized GI impact')
+})
 
-    # Initialize Flask-RESTX
-    authorizations = {
-        'apikey': {
-            'type': 'apiKey',
-            'in': 'header',
-            'name': 'X-API-KEY'
-        }
-    }
-    api = Api(app, 
-              version='1.0', 
-              title='GI Personalize API',
-              description='API for Personalized Glycemic Index Tracking',
-              doc='/swagger',
-              authorizations=authorizations,
-              security='apikey')
+meal_response_model = api.model('MealResponse', {
+    'response': fields.String(required=True, description='User response to meal',
+                             enum=['less_than_expected', 'as_expected', 'more_than_expected'])
+})
 
-    # Define API models
-    user_profile_model = api.model('UserProfile', {
-        'name': fields.String(required=True, description='User\'s full name'),
-        'age': fields.Integer(required=True, description='User\'s age'),
-        'gender': fields.String(required=True, description='User\'s gender'),
-        'height': fields.Float(required=True, description='User height in cm'),
-        'weight': fields.Float(required=True, description='User weight in kg')
-    })
+# Ensure required directories exist
+for directory in [app.config['UPLOAD_FOLDER'], 
+                 app.config['USER_DATA_FOLDER'], 
+                 'logs']:
+    os.makedirs(directory, exist_ok=True)
 
-    glucose_reading_model = api.model('GlucoseReading', {
-        'timestamp': fields.DateTime(required=True, description='Timestamp of glucose reading'),
-        'value': fields.Float(required=True, description='Glucose level')
-    })
+# Initialize database on startup
+initialize_database()
 
-    food_analysis_model = api.model('FoodAnalysis', {
-        'food_name': fields.String(required=True, description='Identified food name'),
-        'confidence': fields.Float(description='Confidence of food identification'),
-        'base_gi': fields.Float(description='Base Glycemic Index'),
-        'personalized_gi': fields.Raw(description='Personalized GI impact')
-    })
+# API Routes
+@health_ns.route('')
+class HealthCheck(Resource):
+    def get(self):
+        """Health check endpoint"""
+        return {'status': 'healthy'}
 
-    # Health Check Namespace
-    health_ns = api.namespace('health', description='Health Check Endpoints')
-
-    @health_ns.route('')
-    class HealthCheck(Resource):
-        def get(self):
-            """Health check endpoint"""
-            return {'status': 'healthy'}
-
-    # Users Namespace
-    users_ns = api.namespace('users', description='User Profile Management')
-
-    @users_ns.route('')
-    class UserCreation(Resource):
-        @api.expect(user_profile_model)
-        def post(self):
-            """Create a new user profile"""
-            try:
-                data = request.json
-                
-                # Validate user data
-                validation_error = validate_user_data(data)
-                if validation_error:
-                    return {'error': validation_error}, 400
-                
-                # Generate unique user ID
-                user_id = str(uuid.uuid4())
-                
-                # Calculate BMI
-                data['bmi'] = data['weight'] / ((data['height']/100) ** 2)
-
-                # Convert string values to float before calculation
-                try:
-                    weight = float(data['weight'])
-                    height = float(data['height'])
-                
-                    # Calculate BMI
-                    data['bmi'] = weight / ((height/100) ** 2)
-
-                except (ValueError, TypeError):
-                    return {'error': 'Height and weight must be valid numbers'}, 400
-
-                
-                # Create user profile
-                user_profile = {
-                    "user_id": user_id,
-                    "profile": data,
-                    "meals": [],
-                    "calibration": {},
-                    "created_at": datetime.now().isoformat()
-                }
-                
-                # Save user profile
-                save_user_data(user_id, user_profile)
-                
-                return {"user_id": user_id}, 201
+@users_ns.route('')
+class UserCreation(Resource):
+    @api.expect(user_profile_model)
+    def post(self):
+        """Create a new user profile"""
+        try:
+            data = request.json
+            print("===============Inside Create User Method =================== ")
+            print (f"Received Request Payload: {data}")
             
-            except Exception as e:
-                logger.error(f"Error creating user: {str(e)}", exc_info=True)
-                return {"error": "Failed to create user"}, 500
-
-    @users_ns.route('/<string:user_id>')
-    class UserManagement(Resource):
-        def get(self, user_id):
-            """Get user profile"""
-            try:
-                user_data = get_user_data(user_id)
-                
-                if not user_data:
-                    return {"error": "User not found"}, 404
-                
-                return {
-                    "user_id": user_data["user_id"],
-                    "profile": user_data["profile"],
-                    "created_at": user_data["created_at"]
-                }, 200
+            # Validate user data
+            validation_error = validate_user_data(data)
+            if validation_error:
+                print(f"Validation Errr:---> {validation_error}")
+                return {'error': validation_error}, 400
             
-            except Exception as e:
-                logger.error(f"Error getting user {user_id}: {str(e)}", exc_info=True)
-                return {"error": "Failed to get user profile"}, 500
+            # Generate unique user ID
+            user_id = str(uuid.uuid4())
+            
+            # Calculate BMI
+            data['bmi'] = float(data['weight']) / ((float(data['height'])/100) ** 2)
+            print(f"BMI Calculation Results: ---> {data[bmi]}")
+            
+            # Create user profile
+            user_profile = {
+                "user_id": user_id,
+                "profile": data,
+                "meals": [],
+                "calibration": {},
+                "created_at": datetime.now().isoformat()
+            }
+            
+            # Save user profile
+            save_user_data(user_id, user_profile)
+            
+            return {"user_id": user_id}, 201
+        
+        except Exception as e:
+            logger.error(f"Error creating user: {str(e)}", exc_info=True)
+            return {"error": f"Failed to create user: {str(e)}"}, 500
 
-    # Food Analysis Namespace
-    food_ns = api.namespace('food', description='Food Analysis Endpoints')
+@users_ns.route('/<string:user_id>')
+class UserManagement(Resource):
+    def get(self, user_id):
+        """Get user profile"""
+        try:
+            print("===============Inside GET/Retrieve User Method =================== ")
+            user_data = get_user_data(user_id)
+            
+            if not user_data:
+                return {"error": "User not found"}, 404
+            
+            # Remove sensitive info for response
+            response_data = {
+                "user_id": user_data["user_id"],
+                "profile": user_data["profile"],
+                "calibration": user_data.get("calibration", {}),
+                "created_at": user_data["created_at"]
+            }
+            
+            return response_data, 200
+        
+        except Exception as e:
+            logger.error(f"Error getting user {user_id}: {str(e)}", exc_info=True)
+            return {"error": "Failed to get user profile"}, 500
+            
+    @api.expect(user_profile_model)
+    def put(self, user_id):
+        """Update user profile"""
+        try:
+            print("===============Inside Update User Method =================== ")
+            user_data = get_user_data(user_id)
+            
+            if not user_data:
+                return {"error": "User not found"}, 404
+            
+            # Update profile with new data
+            data = request.json
+            print (f"Received Request Payload: {data}")
 
-    @food_ns.route('/analyze')
-    class FoodAnalysis(Resource):
-        @api.expect(api.parser().add_argument('food_image', location='files', type=FileStorage, required=True),
-                    api.parser().add_argument('user_id', location='form', required=True))
-        def post(self):
-            """Analyze food image and provide personalized GI info"""
-            try:
-                # Parse arguments
-                parser = api.parser()
-                parser.add_argument('food_image', location='files', type=FileStorage, required=True)
-                parser.add_argument('user_id', location='form', required=True)
-                args = parser.parse_args()
-                
-                file = args['food_image']
-                user_id = args['user_id']
-                
-                # Validate user
-                user_data = get_user_data(user_id)
-                if not user_data:
-                    return {"error": "User not found"}, 404
-                
+            # Validate user data
+            validation_error = validate_user_data(data, required_fields=False)
+            if validation_error:
+                return {"error": validation_error}, 400
+            
+            user_data['profile'].update(data)
+            
+            # Recalculate BMI if weight or height was updated
+            if 'weight' in data or 'height' in data:
+                weight = float(user_data['profile']['weight'])
+                height = float(user_data['profile']['height'])
+                user_data['profile']['bmi'] = weight / ((height/100) ** 2)
+            
+            # Save updated profile
+            save_user_data(user_id, user_data)
+            
+            return {"message": "User profile updated"}, 200
+        
+        except Exception as e:
+            logger.error(f"Error updating user {user_id}: {str(e)}", exc_info=True)
+            return {"error": "Failed to update user profile"}, 500
+
+@food_ns.route('/food')
+class FoodAnalysis(Resource):
+    @api.doc(params={'food_image': 'Food image file', 'user_id': 'User ID'})
+    def post(self):
+        """Analyze food image and provide personalized GI info"""
+        try:
+            # Check if the post request has the file part
+            if 'food_image' not in request.files:
+                return {"error": "No file part"}, 400
+            
+            file = request.files['food_image']
+            user_id = request.form.get('user_id')
+            
+            # If user doesn't submit a file
+            if file.filename == '':
+                return {"error": "No selected file"}, 400
+            
+            # Check if user exists
+            user_data = get_user_data(user_id)
+            if not user_data:
+                return {"error": "User not found"}, 404
+            
+            if file and allowed_file(file.filename):
                 # Save the file
                 filename = secure_filename(f"{user_id}_{datetime.now().strftime('%Y%m%d%H%M%S')}_{file.filename}")
-                filepath = os.path.join(Config.UPLOAD_FOLDER, filename)
-                os.makedirs(Config.UPLOAD_FOLDER, exist_ok=True)
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 file.save(filepath)
-                
+                print(f"Media file is saved successfully in the filepath: {filepath}")
+
                 # Identify food in the image
                 food_items = identify_food_in_image(filepath)
                 
@@ -309,15 +241,19 @@ def create_app(config_class=Config):
                 results = []
                 for food in food_items:
                     # Look up base GI value
-                    base_gi = lookup_gi(food['name'])
+                    base_gi = models.lookup_gi(food['name'])
                     
                     # Personalize GI impact
-                    personalized = personalize_gi_impact(base_gi, user_data['profile'])
+                    personalized = models.personalize_gi_impact(base_gi, user_data['profile'])
+                    
+                    # Apply calibration factor if available
+                    if 'calibration' in user_data and 'calibration_factor' in user_data['calibration']:
+                        personalized['personalized_gi_score'] *= user_data['calibration']['calibration_factor']
                     
                     # Add to results
                     food_result = {
                         "food_name": food['name'],
-                        "confidence": food.get('confidence', 0.5),
+                        "confidence": food['confidence'],
                         "base_gi": base_gi,
                         "personalized_gi": personalized
                     }
@@ -341,93 +277,146 @@ def create_app(config_class=Config):
                     "results": results
                 }, 200
             
-            except Exception as e:
-                logger.error(f"Error analyzing food: {str(e)}", exc_info=True)
-                return {"error": "Failed to analyze food"}, 500
+            return {"error": "Invalid file format"}, 400
+        
+        except Exception as e:
+            logger.error(f"Error analyzing food: {str(e)}", exc_info=True)
+            return {"error": "Failed to analyze food"}, 500
 
-    # Calibration Namespace
-    calibration_ns = api.namespace('calibration', description='Glucose Calibration Endpoints')
+def allowed_file(filename):
+    """Check if file has an allowed extension."""
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
-    @calibration_ns.route('/<string:user_id>')
-    class CalibrationSubmission(Resource):
-        @api.expect(api.model('CalibrationSubmission', {
-            'glucose_readings': fields.List(fields.Nested(glucose_reading_model), required=True)
-        }))
-        def post(self, user_id):
-            """Submit calibration meal data"""
-            try:
-                # Check if user exists
-                user_data = get_user_data(user_id)
-                if not user_data:
-                    return {"error": "User not found"}, 404
-                
-                # Get glucose readings from request
-                data = request.json
-                if 'glucose_readings' not in data:
-                    return {"error": "Missing glucose readings"}, 400
-                
-                glucose_readings = data['glucose_readings']
-                
-                # Validate glucose readings
-                validation_error = validate_glucose_readings(glucose_readings)
-                if validation_error:
-                    return {"error": validation_error}, 400
-                
-                # Calculate a simple calibration factor
-                initial_reading = glucose_readings[0]['value']
-                peak_reading = max(reading['value'] for reading in glucose_readings)
-                calibration_factor = peak_reading / initial_reading
-                
-                # Update user profile with calibration data
-                user_data['calibration'] = {
-                    "calibration_factor": round(max(0.8, min(1.5, calibration_factor)), 2),
-                    "timestamp": datetime.now().isoformat(),
-                    "readings": glucose_readings
-                }
-                
-                # Save updated profile
-                save_user_data(user_id, user_data)
-                
-                return {
-                    "calibration_factor": user_data['calibration']['calibration_factor'],
-                    "message": "Calibration completed successfully"
-                }, 200
+@calibration_ns.route('/<string:user_id>')
+class CalibrationSubmission(Resource):
+    @api.expect(api.model('CalibrationSubmission', {
+        'glucose_readings': fields.List(fields.Nested(glucose_reading_model), required=True)
+    }))
+    def post(self, user_id):
+        """Submit calibration meal data"""
+        try:
+            # Check if user exists
+            user_data = get_user_data(user_id)
+            if not user_data:
+                return {"error": "User not found"}, 404
             
-            except Exception as e:
-                logger.error(f"Error processing calibration for user {user_id}: {str(e)}", exc_info=True)
-                return {"error": "Failed to process calibration"}, 500
+            # Get glucose readings from request
+            data = request.json
+            if 'glucose_readings' not in data:
+                return {"error": "Missing glucose readings"}, 400
+            
+            glucose_readings = data['glucose_readings']
+            
+            # Validate glucose readings
+            validation_error = validate_glucose_readings(glucose_readings)
+            if validation_error:
+                return {"error": validation_error}, 400
+            
+            # Process calibration meal
+            response_factor = models.process_calibration_meal(glucose_readings)
+            
+            # Update user profile with calibration data
+            user_data['calibration'] = {
+                "calibration_factor": response_factor,
+                "timestamp": datetime.now().isoformat(),
+                "readings": glucose_readings
+            }
+            
+            # Save updated profile
+            save_user_data(user_id, user_data)
+            
+            return {
+                "calibration_factor": response_factor,
+                "message": "Calibration completed successfully"
+            }, 200
+        
+        except Exception as e:
+            logger.error(f"Error processing calibration for user {user_id}: {str(e)}", exc_info=True)
+            return {"error": "Failed to process calibration"}, 500
 
+@meals_ns.route('/<string:user_id>/<string:meal_id>/response')
+class MealResponse(Resource):
+    @api.expect(meal_response_model)
+    def post(self, user_id, meal_id):
+        """Log user's response to a meal"""
+        try:
+            # Check if user exists
+            user_data = get_user_data(user_id)
+            if not user_data:
+                return {"error": "User not found"}, 404
+            
+            # Find the meal
+            meal_found = False
+            for meal in user_data['meals']:
+                if meal['meal_id'] == meal_id:
+                    # Add user response
+                    meal['user_response'] = request.json
+                    meal['response_time'] = datetime.now().isoformat()
+                    meal_found = True
+                    break
+            
+            if not meal_found:
+                return {"error": "Meal not found"}, 404
+            
+            # Update user's personal model if enough data points
+            model_updated = False
+            meals_with_responses = [m for m in user_data['meals'] if 'user_response' in m]
+            
+            if len(meals_with_responses) >= 5:
+                # Prepare training data
+                feature_data, response_data = models.prepare_training_data(meals_with_responses)
+                
+                # Train model if we have enough data
+                if len(feature_data) > 0 and len(response_data) > 0:
+                    # Update user's personalized model
+                    model_updated = models.update_user_model(user_id, feature_data, response_data)
+                    
+                    # Record model update
+                    if model_updated:
+                        user_data['model_updated_at'] = datetime.now().isoformat()
+                        user_data['model_version'] = user_data.get('model_version', 0) + 1
+            
+            # Save updated user data
+            save_user_data(user_id, user_data)
+            
+            response = {"message": "Response recorded"}
+            if model_updated:
+                response["model_updated"] = True
+                response["message"] = "Your personal profile has been updated based on your response"
+            
+            return response, 200
+        
+        except Exception as e:
+            logger.error(f"Error logging meal response for user {user_id}, meal {meal_id}: {str(e)}", exc_info=True)
+            return {"error": "Failed to log meal response"}, 500
+
+@meals_ns.route('/<string:user_id>')
+class UserMeals(Resource):
+    def get(self, user_id):
+        """Get user's meal history"""
+        try:
+            # Check if user exists
+            user_data = get_user_data(user_id)
+            if not user_data:
+                return {"error": "User not found"}, 404
+            
+            # Return meals
+            return {"meals": user_data.get('meals', [])}, 200
+        
+        except Exception as e:
+            logger.error(f"Error getting meals for user {user_id}: {str(e)}", exc_info=True)
+            return {"error": "Failed to get meal history"}, 500
+
+# Application entry point
+def create_app(config_class=Config):
     return app
 
-def main():
-    """
-    Main entry point for the application.
-    Configures and runs the Flask development server.
-    """
-    # Create application
-    app = create_app()
-    
-    # Determine port
-    port = int(os.environ.get('PORT', 5000))
-    
-    # Run the application
-    try:
-        print(f"Starting GI Personalize API on port {port}")
-        print(f"Swagger UI available at: http://localhost:{port}/swagger")
-        
-        # Run with debug and extra reload options
-        app.run(
-            host='0.0.0.0', 
-            port=port, 
-            debug=True,
-            use_reloader=True
-        )
-    except Exception as e:
-        logging.error(f"Failed to start application: {e}")
-        sys.exit(1)
-
+# Run the application when executed directly
 if __name__ == '__main__':
-    main()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 # Add this at the module level
 app = create_app()
+
