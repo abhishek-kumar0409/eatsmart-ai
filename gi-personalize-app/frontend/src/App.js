@@ -28,9 +28,12 @@ function App() {
     }
   }, []);
   
+
+  // Update the fetchUserProfile function in App.js
   const fetchUserProfile = async (userId) => {
     try {
       const response = await axios.get(`/api/users/${userId}`);
+      // Store the complete user object returned from the backend
       setUser(response.data);
       setLoading(false);
     } catch (error) {
@@ -39,11 +42,14 @@ function App() {
       setLoading(false);
     }
   };
-  
+
+  // Update the handleLogin function
   const handleLogin = (userData) => {
+    // The userData should contain the user_id field from the backend response
     setUser(userData);
     localStorage.setItem('userId', userData.user_id);
   };
+  
   
   const handleLogout = () => {
     setUser(null);

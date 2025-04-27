@@ -27,6 +27,9 @@ const Calibration = ({ user }) => {
     setStep('instructions');
   };
   
+
+
+  // Update the handleSubmitReadings function in Calibration.js
   const handleSubmitReadings = async () => {
     // Validate readings
     for (const key in glucoseReadings) {
@@ -35,28 +38,48 @@ const Calibration = ({ user }) => {
         return;
       }
     }
-    
+
     setLoading(true);
     setError(null);
-    
+
     try {
+      // Format readings as expected by the backend
       const readings = [
-        parseFloat(glucoseReadings.fasting),
-        parseFloat(glucoseReadings.thirtyMin),
-        parseFloat(glucoseReadings.sixtyMin),
-        parseFloat(glucoseReadings.ninetyMin),
-        parseFloat(glucoseReadings.twoHour)
+        {
+          timestamp: new Date().toISOString(),
+          value: parseFloat(glucoseReadings.fasting)
+        },
+        {
+          timestamp: new Date().toISOString(),
+          value: parseFloat(glucoseReadings.thirtyMin)
+        },
+        {
+          timestamp: new Date().toISOString(),
+          value: parseFloat(glucoseReadings.sixtyMin)
+        },
+        {
+          timestamp: new Date().toISOString(),
+          value: parseFloat(glucoseReadings.ninetyMin)
+        },
+        {
+          timestamp: new Date().toISOString(),
+          value: parseFloat(glucoseReadings.twoHour)
+        }
       ];
-      
+
       const response = await axios.post(`/api/calibration/${user.user_id}`, {
         glucose_readings: readings
       });
-      
+
       setResult(response.data);
       setStep('result');
-    } catch (error) {
+    }   catch (error) {
       console.error('Error submitting calibration:', error);
-      setError('Failed to process calibration. Please try again.');
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        setError('Failed to process calibration. Please try again.');
+      }
     } finally {
       setLoading(false);
     }

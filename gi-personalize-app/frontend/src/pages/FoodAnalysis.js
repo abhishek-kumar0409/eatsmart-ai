@@ -25,36 +25,44 @@ const FoodAnalysis = ({ user }) => {
     reader.readAsDataURL(file);
   };
   
+  
+  // Update the handleSubmit function in FoodAnalysis.js
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+  
     if (!selectedFile) {
       setError('Please select an image to analyze');
       return;
     }
-    
+  
     setAnalyzing(true);
     setError(null);
-    
+  
     try {
       const formData = new FormData();
       formData.append('food_image', selectedFile);
       formData.append('user_id', user.user_id);
-      
-      const response = await axios.post('/api/analyze/food', formData, {
+    
+      // Adjusted to match backend endpoint
+      const response = await axios.post('/api/food/analyze', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-      
+    
       setResults(response.data);
     } catch (error) {
       console.error('Error analyzing food:', error);
-      setError('Failed to analyze food image. Please try again.');
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        setError('Failed to analyze food image. Please try again.');
+      }
     } finally {
       setAnalyzing(false);
     }
   };
+  
   
   const handleReset = () => {
     setSelectedFile(null);

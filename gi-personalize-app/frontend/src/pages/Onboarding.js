@@ -6,8 +6,9 @@ import './Onboarding.css';
 const Onboarding = ({ onLogin }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
+    name: '',
     age: '',
-    sex: '',
+    gender: '',
     height: '',
     weight: '',
     activity_level: 'moderately_active',
@@ -28,7 +29,7 @@ const Onboarding = ({ onLogin }) => {
   
   const validateStep = () => {
     if (step === 1) {
-      if (!formData.age || !formData.sex) {
+      if (!formData.name || !formData.age || !formData.gender) {
         setError('Please fill in all required fields');
         return false;
       }
@@ -70,7 +71,12 @@ const Onboarding = ({ onLogin }) => {
       onLogin(response.data);
     } catch (error) {
       console.error('Error creating user:', error);
-      setError('Failed to create account. Please try again.');
+      // Show more detailed error message if available
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        setError('Failed to create account. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -97,6 +103,19 @@ const Onboarding = ({ onLogin }) => {
               <h2>Basic Information</h2>
               
               <div className="form-group">
+                <label htmlFor="name">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="form-control"
+                />
+              </div>
+              
+              <div className="form-group">
                 <label htmlFor="age">Age</label>
                 <input
                   type="number"
@@ -112,14 +131,14 @@ const Onboarding = ({ onLogin }) => {
               </div>
               
               <div className="form-group">
-                <label>Sex</label>
+                <label>Gender</label>
                 <div className="radio-group">
                   <label className="radio-label">
                     <input
                       type="radio"
-                      name="sex"
+                      name="gender"
                       value="male"
-                      checked={formData.sex === 'male'}
+                      checked={formData.gender === 'male'}
                       onChange={handleChange}
                     />
                     Male
@@ -127,9 +146,9 @@ const Onboarding = ({ onLogin }) => {
                   <label className="radio-label">
                     <input
                       type="radio"
-                      name="sex"
+                      name="gender"
                       value="female"
-                      checked={formData.sex === 'female'}
+                      checked={formData.gender === 'female'}
                       onChange={handleChange}
                     />
                     Female
