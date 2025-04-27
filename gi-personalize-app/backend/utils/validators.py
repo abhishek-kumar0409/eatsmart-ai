@@ -18,7 +18,7 @@ def validate_user_data(data, required_fields=True):
     """
     # Check required fields
     if required_fields:
-        for field in ['age', 'sex', 'height', 'weight']:
+        for field in ['name', 'age', 'gender', 'height', 'weight']:
             if field not in data:
                 return f"Missing required field: {field}"
     
@@ -32,8 +32,8 @@ def validate_user_data(data, required_fields=True):
             return "Age must be a number"
     
     # Validate sex
-    if 'sex' in data and data['sex'] not in ['male', 'female']:
-        return "Sex must be either 'male' or 'female'"
+    if 'gender' in data and data['gender'] not in ['male', 'female']:
+        return "Gender must be either 'male' or 'female'"
     
     # Validate height
     if 'height' in data:

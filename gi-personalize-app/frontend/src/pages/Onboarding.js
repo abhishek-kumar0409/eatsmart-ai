@@ -57,28 +57,41 @@ const Onboarding = ({ onLogin }) => {
   const handleBack = () => {
     setStep(step - 1);
   };
-  
+
+  // In your Onboarding.js file, update the handleSubmit function:
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+  
     if (!validateStep()) return;
-    
+  
     setLoading(true);
-    
+  
     try {
-      // Convert string values to numbers to avoid backend type errors
+      // Log what we're sending for debugging
+      console.log("Sending data:", formData);
+    
+      // Convert string values to numbers and ensure all required fields are present
       const processedData = {
-        ...formData,
+        name: formData.name,
         age: Number(formData.age),
+        gender: formData.gender, // Make sure this is gender not sex
         height: Number(formData.height),
-        weight: Number(formData.weight)
+        weight: Number(formData.weight),
+        activity_level: formData.activity_level,
+        diabetes_status: formData.diabetes_status,
+        weight_goal: formData.weight_goal,
+        // Only include optional fields if they have values
+        ...(formData.hba1c ? { hba1c: Number(formData.hba1c) } : {}),
+        ...(formData.fasting_glucose ? { fasting_glucose: Number(formData.fasting_glucose) } : {})
       };
-      
+    
       const response = await axios.post('/api/users', processedData);
-      
+    
       onLogin(response.data);
     } catch (error) {
       console.error('Error creating user:', error);
+      console.error('Error response:', error.response?.data); // Log the full error response
+    
       // Show more detailed error message if available
       if (error.response && error.response.data && error.response.data.error) {
         setError(error.response.data.error);
@@ -89,6 +102,7 @@ const Onboarding = ({ onLogin }) => {
       setLoading(false);
     }
   };
+  
   
   return (
     <div className="onboarding-container">
