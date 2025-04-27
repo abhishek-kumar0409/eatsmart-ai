@@ -168,7 +168,7 @@ const Dashboard = ({ user }) => {
           <div className="tip-content">
             <h3>Improve Your Metabolic Health</h3>
             <p>
-              {user?.profile?.diabetes_status === 'none' 
+              {user.profile.diabetes_status === 'none' 
                 ? 'For optimal blood sugar control, consider pairing carbs with protein or healthy fats.'
                 : 'To help manage your blood sugar, focus on low GI foods and proper meal timing.'}
             </p>
