@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Meals Data Profile</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #2c3e50; }
+        .stats-container { display: flex; flex-wrap: wrap; }
+        .stat-card { width: 200px; padding: 15px; margin: 10px; background-color: #f8f9fa; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .stat-value { font-size: 24px; font-weight: bold; color: #3498db; }
+        .image-gallery { display: flex; flex-wrap: wrap; justify-content: center; }
+        .image-card { margin: 15px; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 400px; }
+        .image-card img { width: 100%; height: auto; display: block; }
+        .image-caption { padding: 10px; background-color: #f8f9fa; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Meals Data Profile</h1>
+    <p>Report generated on: 2025-04-28 21:22:28</p>
+    <h2>Dataset Summary</h2>
+    <div class='stats-container'>
+        <div class='stat-card'>
+            <div class='stat-label'>Total Rows</div>
+            <div class='stat-value'>100</div>
+        </div>
+        <div class='stat-card'>
+            <div class='stat-label'>Total Columns</div>
+            <div class='stat-value'>76</div>
+        </div>
+        <div class='stat-card'>
+            <div class='stat-label'>Missing Values</div>
+            <div class='stat-value'>1.2%</div>
+        </div>
+        <div class='stat-card'>
+            <div class='stat-label'>File Size</div>
+            <div class='stat-value'>0.08 MB</div>
+        </div>
+    </div>
+    <h2>Key Distributions</h2>
+    <div class='image-gallery'>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Clinic_Weight_distribution.png' alt='Distribution of Clinic Weight'>
+            <div class='image-caption'>Distribution of Clinic Weight</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Clinic_Height_distribution.png' alt='Distribution of Clinic Height'>
+            <div class='image-caption'>Distribution of Clinic Height</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Clinic_Bmi_distribution.png' alt='Distribution of Clinic Bmi'>
+            <div class='image-caption'>Distribution of Clinic Bmi</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Md_Age_distribution.png' alt='Distribution of Md Age'>
+            <div class='image-caption'>Distribution of Md Age</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Calories_distribution.png' alt='Distribution of Meal Calories'>
+            <div class='image-caption'>Distribution of Meal Calories</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Carbohydrate_distribution.png' alt='Distribution of Meal Carbohydrate'>
+            <div class='image-caption'>Distribution of Meal Carbohydrate</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Fat_distribution.png' alt='Distribution of Meal Fat'>
+            <div class='image-caption'>Distribution of Meal Fat</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Protein_distribution.png' alt='Distribution of Meal Protein'>
+            <div class='image-caption'>Distribution of Meal Protein</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Iauc_distribution.png' alt='Distribution of Meal Iauc'>
+            <div class='image-caption'>Distribution of Meal Iauc</div>
+        </div>
+    </div>
+    <h2>Correlations</h2>
+    <div class='image-gallery'>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/correlation_heatmap.png' alt='Correlation Heatmap'>
+            <div class='image-caption'>Correlation Matrix of Key Metrics</div>
+        </div>
+    </div>
+    <h2>Metrics by Sex</h2>
+    <div class='image-gallery'>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Clinic_Weight_by_sex.png' alt='Clinic Weight by Sex'>
+            <div class='image-caption'>Clinic Weight by Sex</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Clinic_Height_by_sex.png' alt='Clinic Height by Sex'>
+            <div class='image-caption'>Clinic Height by Sex</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Clinic_Bmi_by_sex.png' alt='Clinic Bmi by Sex'>
+            <div class='image-caption'>Clinic Bmi by Sex</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Md_Age_by_sex.png' alt='Md Age by Sex'>
+            <div class='image-caption'>Md Age by Sex</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Calories_by_sex.png' alt='Meal Calories by Sex'>
+            <div class='image-caption'>Meal Calories by Sex</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Carbohydrate_by_sex.png' alt='Meal Carbohydrate by Sex'>
+            <div class='image-caption'>Meal Carbohydrate by Sex</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Fat_by_sex.png' alt='Meal Fat by Sex'>
+            <div class='image-caption'>Meal Fat by Sex</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Protein_by_sex.png' alt='Meal Protein by Sex'>
+            <div class='image-caption'>Meal Protein by Sex</div>
+        </div>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/Meal_Iauc_by_sex.png' alt='Meal Iauc by Sex'>
+            <div class='image-caption'>Meal Iauc by Sex</div>
+        </div>
+    </div>
+    <h2>Key Relationships</h2>
+    <div class='image-gallery'>
+        <div class='image-card'>
+            <img src='data_profile_20250428_212225/carb_vs_iauc.png' alt='Carbohydrate vs IAUC'>
+            <div class='image-caption'>Meal Carbohydrate vs IAUC by Sex</div>
+        </div>
+    </div>
+</body>
+</html>
