@@ -1,0 +1,3564 @@
+{
+    "_id": "be740ea5-140f-4d12-a858-1f2927554ade",
+    "canvasVersion": 1,
+    "created": {
+      "$date": "2025-04-17T18:09:38.000Z"
+    },
+    "createdVersion": "5.44.64-2022.1.74",
+    "created_by": {
+      "$oid": "660d7784c34e7a6c1e181e81"
+    },
+    "font_size": 12,
+    "groups": [],
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "payload": {
+          "title": "obj",
+          "type": "object",
+          "properties": {},
+          "examples": [
+            {
+              "name": "value"
+            }
+          ]
+        },
+        "workOrderId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "title": "obj",
+              "type": "object",
+              "properties": {},
+              "examples": [
+                {
+                  "name": "value"
+                }
+              ]
+            }
+          ]
+        },
+        "crudAction": {
+          "type": [
+            "array",
+            "boolean",
+            "null",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "verbose": {
+          "title": "obj",
+          "type": "object",
+          "properties": {},
+          "examples": [
+            {
+              "name": "value"
+            }
+          ]
+        },
+        "netconfAction": {
+          "title": "obj",
+          "type": "object",
+          "properties": {},
+          "examples": [
+            {
+              "name": "value"
+            }
+          ]
+        },
+        "ConcatenatecrudActionwith_": {
+          "title": "str",
+          "type": "string",
+          "examples": [
+            "Hello"
+          ]
+        }
+      },
+      "required": [
+        "payload",
+        "workOrderId",
+        "crudAction",
+        "verbose",
+        "netconfAction",
+        "ConcatenatecrudActionwith_"
+      ]
+    },
+    "lastUpdatedVersion": "5.44.64-2022.1.74",
+    "last_updated": {
+      "$date": "2025-04-17T18:09:38.714Z"
+    },
+    "last_updated_by": {
+      "$oid": "660d7784c34e7a6c1e181e81"
+    },
+    "name": "RF_PriCRUD_ProvisionEXGW-IAG",
+    "outputSchema": {
+      "type": "object",
+      "properties": {
+        "payload": {
+          "title": "obj",
+          "type": "object",
+          "properties": {},
+          "examples": [
+            {
+              "name": "value"
+            }
+          ]
+        },
+        "workOrderId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "title": "obj",
+              "type": "object",
+              "properties": {},
+              "examples": [
+                {
+                  "name": "value"
+                }
+              ]
+            }
+          ]
+        },
+        "crudAction": {
+          "type": [
+            "array",
+            "boolean",
+            "null",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "verbose": {
+          "title": "obj",
+          "type": "object",
+          "properties": {},
+          "examples": [
+            {
+              "name": "value"
+            }
+          ]
+        },
+        "netconfAction": {
+          "title": "obj",
+          "type": "object",
+          "properties": {},
+          "examples": [
+            {
+              "name": "value"
+            }
+          ]
+        },
+        "ConcatenatecrudActionwith_": {
+          "title": "str",
+          "type": "string",
+          "examples": [
+            "Hello"
+          ]
+        },
+        "_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{24}$"
+        },
+        "initiator": {
+          "type": "string"
+        },
+        "CRUD-Success": {
+          "type": "boolean"
+        },
+        "UPF_Primary": {
+          "title": "return_data",
+          "type": [
+            "string",
+            "number",
+            "object",
+            "integer",
+            "array",
+            "boolean",
+            "null"
+          ],
+          "examples": [
+            "value"
+          ]
+        },
+        "upfPriRenderedTemplate": {
+          "title": "return_data",
+          "type": [
+            "string",
+            "number",
+            "object",
+            "integer",
+            "array",
+            "boolean",
+            "null"
+          ],
+          "examples": [
+            "value"
+          ]
+        },
+        "smfPrimaryError": {
+          "type": "boolean"
+        },
+        "upfPrimaryError": {
+          "type": "boolean"
+        },
+        "SMF_Primary": {
+          "title": "return_data",
+          "type": [
+            "string",
+            "number",
+            "object",
+            "integer",
+            "array",
+            "boolean",
+            "null"
+          ],
+          "examples": [
+            "value"
+          ]
+        },
+        "smfTemplateInput": {
+          "title": "object",
+          "type": "object",
+          "properties": {},
+          "examples": [
+            {
+              "first": {
+                "second": {
+                  "third": "last"
+                }
+              }
+            }
+          ]
+        },
+        "templateName": {
+          "type": "string"
+        },
+        "smfPriRenderedTemplate": {
+          "title": "return_data",
+          "type": [
+            "string",
+            "number",
+            "object",
+            "integer",
+            "array",
+            "boolean",
+            "null"
+          ],
+          "examples": [
+            "value"
+          ]
+        },
+        "UPFPrimary": {
+          "title": "return_data",
+          "type": [
+            "string",
+            "number",
+            "object",
+            "integer",
+            "array",
+            "boolean",
+            "null"
+          ],
+          "examples": [
+            "value"
+          ]
+        },
+        "SMFPrimary": {
+          "title": "return_data",
+          "type": [
+            "string",
+            "number",
+            "object",
+            "integer",
+            "array",
+            "boolean",
+            "null"
+          ],
+          "examples": [
+            "value"
+          ]
+        },
+        "smfSecondaryError": {
+          "type": "boolean"
+        },
+        "upfSecondaryError": {
+          "type": "boolean"
+        },
+        "deviceResults": {
+          "type": [
+            "array",
+            "boolean",
+            "null",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "upfPriDeviceResults": {
+          "title": "return_data",
+          "type": [
+            "string",
+            "number",
+            "object",
+            "integer",
+            "array",
+            "boolean",
+            "null"
+          ],
+          "examples": [
+            "value"
+          ]
+        },
+        "smfPriDeviceResults": {
+          "title": "return_data",
+          "type": [
+            "string",
+            "number",
+            "object",
+            "integer",
+            "array",
+            "boolean",
+            "null"
+          ],
+          "examples": [
+            "value"
+          ]
+        }
+      }
+    },
+    "preAutomationTime": 0,
+    "sla": 0,
+    "tasks": {
+      "4284": {
+        "name": "evaluation",
+        "canvasName": "evaluation",
+        "summary": "Telematics Case?",
+        "description": "Telematics Case?",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "all_true_flag": false,
+            "evaluation_groups": [
+              {
+                "all_true_flag": false,
+                "evaluations": [
+                  {
+                    "query": "orderSpecification",
+                    "operand_1": {
+                      "variable": "payload",
+                      "task": "job",
+                      "editable": false
+                    },
+                    "operator": "contains",
+                    "operand_2": {
+                      "variable": "TelematicParametersInfo",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoing": {
+            "return_value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.8546655656482246,
+        "y": 0.657103825136612
+      },
+      "6326": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": -0.03866862457170827,
+        "y": 1.972795497185741
+      },
+      "6532": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "CRUD-Success",
+            "value": true
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": -0.35040983606557374,
+        "y": 0.6778523489932886
+      },
+      "6750": {
+        "name": "updateWorkOrderStatus",
+        "canvasName": "updateWorkOrderStatus",
+        "summary": "ProvisionEXGW-IAG UPF device provisioning status update",
+        "description": "ProvisionEXGW-IAG UPF device provisioning status update",
+        "location": "Application",
+        "locationType": null,
+        "app": "MPN",
+        "type": "automatic",
+        "displayName": "MPN",
+        "variables": {
+          "incoming": {
+            "workOrderId": "$var.job.workOrderId",
+            "status": "ProvisionEXGW-IAG: Failed to provision for device: UPF_Secondary",
+            "jobType": [
+              "iag"
+            ]
+          },
+          "outgoing": {
+            "result": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 1.7116984826235928,
+        "y": 1.7936210131332082,
+        "scheduled": false
+      },
+      "7338": {
+        "name": "updateWorkOrderStatus",
+        "canvasName": "updateWorkOrderStatus",
+        "summary": "ProvisionEXGW-IAG UPF device provisioning status update",
+        "description": "ProvisionEXGW-IAG UPF device provisioning status update",
+        "location": "Application",
+        "locationType": null,
+        "app": "MPN",
+        "type": "automatic",
+        "displayName": "MPN",
+        "variables": {
+          "incoming": {
+            "workOrderId": "$var.job.workOrderId",
+            "status": "ProvisionEXGW-IAG: Successful provisioning for device: UPF_Primary",
+            "jobType": [
+              "iag"
+            ]
+          },
+          "outgoing": {
+            "result": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 1.5041605482134117,
+        "y": 0.4427767354596623,
+        "scheduled": false
+      },
+      "8126": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.3492,
+        "y": 0.8552754435107376
+      },
+      "8990": {
+        "name": "setObjectKey",
+        "canvasName": "setObjectKey",
+        "summary": "Start SMF template input",
+        "description": "Start SMF template input",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "automatic",
+        "displayName": "Object",
+        "variables": {
+          "incoming": {
+            "obj": {},
+            "path": [
+              "input"
+            ],
+            "value": "$var.4c74.return_data"
+          },
+          "outgoing": {
+            "object": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.5937347038668624,
+        "y": 0.694392523364486,
+        "scheduled": false
+      },
+      "9944": {
+        "name": "evaluation",
+        "canvasName": "evaluation",
+        "summary": "not apn?",
+        "description": "not apn?",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "all_true_flag": false,
+            "evaluation_groups": [
+              {
+                "all_true_flag": false,
+                "evaluations": [
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "crudAction",
+                      "task": "job",
+                      "editable": true
+                    },
+                    "operator": "!contains",
+                    "operand_2": {
+                      "variable": "apn",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoing": {
+            "return_value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.7635829662261381,
+        "y": 0.6850467289719626
+      },
+      "workflow_start": {
+        "name": "workflow_start",
+        "groups": [],
+        "x": -0.44917887261429207,
+        "y": 0.5499533146591971
+      },
+      "workflow_end": {
+        "name": "workflow_end",
+        "groups": [],
+        "x": 2.0215369554576603,
+        "y": 0.450281425891182
+      },
+      "b755": {
+        "name": "updateWorkOrderStatus",
+        "canvasName": "updateWorkOrderStatus",
+        "summary": "UPF device provisioning status update",
+        "description": "UPF device provisioning status update",
+        "location": "Application",
+        "locationType": null,
+        "app": "MPN",
+        "type": "automatic",
+        "displayName": "MPN",
+        "variables": {
+          "incoming": {
+            "workOrderId": "$var.job.workOrderId",
+            "status": "ProvisionEXGW-IAG: Provisioning UPF_Primary",
+            "jobType": [
+              "iag"
+            ]
+          },
+          "outgoing": {
+            "result": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": -0.21341164953499756,
+        "y": 0.550656660412758,
+        "scheduled": false
+      },
+      "4d4e": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query UPF_Primary configuration object from the payload",
+        "description": "Query UPF_Primary configuration object from the payload",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "orderSpecification.UPF_Primary",
+            "obj": "$var.job.payload"
+          },
+          "outgoing": {
+            "return_data": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.14326443335709194,
+        "y": 0.5561861520998865,
+        "scheduled": false
+      },
+      "4c74": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query SMF_Primary configuration object from the payload",
+        "description": "Query SMF_Primary configuration object from the payload",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "orderSpecification.SMF_Primary",
+            "obj": "$var.job.payload"
+          },
+          "outgoing": {
+            "return_data": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.09836065573770492,
+        "y": 0.5482406356413166,
+        "scheduled": false
+      },
+      "db6f": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query UPF device-name from the payload",
+        "description": "Query UPF device-name from the payload",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "orderSpecification.UPF_Primary[*][0][clli-name]",
+            "obj": "$var.job.payload"
+          },
+          "outgoing": {
+            "return_data": "$var.job.UPF_Primary"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.18531717747683535,
+        "y": 0.5380249716231555,
+        "scheduled": false
+      },
+      "2fa1": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "Add UPF device-name to array",
+        "description": "Add device-name to array",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "job",
+                  "variable": "UPF_Primary"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.3536,
+        "y": 0.5098039215686274
+      },
+      "adbd": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "CRUD-Success",
+            "value": false
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.8521781693587862,
+        "y": 1.7908067542213884
+      },
+      "47ca": {
+        "name": "childJob",
+        "canvasName": "childJob",
+        "summary": "UPF Primary Provision-IAG-CRUD",
+        "description": "UPF Primary Provision-IAG-CRUD",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "task": "",
+            "workflow": "RF_Provision-IAG-CRUD",
+            "variables": {
+              "verbose": {
+                "editable": true,
+                "task": "job",
+                "value": "verbose"
+              },
+              "workOrderId": {
+                "editable": true,
+                "task": "job",
+                "value": "workOrderId"
+              },
+              "deviceName": {
+                "editable": true,
+                "task": "job",
+                "value": "UPF_Primary"
+              },
+              "netconfAction": {
+                "editable": true,
+                "task": "job",
+                "value": "netconfAction"
+              },
+              "deviceXML": {
+                "editable": false,
+                "task": "job",
+                "value": "upfPriRenderedTemplate"
+              },
+              "deviceType": {
+                "editable": true,
+                "task": "static",
+                "value": "UPF"
+              },
+              "rollingback": {
+                "editable": true,
+                "task": "static",
+                "value": false
+              }
+            },
+            "data_array": "",
+            "transformation": "",
+            "loopType": ""
+          },
+          "outgoing": {
+            "job_details": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "job",
+        "x": 1.1838111298482294,
+        "y": 0.4324065196548418
+      },
+      "39bb": {
+        "name": "evaluation",
+        "canvasName": "evaluation",
+        "summary": "Success?",
+        "description": "Success?",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "all_true_flag": false,
+            "evaluation_groups": [
+              {
+                "all_true_flag": false,
+                "evaluations": [
+                  {
+                    "query": "CRUD-Success",
+                    "operand_1": {
+                      "variable": "job_details",
+                      "task": "47ca"
+                    },
+                    "operator": "==",
+                    "operand_2": {
+                      "variable": true,
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoing": {
+            "return_value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.287812041116006,
+        "y": 0.43977591036414565
+      },
+      "4f9a": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "smfPrimaryError",
+            "value": false
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": -0.3465491923641703,
+        "y": 0.3828197945845005
+      },
+      "4b4a": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "upfPrimaryError",
+            "value": false
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": -0.3479804704837994,
+        "y": 0.5359477124183006
+      },
+      "e044": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "smfPrimaryError",
+            "value": true
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.5947136563876652,
+        "y": 1.9840525328330207
+      },
+      "b18c": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "upfPrimaryError",
+            "value": true
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.5942241801272639,
+        "y": 1.799249530956848
+      },
+      "c61d": {
+        "name": "updateWorkOrderStatus",
+        "canvasName": "updateWorkOrderStatus",
+        "summary": "SMF device provisioning status update",
+        "description": "SMF device provisioning status update",
+        "location": "Application",
+        "locationType": null,
+        "app": "MPN",
+        "type": "automatic",
+        "displayName": "MPN",
+        "variables": {
+          "incoming": {
+            "workOrderId": "$var.job.workOrderId",
+            "status": "ProvisionEXGW-IAG: Provisioning SMF_Primary",
+            "jobType": [
+              "iag"
+            ]
+          },
+          "outgoing": {
+            "result": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": -0.041605482134116495,
+        "y": 0.5590994371482176,
+        "scheduled": false
+      },
+      "354e": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query SMF device-name from the payload",
+        "description": "Query SMF device-name from the payload",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "orderSpecification.SMF_Primary[*][0][clli-name]",
+            "obj": "$var.job.payload"
+          },
+          "outgoing": {
+            "return_data": "$var.job.SMF_Primary"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.22238061297220243,
+        "y": 0.5323496027241771,
+        "scheduled": false
+      },
+      "a4dd": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "Add SMF device-name to array",
+        "description": "Add device-name to array",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "job",
+                  "variable": "SMF_Primary"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.3512,
+        "y": 0.5751633986928104
+      },
+      "98e1": {
+        "name": "stringConcat",
+        "canvasName": "concat",
+        "summary": "Concatenate crudAction_netconfAction with _",
+        "description": "Concatenate crudAction_netconfAction with _",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "automatic",
+        "displayName": "String",
+        "variables": {
+          "incoming": {
+            "str": "$var.job.ConcatenatecrudActionwith_",
+            "stringN": "_"
+          },
+          "outgoing": {
+            "combinedStrings": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.4767498776309349,
+        "y": 0.5564892623716153,
+        "scheduled": false
+      },
+      "9f5a": {
+        "name": "stringConcat",
+        "canvasName": "concat",
+        "summary": "Concatenate crudAction_netconfAction_ with UPF",
+        "description": "Concatenate crudAction_netconfAction_ with UPF",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "automatic",
+        "displayName": "String",
+        "variables": {
+          "incoming": {
+            "str": "$var.98e1.combinedStrings",
+            "stringN": "UPF"
+          },
+          "outgoing": {
+            "combinedStrings": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.6226138032305433,
+        "y": 0.4369747899159664,
+        "scheduled": false
+      },
+      "5b": {
+        "name": "stringConcat",
+        "canvasName": "concat",
+        "summary": "Concatenate crudAction_netconfAction_ with SMF",
+        "description": "Concatenate crudAction_netconfAction_ with SMF",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "automatic",
+        "displayName": "String",
+        "variables": {
+          "incoming": {
+            "str": "$var.98e1.combinedStrings",
+            "stringN": "SMF"
+          },
+          "outgoing": {
+            "combinedStrings": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.49607982893799,
+        "y": 0.695800227014756,
+        "scheduled": false
+      },
+      "1b10": {
+        "name": "setObjectKey",
+        "canvasName": "setObjectKey",
+        "summary": "Start UPF template input",
+        "description": "Start UPF template input",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "automatic",
+        "displayName": "Object",
+        "variables": {
+          "incoming": {
+            "obj": {},
+            "path": [
+              "input"
+            ],
+            "value": "$var.4d4e.return_data"
+          },
+          "outgoing": {
+            "object": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.7444933920704846,
+        "y": 0.4341736694677871,
+        "scheduled": false
+      },
+      "c58f": {
+        "name": "setObjectKey",
+        "canvasName": "setObjectKey",
+        "summary": "Add SMF info to UPF template",
+        "description": "Add SMF info to UPF template",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "automatic",
+        "displayName": "Object",
+        "variables": {
+          "incoming": {
+            "obj": "$var.1b10.object",
+            "path": [
+              "smf"
+            ],
+            "value": "$var.4c74.return_data"
+          },
+          "outgoing": {
+            "object": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.8565834557023985,
+        "y": 0.4388422035480859,
+        "scheduled": false
+      },
+      "b017": {
+        "name": "setObjectKey",
+        "canvasName": "setObjectKey",
+        "summary": "Add UPF info to SMF template",
+        "description": "Add UPF info to SMF template",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "automatic",
+        "displayName": "Object",
+        "variables": {
+          "incoming": {
+            "obj": "$var.8990.object",
+            "path": [
+              "upf"
+            ],
+            "value": "$var.4d4e.return_data"
+          },
+          "outgoing": {
+            "object": "$var.job.smfTemplateInput"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.6852667645619187,
+        "y": 0.6953271028037383,
+        "scheduled": false
+      },
+      "f8b2": {
+        "name": "renderJinjaTemplate",
+        "canvasName": "renderJinjaTemplate",
+        "summary": "Render UPF jinja template for required deviceType and crudAction",
+        "description": "Render UPF jinja template for required deviceType and crudAction",
+        "location": "Application",
+        "locationType": null,
+        "app": "TemplateBuilder",
+        "type": "automatic",
+        "displayName": "TemplateBuilder",
+        "variables": {
+          "incoming": {
+            "name": "$var.9f5a.combinedStrings",
+            "context": "$var.c58f.object"
+          },
+          "outgoing": {
+            "renderedTemplate": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.969652471855115,
+        "y": 0.4388422035480859,
+        "scheduled": false
+      },
+      "b822": {
+        "name": "renderJinjaTemplate",
+        "canvasName": "renderJinjaTemplate",
+        "summary": "Render SMF jinja template for required deviceType and crudAction",
+        "description": "Render SMF jinja template for required deviceType and crudAction",
+        "location": "Application",
+        "locationType": null,
+        "app": "TemplateBuilder",
+        "type": "automatic",
+        "displayName": "TemplateBuilder",
+        "variables": {
+          "incoming": {
+            "name": "$var.job.templateName",
+            "context": "$var.job.smfTemplateInput"
+          },
+          "outgoing": {
+            "renderedTemplate": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.9935851746258019,
+        "y": 0.6503972758229285,
+        "scheduled": false
+      },
+      "538e": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query UPF renderedTemplate",
+        "description": "Query UPF renderedTemplate",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "renderedTemplate",
+            "obj": "$var.f8b2.renderedTemplate"
+          },
+          "outgoing": {
+            "return_data": "$var.job.upfPriRenderedTemplate"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.0685266764561918,
+        "y": 0.4352720450281426,
+        "scheduled": false
+      },
+      "3c3f": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query SMF renderedTemplate",
+        "description": "Query SMF renderedTemplate",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "renderedTemplate",
+            "obj": "$var.b822.renderedTemplate"
+          },
+          "outgoing": {
+            "return_data": "$var.job.smfPriRenderedTemplate"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.0670582476749877,
+        "y": 0.6397748592870544,
+        "scheduled": false
+      },
+      "9cf3": {
+        "name": "childJob",
+        "canvasName": "childJob",
+        "summary": "SMF Primary Provision-IAG-CRUD",
+        "description": "SMF Primary Provision-IAG-CRUD",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "task": "",
+            "workflow": "RF_Provision-IAG-CRUD",
+            "variables": {
+              "verbose": {
+                "editable": true,
+                "task": "job",
+                "value": "verbose"
+              },
+              "workOrderId": {
+                "editable": true,
+                "task": "job",
+                "value": "workOrderId"
+              },
+              "deviceName": {
+                "editable": true,
+                "task": "job",
+                "value": "SMF_Primary"
+              },
+              "netconfAction": {
+                "editable": true,
+                "task": "job",
+                "value": "netconfAction"
+              },
+              "deviceXML": {
+                "editable": false,
+                "task": "job",
+                "value": "smfPriRenderedTemplate"
+              },
+              "deviceType": {
+                "editable": true,
+                "task": "static",
+                "value": "SMF"
+              },
+              "rollingback": {
+                "editable": true,
+                "task": "static",
+                "value": false
+              }
+            },
+            "data_array": "",
+            "transformation": "",
+            "loopType": ""
+          },
+          "outgoing": {
+            "job_details": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "job",
+        "x": 1.1841988459831336,
+        "y": 0.6414565826330533
+      },
+      "a720": {
+        "name": "evaluation",
+        "canvasName": "evaluation",
+        "summary": "Success?",
+        "description": "Success?",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "all_true_flag": false,
+            "evaluation_groups": [
+              {
+                "all_true_flag": false,
+                "evaluations": [
+                  {
+                    "query": "CRUD-Success",
+                    "operand_1": {
+                      "variable": "job_details",
+                      "task": "9cf3"
+                    },
+                    "operator": "==",
+                    "operand_2": {
+                      "variable": true,
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoing": {
+            "return_value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.2843857072931963,
+        "y": 0.6433239962651728
+      },
+      "5ce1": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Assign upf Primary output to job variable",
+        "description": "Assign upf Primary output to job variable",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "",
+            "obj": "$var.47ca.job_details"
+          },
+          "outgoing": {
+            "return_data": "$var.job.UPFPrimary"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.3936972924988904,
+        "y": 0.44351073762838467,
+        "scheduled": false
+      },
+      "c372": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Assign smf Primary output to job variable",
+        "description": "Assign smf Primary output to job variable",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "",
+            "obj": "$var.9cf3.job_details"
+          },
+          "outgoing": {
+            "return_data": "$var.job.SMFPrimary"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.3720019579050415,
+        "y": 0.6433239962651728,
+        "scheduled": false
+      },
+      "72cf": {
+        "name": "updateWorkOrderStatus",
+        "canvasName": "updateWorkOrderStatus",
+        "summary": "ProvisionEXGW-IAG SMF device provisioning status update",
+        "description": "ProvisionEXGW-IAG SMF device provisioning status update",
+        "location": "Application",
+        "locationType": null,
+        "app": "MPN",
+        "type": "automatic",
+        "displayName": "MPN",
+        "variables": {
+          "incoming": {
+            "workOrderId": "$var.job.workOrderId",
+            "status": "ProvisionEXGW-IAG: Successful provisioning for device: SMF_Primary",
+            "jobType": [
+              "iag"
+            ]
+          },
+          "outgoing": {
+            "result": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 1.5075868820362213,
+        "y": 0.650093808630394,
+        "scheduled": false
+      },
+      "3b2c": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.5119921683798336,
+        "y": 1.7926829268292683
+      },
+      "4c89": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.5115026921194321,
+        "y": 1.9934333958724202
+      },
+      "24ba": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.9649356413670661,
+        "y": 1.46125116713352
+      },
+      "97c1": {
+        "name": "evaluation",
+        "canvasName": "evaluation",
+        "summary": "READ?",
+        "description": "READ?",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "all_true_flag": false,
+            "evaluation_groups": [
+              {
+                "all_true_flag": true,
+                "evaluations": [
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "netconfAction",
+                      "task": "job",
+                      "editable": false
+                    },
+                    "operator": "!contains",
+                    "operand_2": {
+                      "variable": "discard",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  },
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "netconfAction",
+                      "task": "job",
+                      "editable": false
+                    },
+                    "operator": "!contains",
+                    "operand_2": {
+                      "variable": "commit",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  },
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "crudAction",
+                      "task": "job",
+                      "editable": true
+                    },
+                    "operator": "==",
+                    "operand_2": {
+                      "variable": "read",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoing": {
+            "return_value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.3499755261869799,
+        "y": 0.3545966228893058
+      },
+      "77a1": {
+        "name": "renderJinjaTemplate",
+        "canvasName": "renderJinjaTemplate",
+        "summary": "Render UPF read jinja template",
+        "description": "Render UPF read jinja template",
+        "location": "Application",
+        "locationType": null,
+        "app": "TemplateBuilder",
+        "type": "automatic",
+        "displayName": "TemplateBuilder",
+        "variables": {
+          "incoming": {
+            "name": "read_get-config_UPF",
+            "context": "$var.job.payload"
+          },
+          "outgoing": {
+            "renderedTemplate": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.9724,
+        "y": 0.25583566760037346,
+        "scheduled": false
+      },
+      "a82c": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query UPF renderedTemplate",
+        "description": "Query UPF renderedTemplate",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "renderedTemplate",
+            "obj": "$var.77a1.renderedTemplate"
+          },
+          "outgoing": {
+            "return_data": "$var.job.upfPriRenderedTemplate"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.068,
+        "y": 0.25210084033613445,
+        "scheduled": false
+      },
+      "e096": {
+        "name": "evaluation",
+        "canvasName": "evaluation",
+        "summary": "READ?",
+        "description": "READ?",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "all_true_flag": false,
+            "evaluation_groups": [
+              {
+                "all_true_flag": true,
+                "evaluations": [
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "netconfAction",
+                      "task": "job"
+                    },
+                    "operator": "!contains",
+                    "operand_2": {
+                      "variable": "discard",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  },
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "netconfAction",
+                      "task": "job"
+                    },
+                    "operator": "!contains",
+                    "operand_2": {
+                      "variable": "commit",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  },
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "crudAction",
+                      "task": "job",
+                      "editable": true
+                    },
+                    "operator": "==",
+                    "operand_2": {
+                      "variable": "read",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoing": {
+            "return_value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.3509544787077827,
+        "y": 0.7345215759849906
+      },
+      "8f3f": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.3504,
+        "y": 0.25023342670401494
+      },
+      "acd7": {
+        "name": "renderJinjaTemplate",
+        "canvasName": "renderJinjaTemplate",
+        "summary": "Render SMF read jinja template",
+        "description": "Render SMF read jinja template",
+        "location": "Application",
+        "locationType": null,
+        "app": "TemplateBuilder",
+        "type": "automatic",
+        "displayName": "TemplateBuilder",
+        "variables": {
+          "incoming": {
+            "name": "read_SMF_get-config",
+            "context": "$var.job.payload"
+          },
+          "outgoing": {
+            "renderedTemplate": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.9684864624944518,
+        "y": 0.8674136321195145,
+        "scheduled": false
+      },
+      "8daf": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query SMF renderedTemplate",
+        "description": "Query SMF renderedTemplate",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "renderedTemplate",
+            "obj": "$var.acd7.renderedTemplate"
+          },
+          "outgoing": {
+            "return_data": "$var.job.smfPriRenderedTemplate"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.0656901908566356,
+        "y": 0.8580765639589168,
+        "scheduled": false
+      },
+      "199e": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query UPF device name input",
+        "description": "Query UPF device name input",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "",
+            "obj": "$var.2fa1.merged_object"
+          },
+          "outgoing": {
+            "return_data": "$var.job.UPF_Primary"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.3910341766533511,
+        "y": 0.5116713352007469,
+        "scheduled": false
+      },
+      "ab98": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query SMF device name input",
+        "description": "Query SMF device name input",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "",
+            "obj": "$var.a4dd.merged_object"
+          },
+          "outgoing": {
+            "return_data": "$var.job.SMF_Primary"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.3905903240124279,
+        "y": 0.5835667600373483,
+        "scheduled": false
+      },
+      "fd00": {
+        "name": "updateWorkOrderStatus",
+        "canvasName": "updateWorkOrderStatus",
+        "summary": "ProvisionEXGW-IAG SMF device provisioning status update",
+        "description": "ProvisionEXGW-IAG SMF device provisioning status update",
+        "location": "Application",
+        "locationType": null,
+        "app": "MPN",
+        "type": "automatic",
+        "displayName": "MPN",
+        "variables": {
+          "incoming": {
+            "workOrderId": "$var.job.workOrderId",
+            "status": "ProvisionEXGW-IAG: Failed to provision for device: SMF_Primary",
+            "jobType": [
+              "iag"
+            ]
+          },
+          "outgoing": {
+            "result": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 1.7112090063631913,
+        "y": 1.974671669793621,
+        "scheduled": false
+      },
+      "65bd": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.0692410119840212,
+        "y": 1.4668534080298785
+      },
+      "861b": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.19485130936529071,
+        "y": 1.746031746031746
+      },
+      "a3ff": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.13759431868619618,
+        "y": 1.9691876750700281
+      },
+      "8e2b": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.193075898801598,
+        "y": 1.996265172735761
+      },
+      "a013": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.280514869063471,
+        "y": 1.7945845004668535
+      },
+      "9b51": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": -0.21683798335780716,
+        "y": 1.7457786116322702
+      },
+      "dfa7": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.1944074567243674,
+        "y": 1.7871148459383754
+      },
+      "4ca7": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.2782956058588548,
+        "y": 1.9915966386554622
+      },
+      "468d": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.8511992168379834,
+        "y": 1.9868667917448406
+      },
+      "49c4": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "merge device results",
+        "description": "merge device results",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "smfPrimaryError",
+                "value": {
+                  "task": "job",
+                  "variable": "smfPrimaryError"
+                }
+              },
+              {
+                "key": "upfPrimaryError",
+                "value": {
+                  "task": "job",
+                  "variable": "upfPrimaryError"
+                }
+              },
+              {
+                "key": "smfSecondaryError",
+                "value": {
+                  "task": "job",
+                  "variable": "smfSecondaryError"
+                }
+              },
+              {
+                "key": "upfSecondaryError",
+                "value": {
+                  "task": "job",
+                  "variable": "upfSecondaryError"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.8301517376407244,
+        "y": 0.44652908067542213
+      },
+      "c419": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "deviceResults",
+            "value": "$var.49c4.merged_object"
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.9216837983357806,
+        "y": 0.44652908067542213
+      },
+      "c101": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "smfSecondaryError",
+            "value": false
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": -0.34459128732256483,
+        "y": 0.2354596622889306
+      },
+      "c955": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "upfSecondaryError",
+            "value": false
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": -0.34801762114537443,
+        "y": 0.8142589118198874
+      },
+      "a381": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query upfPriDeviceResults",
+        "description": "Query upfPriDeviceResults",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "deviceOutput",
+            "obj": "$var.47ca.job_details"
+          },
+          "outgoing": {
+            "return_data": "$var.job.upfPriDeviceResults"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.351443954968184,
+        "y": 0.4427767354596623,
+        "scheduled": false
+      },
+      "1d66": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query smfPriDeviceResults",
+        "description": "Query smfPriDeviceResults",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "deviceOutput",
+            "obj": "$var.9cf3.job_details"
+          },
+          "outgoing": {
+            "return_data": "$var.job.smfPriDeviceResults"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 1.3284385707293196,
+        "y": 0.6378986866791745,
+        "scheduled": false
+      },
+      "8b20": {
+        "name": "evaluation",
+        "canvasName": "evaluation",
+        "summary": "not apn?",
+        "description": "not apn?",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "all_true_flag": false,
+            "evaluation_groups": [
+              {
+                "all_true_flag": false,
+                "evaluations": [
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "crudAction",
+                      "task": "job",
+                      "editable": true
+                    },
+                    "operator": "!contains",
+                    "operand_2": {
+                      "variable": "apn",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoing": {
+            "return_value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.2608695652173913,
+        "y": 0.5368898978433598
+      },
+      "d191": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.3022095509622238,
+        "y": 0.5425652667423383
+      },
+      "464a": {
+        "name": "evaluation",
+        "canvasName": "evaluation",
+        "summary": "not apn?",
+        "description": "not apn?",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "all_true_flag": false,
+            "evaluation_groups": [
+              {
+                "all_true_flag": false,
+                "evaluations": [
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "crudAction",
+                      "task": "job",
+                      "editable": true
+                    },
+                    "operator": "!contains",
+                    "operand_2": {
+                      "variable": "apn",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoing": {
+            "return_value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.561429270680372,
+        "y": 0.549718574108818
+      },
+      "e904": {
+        "name": "merge",
+        "canvasName": "merge",
+        "summary": "placeholder",
+        "description": "placeholder",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "data_to_merge": [
+              {
+                "key": "",
+                "value": {
+                  "task": "static",
+                  "variable": "data"
+                }
+              }
+            ]
+          },
+          "outgoing": {
+            "merged_object": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.5996084189916789,
+        "y": 0.5544090056285178
+      },
+      "a9ce": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "templateName",
+            "value": "unblock-apn_edit-config_SMF"
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.7670093000489476,
+        "y": 0.8299065420560747
+      },
+      "d5f9": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "templateName",
+            "value": "$var.5b.combinedStrings"
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.7665198237885462,
+        "y": 0.5542056074766355
+      },
+      "9d56": {
+        "name": "newVariable",
+        "canvasName": "newVariable",
+        "summary": "Create a Job Variable",
+        "description": "Create a new Job variable by Job ID and assign it a value.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "name": "templateName",
+            "value": "blank"
+          },
+          "outgoing": {
+            "value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": -0.3367596671561429,
+        "y": 0.12382739212007504
+      },
+      "f020": {
+        "name": "evaluation",
+        "canvasName": "evaluation",
+        "summary": "not READ?",
+        "description": "not READ?",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "all_true_flag": false,
+            "evaluation_groups": [
+              {
+                "all_true_flag": true,
+                "evaluations": [
+                  {
+                    "query": "",
+                    "operand_1": {
+                      "variable": "payload",
+                      "task": "job",
+                      "editable": false
+                    },
+                    "operator": "contains",
+                    "operand_2": {
+                      "variable": "orderSpecification",
+                      "task": "static"
+                    },
+                    "rightQuery": ""
+                  }
+                ]
+              }
+            ]
+          },
+          "outgoing": {
+            "return_value": null
+          }
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.05433186490455213,
+        "y": 0.5562851782363978
+      },
+      "64fc": {
+        "name": "transformation",
+        "canvasName": "transformation",
+        "summary": "readPayloadMapping",
+        "description": "Perform a JSON Transformation using the JST library.",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "tr_id": "671bbb04462d670603197e44",
+            "variableMap": {
+              "readPayload": "$var.job.payload"
+            },
+            "options": {
+              "extractOutput": true,
+              "validateIncoming": true,
+              "revertToDefaultValue": true
+            }
+          },
+          "outgoing": {
+            "deviceNames": null
+          },
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.05384238864415076,
+        "y": 0.7373358348968105,
+        "task_name": "readPayloadMapping",
+        "retrySettings": null
+      },
+      "84fc": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query SMFPrimary",
+        "description": "Query SMFPrimary",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "SMFPrimary",
+            "obj": "$var.64fc.deviceNames"
+          },
+          "outgoing": {
+            "return_data": "$var.job.SMF_Primary"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.11404796867351934,
+        "y": 0.7382739212007504,
+        "scheduled": false
+      },
+      "800d": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query UPFPrimary",
+        "description": "Query UPFPrimary",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "UPFPrimary",
+            "obj": "$var.64fc.deviceNames"
+          },
+          "outgoing": {
+            "return_data": "$var.job.UPF_Primary"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.16152716593245228,
+        "y": 0.7401500938086304,
+        "scheduled": false
+      },
+      "ac4a": {
+        "name": "query",
+        "canvasName": "query",
+        "summary": "Query TelematicsParametersInfo configuration object from the payload",
+        "description": "Query TelematicsParametersInfo configuration object from the payload",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "operation",
+        "displayName": "WorkFlowEngine",
+        "variables": {
+          "incoming": {
+            "pass_on_null": false,
+            "query": "orderSpecification.TelematicsParametersInfo",
+            "obj": "$var.job.payload"
+          },
+          "outgoing": {
+            "return_data": null
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "x": 0.8926507018992568,
+        "y": 0.5491803278688525,
+        "scheduled": false
+      },
+      "cea2": {
+        "name": "setObjectKey",
+        "canvasName": "setObjectKey",
+        "summary": "Add TelematicsParametersInfo info to SMF template",
+        "description": "Add TelematicsParametersInfo info to SMF template",
+        "location": "Application",
+        "locationType": null,
+        "app": "WorkFlowEngine",
+        "type": "automatic",
+        "displayName": "Object",
+        "variables": {
+          "incoming": {
+            "obj": "$var.job.smfTemplateInput",
+            "path": [
+              "TelematicsParametersInfo"
+            ],
+            "value": "$var.ac4a.return_data"
+          },
+          "outgoing": {
+            "object": "$var.job.smfTemplateInput"
+          },
+          "error": "",
+          "decorators": []
+        },
+        "deprecated": false,
+        "groups": [],
+        "actor": "Pronghorn",
+        "x": 0.9848262359275575,
+        "y": 0.5355140186915888,
+        "scheduled": false
+      }
+    },
+    "transitions": {
+      "1546": {},
+      "4284": {
+        "b822": {
+          "type": "standard",
+          "state": "failure"
+        },
+        "ac4a": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "6326": {
+        "a3ff": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "6532": {
+        "c955": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "6750": {
+        "468d": {
+          "type": "standard",
+          "state": "error"
+        },
+        "adbd": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "7338": {
+        "3b2c": {
+          "type": "standard",
+          "state": "error"
+        },
+        "49c4": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "8126": {
+        "acd7": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "8990": {
+        "b017": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "9944": {
+        "d5f9": {
+          "type": "standard",
+          "state": "success"
+        },
+        "a9ce": {
+          "type": "standard",
+          "state": "failure"
+        }
+      },
+      "workflow_start": {
+        "9d56": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "workflow_end": {},
+      "9f4f": {},
+      "b755": {
+        "9b51": {
+          "type": "standard",
+          "state": "error"
+        },
+        "c61d": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "21da": {},
+      "4d4e": {
+        "861b": {
+          "type": "standard",
+          "state": "error"
+        },
+        "db6f": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "4c74": {
+        "4d4e": {
+          "type": "standard",
+          "state": "success"
+        },
+        "a3ff": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "db6f": {
+        "354e": {
+          "type": "standard",
+          "state": "success"
+        },
+        "861b": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "f98f": {},
+      "b975": {},
+      "2fa1": {
+        "199e": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "4b37": {},
+      "bf9d": {},
+      "320a": {},
+      "17d3": {},
+      "288a": {},
+      "9dc6": {},
+      "adbd": {
+        "49c4": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "cdd9": {},
+      "8f7a": {},
+      "b288": {},
+      "4dae": {},
+      "47ca": {
+        "39bb": {
+          "type": "standard",
+          "state": "success"
+        },
+        "dfa7": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "39bb": {
+        "a013": {
+          "type": "standard",
+          "state": "failure"
+        },
+        "a381": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "4f9a": {
+        "4b4a": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "4b4a": {
+        "6532": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "e044": {
+        "fd00": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "b18c": {
+        "6750": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "c61d": {
+        "6326": {
+          "type": "standard",
+          "state": "error"
+        },
+        "f020": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "354e": {
+        "8b20": {
+          "type": "standard",
+          "state": "success"
+        },
+        "861b": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "5f0b": {},
+      "a4dd": {
+        "ab98": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "98e1": {
+        "464a": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "9f5a": {
+        "1b10": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "5b": {
+        "8990": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "1b10": {
+        "c58f": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "1a80": {},
+      "c58f": {
+        "f8b2": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "b017": {
+        "9944": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "f8b2": {
+        "538e": {
+          "type": "standard",
+          "state": "success"
+        },
+        "24ba": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "b822": {
+        "3c3f": {
+          "type": "standard",
+          "state": "success"
+        },
+        "24ba": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "538e": {
+        "47ca": {
+          "type": "standard",
+          "state": "success"
+        },
+        "65bd": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "3c3f": {
+        "9cf3": {
+          "type": "standard",
+          "state": "success"
+        },
+        "65bd": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "9cf3": {
+        "a720": {
+          "type": "standard",
+          "state": "success"
+        },
+        "8e2b": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "a720": {
+        "4ca7": {
+          "type": "standard",
+          "state": "failure"
+        },
+        "1d66": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "5ce1": {
+        "7338": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "c372": {
+        "72cf": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "3ef4": {},
+      "72cf": {
+        "49c4": {
+          "type": "standard",
+          "state": "success"
+        },
+        "4c89": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "3b2c": {
+        "b18c": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "4c89": {
+        "e044": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "3d6c": {},
+      "58a2": {},
+      "24ba": {
+        "65bd": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "97c1": {
+        "8f3f": {
+          "type": "standard",
+          "state": "success"
+        },
+        "2fa1": {
+          "type": "standard",
+          "state": "failure"
+        }
+      },
+      "77a1": {
+        "a82c": {
+          "type": "standard",
+          "state": "success"
+        },
+        "24ba": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "a82c": {
+        "47ca": {
+          "type": "standard",
+          "state": "success"
+        },
+        "65bd": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "e096": {
+        "8126": {
+          "type": "standard",
+          "state": "success"
+        },
+        "a4dd": {
+          "type": "standard",
+          "state": "failure"
+        }
+      },
+      "8f3f": {
+        "77a1": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "acd7": {
+        "24ba": {
+          "type": "standard",
+          "state": "error"
+        },
+        "8daf": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "e400": {},
+      "8daf": {
+        "9cf3": {
+          "type": "standard",
+          "state": "success"
+        },
+        "65bd": {
+          "type": "standard",
+          "state": "error"
+        }
+      },
+      "199e": {
+        "98e1": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "ab98": {
+        "98e1": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "fd00": {
+        "468d": {
+          "type": "standard",
+          "state": "error"
+        },
+        "adbd": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "65bd": {
+        "b18c": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "861b": {
+        "a013": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "a3ff": {
+        "8e2b": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "8e2b": {
+        "4ca7": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "a013": {
+        "3b2c": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "9b51": {
+        "861b": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "dfa7": {},
+      "4ca7": {
+        "4c89": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "468d": {
+        "adbd": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "940b": {},
+      "49c4": {
+        "c419": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "c419": {
+        "workflow_end": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "c101": {
+        "4f9a": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "c955": {
+        "b755": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "a381": {
+        "5ce1": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "1d66": {
+        "c372": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "8b20": {
+        "d191": {
+          "type": "standard",
+          "state": "success"
+        },
+        "97c1": {
+          "type": "standard",
+          "state": "success"
+        },
+        "e096": {
+          "type": "standard",
+          "state": "failure"
+        }
+      },
+      "d191": {
+        "e096": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "464a": {
+        "9f5a": {
+          "type": "standard",
+          "state": "success"
+        },
+        "e904": {
+          "type": "standard",
+          "state": "success"
+        },
+        "5b": {
+          "type": "standard",
+          "state": "failure"
+        }
+      },
+      "e904": {
+        "5b": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "a9ce": {
+        "4284": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "d5f9": {
+        "4284": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "9d56": {
+        "c101": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "f020": {
+        "4c74": {
+          "type": "standard",
+          "state": "success"
+        },
+        "64fc": {
+          "type": "standard",
+          "state": "failure"
+        }
+      },
+      "64fc": {
+        "84fc": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "84fc": {
+        "800d": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "800d": {
+        "8b20": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "ac4a": {
+        "cea2": {
+          "type": "standard",
+          "state": "success"
+        }
+      },
+      "cea2": {
+        "b822": {
+          "type": "standard",
+          "state": "success"
+        }
+      }
+    },
+    "type": "automation",
+    "warnings": [
+      {
+        "task": "b755",
+        "name": "updateWorkOrderStatus",
+        "message": "Invalid incoming static variable value: jobType should be of type string but is of type object"
+      },
+      {
+        "task": "c61d",
+        "name": "updateWorkOrderStatus",
+        "message": "Invalid incoming static variable value: jobType should be of type string but is of type object"
+      },
+      {
+        "task": "6750",
+        "name": "updateWorkOrderStatus",
+        "message": "Invalid incoming static variable value: jobType should be of type string but is of type object"
+      },
+      {
+        "task": "fd00",
+        "name": "updateWorkOrderStatus",
+        "message": "Invalid incoming static variable value: jobType should be of type string but is of type object"
+      },
+      {
+        "task": "7338",
+        "name": "updateWorkOrderStatus",
+        "message": "Invalid incoming static variable value: jobType should be of type string but is of type object"
+      },
+      {
+        "task": "72cf",
+        "name": "updateWorkOrderStatus",
+        "message": "Invalid incoming static variable value: jobType should be of type string but is of type object"
+      }
+    ],
+    "tags": []
+  }
