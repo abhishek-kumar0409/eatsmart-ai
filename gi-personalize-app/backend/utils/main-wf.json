@@ -1,0 +1,6318 @@
+[{
+  "_id": "e6610309-de5e-4068-97cf-de1eef1bf47a",
+  "name": "RF_MPN-Flow_v3.7.8_5G.1",
+  "tasks": {
+    "456": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.5903083700440528,
+      "y": 1.1904315196998123
+    },
+    "811": {
+      "name": "sendPayloadBack",
+      "summary": "requested payload",
+      "description": "payload to be sent back",
+      "app": "MPN",
+      "displayName": "MPN",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "orderSpecification": "$var.job.workOrderId"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.FinalpayloadError",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.9534997552618698,
+      "y": 0.7138836772983115,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "sendPayloadBack"
+    },
+    "942": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "Ericsson5GCFlag",
+          "value": true
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.4977973568281938,
+      "y": 0.5144724556489262
+    },
+    "959": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "Ericsson5GCFlag",
+          "value": true
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.7973568281938326,
+      "y": 0.27637721755368816
+    },
+    "2003": {
+      "name": "evaluation",
+      "summary": "Preview Approve Check(AAA)",
+      "description": "Preview Approve Check(AAA)",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.PreviewApprove",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Y",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.4390602055800294,
+      "y": 0.3677298311444653,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "2411": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.7993147332354381,
+      "y": 0.7138836772983115
+    },
+    "3107": {
+      "name": "evaluation",
+      "summary": "Check for Ericsson-5GC flag",
+      "description": "Check for Ericsson-5GC flag",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "bff9"
+                  },
+                  "operator": "!=",
+                  "operand_2": {
+                    "variable": "Ericsson-5GC",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.4968184043073911,
+      "y": 0.28944911297852477,
+      "canvasName": "evaluation"
+    },
+    "3264": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.7097405775819873,
+      "y": 0.2598499061913696
+    },
+    "3671": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": "data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.6235927557513461,
+      "y": 1.5469043151969981
+    },
+    "5274": {
+      "name": "query",
+      "summary": "Second of schedule task",
+      "description": "Second of schedule task",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "TimeofExecution.seconds",
+          "obj": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.342143906020558,
+      "y": 1.0609756097560976,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "6292": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Does localOrderSpecification contain OracleSpecifications?",
+      "description": "Does localOrderSpecification contain OracleSpecifications?",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job",
+                    "editable": true
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "OracleSpecifications",
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.10523739598629467,
+      "y": 1.5403377110694183
+    },
+    "6413": {
+      "name": "childJob",
+      "summary": "Provision MPN Service",
+      "description": "Provision MPN Service",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "RF_ProvisionMPNService_v1.1.1",
+          "variables": {
+            "orderSpecification": {
+              "editable": true,
+              "task": "job",
+              "value": "orderSpecification"
+            },
+            "verbose": {
+              "editable": true,
+              "task": "static",
+              "value": false
+            },
+            "payload": {
+              "editable": true,
+              "task": "214a",
+              "value": "object"
+            },
+            "asr1kPri": {
+              "editable": true,
+              "task": "static",
+              "value": true
+            },
+            "asr1kSec": {
+              "editable": true,
+              "task": "static",
+              "value": true
+            },
+            "SMFPrimary": {
+              "editable": true,
+              "task": "static",
+              "value": false
+            },
+            "SMFSecondary": {
+              "editable": true,
+              "task": "static",
+              "value": false
+            },
+            "UPFPrimary": {
+              "editable": true,
+              "task": "static",
+              "value": false
+            },
+            "UPFSecondary": {
+              "editable": true,
+              "task": "static",
+              "value": false
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": -0.020558002936857563,
+      "y": 0.4896810506566604,
+      "canvasName": "childJob"
+    },
+    "6603": {
+      "name": "sendPayloadBack",
+      "summary": "requested payload",
+      "description": "payload to be sent back",
+      "app": "MPN",
+      "displayName": "MPN",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "orderSpecification": "$var.job.workOrderId"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.FinalpayloadError",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.8761625061184533,
+      "y": 0.9324577861163227,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "sendPayloadBack"
+    },
+    "7014": {
+      "name": "query",
+      "summary": "Minute of schedule task",
+      "description": "Minute of schedule task",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "TimeofExecution.minute",
+          "obj": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.3044542339696525,
+      "y": 1.0562851782363978,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "7253": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.2858541360744004,
+      "y": 0.49906191369606
+    },
+    "7414": {
+      "name": "evaluation",
+      "summary": "Preview Approve Check(MPN_Proxy)",
+      "description": "Preview Approve Check(MPN_Proxy)",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.PreviewApprove",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Y",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.438570729319628,
+      "y": 0.7245564892623716,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "7569": {
+      "name": "evaluation",
+      "summary": "Success?",
+      "description": "Success?",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "CRUD-Success",
+                  "operand_1": {
+                    "variable": "job_details",
+                    "task": "cf4b"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": true,
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.2868330885952031,
+      "y": 0.3780487804878049,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "8901": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": "data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.6240822320117474,
+      "y": 1.3911819887429644
+    },
+    "8987": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.12677435144395496,
+      "y": 1.446529080675422
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -0.9559471365638766,
+      "y": 0.14071294559099437,
+      "summary": "workflow_start",
+      "description": "workflow_start"
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 1.5814977973568283,
+      "y": -0.10830999066293184,
+      "summary": "workflow_end",
+      "description": "workflow_end"
+    },
+    "fc50": {
+      "name": "childJob",
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "AAA_v1.6.4",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "summary": "AAA_Manual",
+      "description": "AAA_Manual",
+      "groups": [],
+      "x": 0.2305433186490455,
+      "y": 1.2307692307692308,
+      "scheduled": false,
+      "actor": "job",
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "childJob",
+      "displayName": "WorkFlowEngine"
+    },
+    "cb50": {
+      "name": "JobDecision",
+      "app": "MPN",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "title": "Job Decision",
+          "body": "$var.e722.WorkOrderStatus",
+          "payload": "",
+          "btn_success": "Complete Job/TurnUp Call/Delete Old ACL",
+          "btn_failure": "Rollback",
+          "display_color": "green"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": ""
+      },
+      "view": "/mpn/tasks/JobDecision",
+      "groups": [],
+      "x": 0.7033773861967695,
+      "y": -0.16900093370681607,
+      "description": "Job Decision",
+      "summary": "Job Decision",
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "JobDecision",
+      "displayName": "MPN"
+    },
+    "3e48": {
+      "name": "query",
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "CommonParametersInfo.WorkOrderID",
+          "obj": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "return_data": "$var.job.workOrderId"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "summary": "Query Work-Order ID",
+      "description": "Query Work-Order ID",
+      "groups": [],
+      "x": -0.5829662261380323,
+      "y": 0.2857142857142857,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "query",
+      "displayName": "WorkFlowEngine"
+    },
+    "cddf": {
+      "name": "childJob",
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "MPN_Proxy_v1.3.0",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "summary": "Proxy_Manual",
+      "description": "Proxy_Manual",
+      "groups": [],
+      "x": 0.5212922173274597,
+      "y": 0.7282913165266106,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "actor": "job",
+      "canvasName": "childJob",
+      "displayName": "WorkFlowEngine"
+    },
+    "d9d7": {
+      "name": "evaluation",
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "AAA_Profile",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "summary": "Check for AAA Profile",
+      "description": "Check for AAA Profile",
+      "groups": [],
+      "x": -0.315712187958884,
+      "y": 1.199812382739212,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation",
+      "displayName": "WorkFlowEngine"
+    },
+    "e722": {
+      "name": "getWorkOrderStatus",
+      "app": "MPN",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "WorkOrderID": "$var.job.workOrderId"
+        },
+        "outgoing": {
+          "WorkOrderStatus": "$var.job.WorkOrderStatus"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "summary": "Query Work-order status",
+      "description": "Query Work-order status",
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.6152716593245228,
+      "y": 0.3780487804878049,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "getWorkOrderStatus",
+      "displayName": "MPN"
+    },
+    "3cdb": {
+      "name": "sendPayloadBack",
+      "summary": "requested payload",
+      "description": "payload to be sent back",
+      "app": "MPN",
+      "displayName": "MPN",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "orderSpecification": "$var.job.workOrderId"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.FinalpayloadError",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.3171806167400881,
+      "y": 0.4892623716153128,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "sendPayloadBack"
+    },
+    "33a7": {
+      "name": "ErrorDecisionTask",
+      "summary": "failed to send final payload",
+      "description": "failed to send final payload",
+      "app": "MPN",
+      "displayName": "MPN",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "title": "failed to send final payload",
+          "body": "$var.job.FinalpayloadError",
+          "variables": "",
+          "btn_success": "Retry",
+          "btn_failure": "Compelete job without sending",
+          "display_color": "red"
+        },
+        "outgoing": {
+          "data": null
+        },
+        "error": ""
+      },
+      "view": "/mpn/tasks/ErrorDecisionTask",
+      "deprecated": false,
+      "groups": [],
+      "x": 1.4209495839451787,
+      "y": 0.3705440900562852,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "ErrorDecisionTask"
+    },
+    "8c6a": {
+      "name": "evaluation",
+      "summary": "Check for NSO Payload - only 4G/5G Cisco or 5GC Ericsson",
+      "description": "Check for NSO Payload - only 4G/5G Cisco or 5GC Ericsson",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "EXGW_Secondary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "EXGW_Primary",
+                    "task": "static"
+                  }
+                }
+              ]
+            },
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job",
+                    "editable": false
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "ASR1K_Primary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job",
+                    "editable": false
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "ASR1K_Secondary",
+                    "task": "static"
+                  }
+                }
+              ]
+            },
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "Ericsson5GCFlag",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": false,
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "75W_Secondary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "76W_Primary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "76W_Secondary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "75W_Primary",
+                    "task": "static"
+                  }
+                }
+              ]
+            },
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "SMF_Secondary",
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.27949094468918256,
+      "y": 0.36866791744840527,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "64ec": {
+      "name": "evaluation",
+      "summary": "Preview Approve Check(AAA)",
+      "description": "Preview Approve Check(AAA)",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.PreviewApprove",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Y",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.13264806656877143,
+      "y": 1.2232645403377111,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "366b": {
+      "name": "childJob",
+      "summary": "AAA_Automate",
+      "description": "AAA_Automated",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "AAA_automated_v1.0.0",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.13069016152716592,
+      "y": 1.3283302063789868,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "actor": "job",
+      "canvasName": "childJob"
+    },
+    "f78f": {
+      "name": "query",
+      "summary": "Query Create Ticket Response(AAA)",
+      "description": "Query Create Ticket Response(AAA)",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "createTicketAAA",
+          "obj": "$var.366b.job_details"
+        },
+        "outgoing": {
+          "return_data": "$var.job.ticketResponseAAA"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.20802741067058247,
+      "y": 1.323639774859287,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "query"
+    },
+    "171c": {
+      "name": "evaluation",
+      "summary": "Preview Approve Check(AAA)",
+      "description": "Preview Approve Check(AAA)",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.PreviewApprove",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Y",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.6177190406265296,
+      "y": 0.08724202626641651,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "4e57": {
+      "name": "workOrderDecision",
+      "summary": "Evaluates the status of each element",
+      "description": "Evaluates the status of each element",
+      "app": "MPN",
+      "displayName": "MPN",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "workOrderStatus": "$var.e722.WorkOrderStatus"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.7087616250611846,
+      "y": 0.08216619981325864,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "workOrderDecision"
+    },
+    "4dd5": {
+      "name": "childJob",
+      "summary": "NSN_Manual",
+      "description": "NSN_Manual",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "NSN_v2.0.0",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.5266764561918746,
+      "y": 1.100375234521576,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "actor": "job",
+      "canvasName": "childJob"
+    },
+    "324f": {
+      "name": "evaluation",
+      "summary": "Preview Approve Check(NSN)",
+      "description": "Preview Approve Check(NSN)",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.PreviewApprove",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Y",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.47430249632892807,
+      "y": 1.099437148217636,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "115c": {
+      "name": "childJob",
+      "summary": "NSN_Automated",
+      "description": "NSN_Automated",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "NSN_Auto_v.1.0.0",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.4767498776309349,
+      "y": 1.3846153846153846,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "actor": "job",
+      "canvasName": "childJob"
+    },
+    "f5c4": {
+      "name": "childJob",
+      "summary": "Proxy_Automated",
+      "description": "Proxy_Automated",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "MPN_Proxy_Automated_v1.0.2",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.43710230053842386,
+      "y": 0.8902439024390244,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "actor": "job",
+      "canvasName": "childJob"
+    },
+    "cee": {
+      "name": "childJob",
+      "summary": "Rollback MPN_Proxy",
+      "description": "Rollback MPN_Proxy",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "MPN_Proxy_Rollback",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            },
+            "ticketNumber": {
+              "variable": "",
+              "task": "job",
+              "value": "ticketResponseMPNProxy"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.8742046010768477,
+      "y": 0.8095684803001876,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "actor": "job",
+      "canvasName": "childJob"
+    },
+    "bb7c": {
+      "name": "evaluation",
+      "summary": "Rollback check for NSO 3/4/5G",
+      "description": "Rollback check for NSO 3/4/5G",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "Ericsson5GCFlag",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": false,
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "pronghornResponse.result.nso.jobStatus",
+                  "operand_1": {
+                    "variable": "WorkOrderStatus",
+                    "task": "e722"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "success",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.7958883994126285,
+      "y": 0.47560975609756095,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "dd49": {
+      "name": "evaluation",
+      "summary": "Rollback check for Proxy",
+      "description": "Rollback check for Proxy",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "pronghornResponse.result.proxy.jobStatus",
+                  "operand_1": {
+                    "variable": "WorkOrderStatus",
+                    "task": "e722"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "success",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.7787567302985805,
+      "y": 0.8030018761726079,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "a47f": {
+      "name": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "name": "localOrderSpecification",
+          "value": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.6514929025942242,
+      "y": 0.28851540616246496,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "newVariable"
+    },
+    "f023": {
+      "name": "sendPayloadBack",
+      "summary": "requested payload",
+      "description": "payload to be sent back",
+      "app": "MPN",
+      "displayName": "MPN",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "orderSpecification": "$var.job.workOrderId"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.FinalpayloadError",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.8742046010768477,
+      "y": 1.1819887429643527,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "sendPayloadBack"
+    },
+    "6f2b": {
+      "name": "evaluation",
+      "summary": "Preview Approve Check(AAA)",
+      "description": "Preview Approve Check(AAA)",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.PreviewApprove",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Y",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.315712187958884,
+      "y": 1.2551594746716699,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "330d": {
+      "name": "query",
+      "summary": "QuerycreateTicketProxy",
+      "description": "QuerycreateTicketProxy",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "createTicketProxy",
+          "obj": "$var.f5c4.job_details"
+        },
+        "outgoing": {
+          "return_data": "$var.job.ticketResponseMPNProxy"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.5780714635340186,
+      "y": 0.9197012138188608,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "query"
+    },
+    "8ed0": {
+      "name": "evaluation",
+      "summary": "Payload for customerOnboard or MPN proxy migration",
+      "description": "Payload for customerOnboard or MPN proxy migration",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.CustomerType",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Rollbackmigrated",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "CommonParametersInfo.CustomerType",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "eAAAmigration",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "CommonParametersInfo.CustomerType",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "migrated",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.6500244738130201,
+      "y": 0.12698412698412698,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "d8f": {
+      "name": "evaluation",
+      "summary": "Checking preview approve flag",
+      "description": "Checking preview approve flag",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.PreviewApprove",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Y",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.6020558002936858,
+      "y": 1.7992530345471522,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "d1a6": {
+      "name": "childJob",
+      "summary": "Migrated customer automated workflows",
+      "description": "Migrated customer automated workflows",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "vmpnproxy_migration_automate_2.0.1",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.6054821341164953,
+      "y": 1.9691876750700281,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "actor": "job",
+      "canvasName": "childJob"
+    },
+    "575b": {
+      "name": "childJob",
+      "summary": "Migrated customer manual workflows",
+      "description": "Migrated customer manual workflows",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "vmpnproxy_migration_manual_v1.4",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.5022026431718062,
+      "y": 1.801125703564728,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "actor": "job",
+      "canvasName": "childJob"
+    },
+    "7a6e": {
+      "name": "childJob",
+      "summary": "NSO Rollback for Manual/Automatic and Create/Modify",
+      "description": "NSO Rollback for Manual/Automatic and Create/Modify",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "RollbackMPN_v1.0.1",
+          "variables": {
+            "WorkOrderID": {
+              "variable": "",
+              "task": "7c3c",
+              "value": "return_data"
+            },
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            },
+            "ModifyInstances": {
+              "variable": "",
+              "task": "239b",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": 0.9525208027410671,
+      "y": 0.48739495798319327,
+      "canvasName": "childJob"
+    },
+    "80cb": {
+      "name": "childJob",
+      "summary": "Save running instances",
+      "description": "Save running instances",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "RF_SaveRunningNSOInstance",
+          "variables": {
+            "orderSpecification": {
+              "editable": false,
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": -0.17229564366128242,
+      "y": 0.37335834896810505,
+      "canvasName": "childJob"
+    },
+    "239b": {
+      "name": "query",
+      "summary": "Query modifyInstances",
+      "description": "Query modifyInstances",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "modifyInstances",
+          "obj": "$var.80cb.job_details"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.8879099363680861,
+      "y": 0.4789915966386555,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "7c3c": {
+      "name": "query",
+      "summary": "Query WorkOrderID",
+      "description": "Query WorkOrderID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "CommonParametersInfo.WorkOrderID",
+          "obj": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.8463044542339696,
+      "y": 0.4812382739212008,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "b8fc": {
+      "name": "modifyTicket",
+      "summary": "Update Ticket Status",
+      "description": "Updates the status of the created ticket",
+      "location": "Application",
+      "locationType": null,
+      "app": "MPN",
+      "displayName": "MPN",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "ticketNumber": "$var.81a0.return_data",
+          "status": "Resolved"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.097895252080274,
+      "y": 0.4906191369606004,
+      "scheduled": false,
+      "canvasName": "modifyTicket"
+    },
+    "81a0": {
+      "name": "query",
+      "summary": "Query createRemedyTicket",
+      "description": "Query createRemedyTicket",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "createRemedyTicket",
+          "obj": "$var.6413.job_details"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.028879099363681,
+      "y": 0.48686679174484054,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "5e96": {
+      "name": "evaluation",
+      "summary": "Run Evaluation Task",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "isNotModify",
+                  "operand_1": {
+                    "variable": "job_details",
+                    "task": "80cb"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "yes",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.09495839451786588,
+      "y": 0.37335834896810505,
+      "canvasName": "evaluation"
+    },
+    "8a9c": {
+      "name": "query",
+      "summary": "Query MPN Proxy Remedy Ticket",
+      "description": "Query MPN Proxy Remedy Ticket",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "createTicketProxy",
+          "obj": "$var.cddf.job_details"
+        },
+        "outgoing": {
+          "return_data": "$var.job.ticketResponseMPNProxy"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.5726872246696035,
+      "y": 0.734827264239029,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "query"
+    },
+    "ae9c": {
+      "name": "query",
+      "summary": "Query Create Ticket Response(AAA)",
+      "description": "Query Create Ticket Response(AAA)",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "createTicketAAA",
+          "obj": "$var.fc50.job_details"
+        },
+        "outgoing": {
+          "return_data": "$var.job.ticketResponseAAA"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.3225648556045032,
+      "y": 1.2354596622889307,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "query"
+    },
+    "341f": {
+      "name": "query",
+      "summary": "Query createTicketNSN",
+      "description": "Query createTicketNSN",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "createTicketNSN",
+          "obj": "$var.4dd5.job_details"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.5775819872736172,
+      "y": 1.2392120075046904,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "56e5": {
+      "name": "query",
+      "summary": "Query createTicketNSN",
+      "description": "Query createTicketNSN",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "createTicketNSN",
+          "obj": "$var.115c.job_details"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.5531081742535487,
+      "y": 1.3808630393996248,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "a85d": {
+      "name": "evaluation",
+      "summary": "Run Evaluation Task",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.CustomerType",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Rollbackmigrated",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.6020558002936858,
+      "y": 1.6573295985060692,
+      "canvasName": "evaluation"
+    },
+    "c573": {
+      "name": "childJob",
+      "summary": "Run Child Job",
+      "description": "Run a child Job inside a Workflow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Rollback_MigratedCustomer_Auto_v1.0.1",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": -0.5022026431718062,
+      "y": 1.6669793621013134,
+      "canvasName": "childJob"
+    },
+    "daff": {
+      "name": "evaluation",
+      "summary": "Check the child profile",
+      "description": "Check the child profile",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.child",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.4400391581008321,
+      "y": 0.8058161350844277,
+      "canvasName": "evaluation"
+    },
+    "32af": {
+      "name": "ReviewTask",
+      "summary": "VHAP Review",
+      "description": "Review Task",
+      "app": "MPN",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "orderSpecification": "$var.job.localOrderSpecification"
+        },
+        "outgoing": {},
+        "error": ""
+      },
+      "view": "/mpn/tasks/ReviewTask",
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.4390602055800294,
+      "y": 1.0544090056285178,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "ReviewTask",
+      "displayName": "MPN"
+    },
+    "5a56": {
+      "name": "childJob",
+      "summary": "Run Child Job",
+      "description": "Run a child Job inside a Workflow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "NonExistingCustTicket",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": -0.0930004894762604,
+      "y": 0.48686679174484054,
+      "canvasName": "childJob"
+    },
+    "48ae": {
+      "name": "evaluation",
+      "summary": "eAAAmigration customer type?",
+      "description": "eAAAmigration customer type?",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.CustomerType",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "eAAAmigration",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.5927557513460597,
+      "y": 0.12698412698412698,
+      "canvasName": "evaluation"
+    },
+    "ece": {
+      "name": "childJob",
+      "summary": "Run Child Job",
+      "description": "Run a child Job inside a Workflow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "eAAA_ProxyMigration_v1.0.0",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": -0.5134605971610376,
+      "y": 0.12324929971988796,
+      "canvasName": "childJob"
+    },
+    "4a4a": {
+      "name": "evaluation",
+      "summary": "check for del acl",
+      "description": "check for del acl",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "ASR1K_Primary.[*][0].acl.ipsec-1090.acl-set.acl-1090-remark",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "del",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "ASR1K_Secondary.[*][0].acl.ipsec-1090.acl-set.acl-1090-remark",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "del",
+                    "task": "static"
+                  }
+                }
+              ]
+            },
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.turnupCall",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.9363680861478219,
+      "y": 0.07035647279549719,
+      "canvasName": "evaluation"
+    },
+    "4e6d": {
+      "name": "childJob",
+      "summary": "ACL/Turnup Flow",
+      "description": "ACL/Turnup Flow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "ACL/TurnUp_v1.0.1",
+          "variables": {
+            "orderSpecification": {
+              "variable": "",
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": 1.0509055310817426,
+      "y": 0.06660412757973734,
+      "canvasName": "childJob"
+    },
+    "1a58": {
+      "name": "query",
+      "summary": "Hour of schedule task",
+      "description": "Hour of schedule task",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "TimeofExecution.hour",
+          "obj": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.2657856093979442,
+      "y": 1.0553470919324577,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "a866": {
+      "name": "query",
+      "summary": "Day of schedule task",
+      "description": "Day of schedule task",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "TimeofExecution.day",
+          "obj": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.22956436612824277,
+      "y": 1.0590994371482176,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "aca3": {
+      "name": "query",
+      "summary": "Month of schedule task",
+      "description": "Month of schedule task",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "TimeofExecution.month",
+          "obj": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.18502202643171806,
+      "y": 1.0609756097560976,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "f507": {
+      "name": "query",
+      "summary": "Year of schedule task",
+      "description": "Year of schedule task",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "TimeofExecution.year",
+          "obj": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.13166911404796866,
+      "y": 1.0731707317073171,
+      "scheduled": false,
+      "canvasName": "query"
+    },
+    "9d9": {
+      "name": "evaluation",
+      "summary": "Check for TimeofExecution object in payload",
+      "description": "Check for TimeofExecution object in payload",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "TimeofExecution",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.38277043563387175,
+      "y": 1.0525328330206378,
+      "canvasName": "evaluation"
+    },
+    "5f8d": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a1",
+      "description": "Place Holder - a1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.6059716103768967,
+      "y": 2.1587301587301586
+    },
+    "f578": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.5942241801272639,
+      "y": 2.138188608776844
+    },
+    "bff9": {
+      "name": "query",
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "CommonParametersInfo.gateway-device-type",
+          "obj": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "summary": "Query gateway-device-type : Ericsson-5GC",
+      "description": "Query gateway-device-type : Ericsson-5GC",
+      "groups": [],
+      "x": -0.5384238864415076,
+      "y": 0.28944911297852477,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "query",
+      "displayName": "WorkFlowEngine"
+    },
+    "fc8": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "Ericsson5GCFlag",
+          "value": false
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.7195301027900147,
+      "y": 0.12605042016806722
+    },
+    "cf4b": {
+      "name": "childJob",
+      "summary": "Provision MPN 5GC Service",
+      "description": "Provision MPN 5GC Service",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "RF_ProvisionMPN5GService",
+          "variables": {
+            "orderSpecification": {
+              "editable": true,
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": 0.07195301027900147,
+      "y": 0.37523452157598497,
+      "canvasName": "childJob"
+    },
+    "cd15": {
+      "name": "evaluation",
+      "summary": "Check for IAG-NSO Payload - only 5GC Ericsson with ASR1K",
+      "description": "Check for IAG-NSO Payload - only 5GC Ericsson with ASR1K",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "Ericsson5GCFlag",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": true,
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "SMF_Secondary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "SMF_Primary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "UPF_Secondary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "UPF_Primary",
+                    "task": "static"
+                  }
+                }
+              ]
+            },
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "Ericsson5GCFlag",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": true,
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job",
+                    "editable": false
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "ASR1K_Primary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job",
+                    "editable": false
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "ASR1K_Secondary",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.024473813020068527,
+      "y": 0.37429643527204504,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "f42f": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Run Child Job",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "oracleDRAMaster2.0",
+          "variables": {
+            "orderSpecification": {
+              "editable": true,
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": 0.1727851199216838,
+      "y": 1.5450281425891181
+    },
+    "26fd": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Preview Approve Check(AAA)",
+      "description": "Preview Approve Check(AAA)",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.PreviewApprove",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "Y",
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.23299069995105237,
+      "y": 1.5403377110694183
+    },
+    "dced": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Rollback Check for oracle",
+      "description": "Rollback Check for oracle",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "pronghornResponse.result.oracle.jobStatus",
+                  "operand_1": {
+                    "variable": "WorkOrderStatus",
+                    "task": "e722"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "success",
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.7513460597161038,
+      "y": 1.049718574108818
+    },
+    "9b85": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Run Child Job",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "OracleDRARadiusRoutingTableRollback",
+          "variables": {
+            "orderSpecification": {
+              "editable": true,
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": 0.9260890846793931,
+      "y": 1.050656660412758
+    },
+    "c3e5": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Run Child Job",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "OracleDRA-RF-CRUDRollback",
+          "variables": {
+            "orderSpecification": {
+              "editable": true,
+              "task": "job",
+              "value": "orderSpecification"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "x": 0.8286833088595204,
+      "y": 1.053470919324578
+    },
+    "c4b8": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "3G or 4G Scenario?",
+      "description": "3G or 4G Scenario?",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "CommonParametersInfo.network-type",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "3G_4G",
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                },
+                {
+                  "query": "CommonParametersInfo.network-type",
+                  "operand_1": {
+                    "variable": "orderSpecification",
+                    "task": "job",
+                    "editable": false
+                  },
+                  "operator": "!=",
+                  "operand_2": {
+                    "variable": "4G_5G",
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.7958883994126285,
+      "y": 0.14098972922502334
+    },
+    "4cbd": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.2339696524718551,
+      "y": 1.6313320825515947
+    },
+    "9c5c": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.04698972099853157,
+      "y": 0.5891181988742964
+    },
+    "5f1d": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": "data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.3166911404796867,
+      "y": 1.6454033771106942
+    },
+    "d30a": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": "data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.06852667645619187,
+      "y": 0.5947467166979362
+    },
+    "5d52": {
+      "name": "sendPayloadBack",
+      "summary": "requested payload",
+      "description": "payload to be sent back",
+      "app": "MPN",
+      "displayName": "MPN",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "orderSpecification": "$var.3e48.return_data"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.FinalpayloadError",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.255017131669114,
+      "y": 0.06097560975609756,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "sendPayloadBack"
+    },
+    "851d": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.9402838962310328,
+      "y": 0.24671669793621012
+    },
+    "db4f": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.6206558981889378,
+      "y": 0.9878618113912232
+    },
+    "c29a": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.6231032794909447,
+      "y": 1.629455909943715
+    },
+    "3ab9": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.618208516886931,
+      "y": 0.5103189493433395
+    },
+    "25c7": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.4185022026431717,
+      "y": 1.2579737335834897
+    },
+    "a940": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.3191385217816936,
+      "y": 2.145658263305322
+    },
+    "db13": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.5849241311796378,
+      "y": 0.4971857410881801
+    },
+    "a2ec": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.4821341164953499,
+      "y": 0.50093808630394
+    },
+    "fd35": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": "data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.2790014684287812,
+      "y": 1.6435272045028142
+    },
+    "5b79": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.7812041116005873,
+      "y": 0.9352720450281425
+    },
+    "57b0": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.5849241311796378,
+      "y": 0.7217553688141923
+    },
+    "25b2": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.3166911404796868,
+      "y": 0.8217636022514071
+    },
+    "406f": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.5854136074400391,
+      "y": 0.9455909943714822
+    },
+    "1c09": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.3176700930004894,
+      "y": 1.0572232645403377
+    },
+    "4db8": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.2515907978463046,
+      "y": 1.2664165103189493
+    },
+    "76f8": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a1",
+      "description": "Place Holder - a1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.4434654919236417,
+      "y": 2.1587301587301586
+    },
+    "69ca": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a1",
+      "description": "Place Holder - a1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.544297601566324,
+      "y": 2.157796451914099
+    },
+    "a1fd": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a2",
+      "description": "Place Holder - a2",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 1.5805188448360254,
+      "y": 0.075046904315197
+    },
+    "da5": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": "data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.38179148311306904,
+      "y": 1.551594746716698
+    },
+    "163e": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.6255506607929515,
+      "y": 1.3367729831144466
+    },
+    "e2ee": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - a1",
+      "description": "Place Holder - a1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.5066079295154186,
+      "y": 2.1587301587301586
+    },
+    "e01a": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.5266764561918746,
+      "y": 1.2851782363977486
+    },
+    "be36": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.47723935389133626,
+      "y": 1.5412757973733584
+    },
+    "faed": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.4366128242780225,
+      "y": 0.9840525328330206
+    },
+    "7b28": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.5159079784630446,
+      "y": 0.8356676003734828
+    },
+    "264e": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.2339696524718551,
+      "y": 1.450281425891182
+    },
+    "ea1b": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.1047479197258933,
+      "y": 1.6332082551594747
+    },
+    "d613": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Stub",
+      "description": "Create a stub for an automated task",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.13999021047479196,
+      "y": 0.8170731707317073,
+      "scheduled": false
+    },
+    "eaa": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.6216348507097406,
+      "y": 0.8264540337711069
+    },
+    "c45e": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.6206558981889378,
+      "y": 0.6144465290806754
+    },
+    "2b50": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.6250611845325502,
+      "y": 1.2410881801125704
+    },
+    "16f": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query workOrderId",
+      "description": "Query workOrderId",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": true,
+          "query": "workOrderId",
+          "obj": "$var.cf4b.job_details"
+        },
+        "outgoing": {
+          "return_data": "$var.job.workOrderId"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.13509544787077826,
+      "y": 0.37617260787992496,
+      "scheduled": false
+    },
+    "797a": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "verbose",
+          "value": false
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.846793930494371,
+      "y": 0.1303939962476548
+    },
+    "d0d2": {
+      "name": "evaluation",
+      "summary": "Verbose?",
+      "description": "Verbose?",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "verbose",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": true,
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.635340186000979,
+      "y": -0.06660412757973734,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "2e5c": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Success?",
+      "description": "Success?",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "CRUD-Success",
+                    "task": "job",
+                    "editable": true
+                  },
+                  "operator": "!=",
+                  "operand_2": {
+                    "variable": false,
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                },
+                {
+                  "query": "pronghornResponse.result.iag.runningLogs.status",
+                  "operand_1": {
+                    "variable": "WorkOrderStatus",
+                    "task": "e722"
+                  },
+                  "operator": "!contains",
+                  "operand_2": {
+                    "variable": "provision failure",
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.7626040137053353,
+      "y": 0.07317073170731707
+    },
+    "39c1": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query CRUD-Success",
+      "description": "Query CRUD-Success",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "CRUD-Success",
+          "obj": "$var.cf4b.job_details"
+        },
+        "outgoing": {
+          "return_data": "$var.job.CRUD-Success"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.19040626529613314,
+      "y": 0.37335834896810505,
+      "scheduled": false
+    },
+    "e0de": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "proceed with test?",
+      "description": "proceed with test?",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "proceed with test?",
+          "message": "proceed with test?",
+          "body": "proceed with test?",
+          "variables": "",
+          "btn_success": "yes",
+          "btn_failure": ""
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "deprecated": false,
+      "groups": [],
+      "x": -0.9074889867841409,
+      "y": 0.13696060037523453,
+      "scheduled": false
+    },
+    "8e4c": {
+      "name": "evaluation",
+      "summary": "Check for NSO Payload - only 4G/5G Cisco or 5GC Ericsson",
+      "description": "Check for NSO Payload - only 4G/5G Cisco or 5GC Ericsson",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "EXGW_Secondary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "EXGW_Primary",
+                    "task": "static"
+                  }
+                }
+              ]
+            },
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job",
+                    "editable": false
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "ASR1K_Primary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job",
+                    "editable": false
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "ASR1K_Secondary",
+                    "task": "static"
+                  }
+                }
+              ]
+            },
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "Ericsson5GCFlag",
+                    "task": "job"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": false,
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "75W_Secondary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "76W_Primary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "76W_Secondary",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "75W_Primary",
+                    "task": "static"
+                  }
+                }
+              ]
+            },
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "SMF_Secondary",
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.17180616740088106,
+      "y": 1.374296435272045,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "e19e": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.17131669114047968,
+      "y": 1.6454033771106942
+    },
+    "7f04": {
+      "name": "evaluation",
+      "summary": "Check for NSN",
+      "description": "Check for NSN",
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "nsnSpecification",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.08418991678903573,
+      "y": 1.0731707317073171,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation"
+    },
+    "ff43": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.08516886930983847,
+      "y": 1.6407129455909943
+    },
+    "d06": {
+      "name": "evaluation",
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "localOrderSpecification",
+                    "task": "job"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "proxySpecification",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "summary": "Check for vMPN Proxy",
+      "description": "Check for vMPN Proxy",
+      "groups": [],
+      "x": 0.00930004894762604,
+      "y": 0.8217636022514071,
+      "scheduled": false,
+      "location": "Application",
+      "locationType": null,
+      "canvasName": "evaluation",
+      "displayName": "WorkFlowEngine"
+    },
+    "43c1": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.015173764072442487,
+      "y": 1.6360225140712945
+    },
+    "b9bd": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Place Holder - b1",
+      "description": "Place Holder -b1",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.7557513460597161,
+      "y": 2.148217636022514
+    },
+    "37db": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": -0.11649534997552619,
+      "y": 1.474671669793621
+    },
+    "69ae": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "placeholder",
+      "description": "placeholder",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "x": 0.10327949094468918,
+      "y": 0.8911819887429644
+    },
+    "214a": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "payload",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {},
+          "path": [
+            "orderSpecification"
+          ],
+          "value": "$var.job.orderSpecification"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.4322527015793849,
+      "y": 0.23544631306597671,
+      "scheduled": false
+    }
+  },
+  "transitions": {
+    "456": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "811": {
+      "57b0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "942": {
+      "2003": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "959": {
+      "8ed0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2003": {
+      "6292": {
+        "type": "standard",
+        "state": "success"
+      },
+      "daff": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "8c6a": {
+        "type": "standard",
+        "state": "success"
+      },
+      "7f04": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d06": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d9d7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2411": {
+      "57b0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3107": {
+      "942": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "214a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3264": {
+      "2e5c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3671": {
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5274": {
+      "7014": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6292": {
+      "f42f": {
+        "type": "standard",
+        "state": "success"
+      },
+      "ea1b": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "6413": {
+      "9c5c": {
+        "type": "standard",
+        "state": "error"
+      },
+      "3ab9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6603": {
+      "406f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7014": {
+      "1a58": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7253": {
+      "3ab9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7414": {
+      "cddf": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f5c4": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "7569": {
+      "7253": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8901": {
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8987": {
+      "f78f": {
+        "type": "standard",
+        "state": "success"
+      },
+      "264e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "e0de": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "fc50": {
+      "ae9c": {
+        "type": "standard",
+        "state": "success"
+      },
+      "264e": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "cb50": {
+      "4e57": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "4a4a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3e48": {
+      "bff9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cddf": {
+      "8a9c": {
+        "type": "standard",
+        "state": "success"
+      },
+      "7b28": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "d9d7": {
+      "64ec": {
+        "type": "standard",
+        "state": "success"
+      },
+      "5f1d": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "e722": {
+      "171c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3cdb": {
+      "6f2b": {
+        "type": "standard",
+        "state": "error"
+      },
+      "db13": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "33a7": {
+      "3cdb": {
+        "type": "revert",
+        "state": "success"
+      },
+      "a2ec": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "8c6a": {
+      "80cb": {
+        "type": "standard",
+        "state": "success"
+      },
+      "fd35": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "69ae": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "64ec": {
+      "fc50": {
+        "type": "standard",
+        "state": "success"
+      },
+      "366b": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "366b": {
+      "8987": {
+        "type": "standard",
+        "state": "error"
+      },
+      "f78f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f78f": {
+      "163e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "171c": {
+      "4e57": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d0d2": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "4e57": {
+      "3264": {
+        "type": "standard",
+        "state": "error"
+      },
+      "2e5c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4dd5": {
+      "341f": {
+        "type": "standard",
+        "state": "success"
+      },
+      "e01a": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "324f": {
+      "4dd5": {
+        "type": "standard",
+        "state": "success"
+      },
+      "115c": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "115c": {
+      "56e5": {
+        "type": "standard",
+        "state": "success"
+      },
+      "be36": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "f5c4": {
+      "330d": {
+        "type": "standard",
+        "state": "success"
+      },
+      "faed": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "cee": {
+      "6603": {
+        "type": "standard",
+        "state": "error"
+      },
+      "25b2": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bb7c": {
+      "2411": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "7c3c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "dd49": {
+      "cee": {
+        "type": "standard",
+        "state": "success"
+      },
+      "5b79": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "a47f": {
+      "3e48": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f023": {
+      "456": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6f2b": {
+      "25c7": {
+        "type": "standard",
+        "state": "success"
+      },
+      "a940": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "330d": {
+      "db4f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8ed0": {
+      "a47f": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "48ae": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d8f": {
+      "d1a6": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "575b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d1a6": {
+      "5f8d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "575b": {
+      "e2ee": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d70d": {},
+    "7a6e": {
+      "811": {
+        "type": "standard",
+        "state": "error"
+      },
+      "81a0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "80cb": {
+      "5e96": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "239b": {
+      "7a6e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7c3c": {
+      "239b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b8fc": {
+      "3cdb": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "81a0": {
+      "b8fc": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5e96": {
+      "5a56": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "cd15": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8a9c": {
+      "db4f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ae9c": {
+      "2b50": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "341f": {
+      "2b50": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "56e5": {
+      "8901": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a85d": {
+      "d8f": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "c573": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c573": {
+      "e2ee": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d3ea": {},
+    "daff": {
+      "32af": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "8c6a": {
+        "type": "standard",
+        "state": "success"
+      },
+      "7f04": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d06": {
+        "type": "standard",
+        "state": "success"
+      },
+      "69ae": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d9d7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "32af": {
+      "9d9": {
+        "type": "standard",
+        "state": "success"
+      },
+      "76f8": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "5a56": {
+      "9c5c": {
+        "type": "standard",
+        "state": "error"
+      },
+      "3ab9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "48ae": {
+      "ece": {
+        "type": "standard",
+        "state": "success"
+      },
+      "a85d": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "ece": {
+      "69ca": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4a4a": {
+      "4e6d": {
+        "type": "standard",
+        "state": "success"
+      },
+      "851d": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "4e6d": {
+      "5d52": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "1a58": {
+      "a866": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a866": {
+      "aca3": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "aca3": {
+      "f507": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f507": {
+      "6292": {
+        "type": "standard",
+        "state": "success"
+      },
+      "8c6a": {
+        "type": "standard",
+        "state": "success"
+      },
+      "7f04": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d06": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9d9": {
+      "5274": {
+        "type": "standard",
+        "state": "success"
+      },
+      "da5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "bdef": {},
+    "5f8d": {
+      "f578": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f578": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bff9": {
+      "3107": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "fc8": {
+      "8ed0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cf4b": {
+      "d30a": {
+        "type": "standard",
+        "state": "error"
+      },
+      "16f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cd15": {
+      "6413": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "cf4b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f42f": {
+      "26fd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "26fd": {
+      "3671": {
+        "type": "standard",
+        "state": "success"
+      },
+      "4cbd": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "dced": {
+      "c3e5": {
+        "type": "standard",
+        "state": "success"
+      },
+      "b9bd": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "9b85": {
+      "f023": {
+        "type": "standard",
+        "state": "error"
+      },
+      "1c09": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c3e5": {
+      "f023": {
+        "type": "standard",
+        "state": "error"
+      },
+      "9b85": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c4b8": {
+      "959": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "fc8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4cbd": {
+      "c29a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9c5c": {
+      "c45e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5f1d": {
+      "c29a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d30a": {
+      "c45e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "397e": {},
+    "5d52": {
+      "4db8": {
+        "type": "standard",
+        "state": "error"
+      },
+      "a1fd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "851d": {
+      "5d52": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4dfc": {},
+    "db4f": {
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c29a": {
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3ab9": {
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "25c7": {
+      "33a7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a940": {
+      "f578": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "db13": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a2ec": {
+      "db13": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "fd35": {
+      "c29a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5b79": {
+      "406f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "57b0": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "25b2": {
+      "3cdb": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "406f": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "1c09": {
+      "3cdb": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4db8": {
+      "6f2b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "76f8": {
+      "f578": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "69ca": {
+      "f578": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a1fd": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "da5": {
+      "6292": {
+        "type": "standard",
+        "state": "success"
+      },
+      "8e4c": {
+        "type": "standard",
+        "state": "success"
+      },
+      "7f04": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d9d7": {
+        "type": "standard",
+        "state": "success"
+      },
+      "37db": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "163e": {
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e2ee": {
+      "f578": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e01a": {
+      "341f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "be36": {
+      "56e5": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "faed": {
+      "330d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7b28": {
+      "8a9c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "264e": {
+      "ae9c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ea1b": {
+      "c29a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d613": {
+      "7414": {
+        "type": "standard",
+        "state": "error"
+      },
+      "eaa": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "eaa": {
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c45e": {
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2b50": {
+      "e722": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "16f": {
+      "39c1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "797a": {
+      "c4b8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d0d2": {
+      "cb50": {
+        "type": "standard",
+        "state": "success"
+      },
+      "4e57": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "2e5c": {
+      "4a4a": {
+        "type": "standard",
+        "state": "success"
+      },
+      "bb7c": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "dd49": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "dced": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "39c1": {
+      "7569": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e0de": {
+      "797a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8e4c": {
+      "80cb": {
+        "type": "standard",
+        "state": "success"
+      },
+      "e19e": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "e19e": {
+      "c29a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7f04": {
+      "ff43": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "324f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ff43": {
+      "c29a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d06": {
+      "d613": {
+        "type": "standard",
+        "state": "success"
+      },
+      "43c1": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "43c1": {
+      "c29a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b9bd": {
+      "f578": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "37db": {
+      "d06": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "69ae": {
+      "6292": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "214a": {
+      "2003": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "font_size": 8,
+  "created": {
+    "$date": "2024-12-20T15:41:39.000Z"
+  },
+  "createdVersion": "5.44.64-2022.1.74",
+  "last_updated": {
+    "$date": "2024-12-20T15:41:39.041Z"
+  },
+  "lastUpdatedVersion": "5.44.64-2022.1.74",
+  "type": "automation",
+  "description": null,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "orderSpecification": {
+        "title": "obj",
+        "type": "object",
+        "properties": {},
+        "examples": [
+          {
+            "name": "value"
+          }
+        ]
+      }
+    },
+    "required": [
+      "orderSpecification"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "orderSpecification": {
+        "title": "obj",
+        "type": "object",
+        "properties": {},
+        "examples": [
+          {
+            "name": "value"
+          }
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "workOrderId": {
+        "title": "return_data",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "integer",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          "value"
+        ]
+      },
+      "FinalpayloadError": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "Ericsson5GCFlag": {
+        "type": "boolean"
+      },
+      "localOrderSpecification": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "WorkOrderStatus": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "ticketResponseAAA": {
+        "title": "return_data",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "integer",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          "value"
+        ]
+      },
+      "ticketResponseMPNProxy": {
+        "title": "return_data",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "integer",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          "value"
+        ]
+      },
+      "verbose": {
+        "type": "boolean"
+      },
+      "CRUD-Success": {
+        "title": "return_data",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "integer",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          "value"
+        ]
+      }
+    }
+  },
+  "groups": [],
+  "canvasVersion": 1,
+  "created_by": {
+    "$oid": "660af4379eb16145e8eabc7c"
+  },
+  "last_updated_by": {
+    "$oid": "65c6546b50e5ca2f58be2289"
+  },
+  "preAutomationTime": 0,
+  "sla": 0,
+  "tags": []
+}]
