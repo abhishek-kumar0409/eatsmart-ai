@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSOP Portal - MPN Enterprise Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <span class="v-logo">V</span>
+            <div>
+                <div style="font-weight: 600;">VSOP Portal</div>
+                <div style="font-size: 12px; color: #666;">Version 2.4.0</div>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <div class="btn btn-success">🟢 All Systems Operational</div>
+            <button class="btn btn-primary">Quick Start</button>
+            <button class="btn btn-secondary">Labs</button>
+            <div style="margin-left: 12px; display: flex; align-items: center; gap: 8px;">
+                <img src="/api/placeholder/32/32" alt="User" style="border-radius: 50%;">
+                <span>Abhishek Kumar</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-item">
+                <span class="sidebar-icon">📊</span>
+                Dashboard
+            </div>
+            <div class="sidebar-item">
+                <span class="sidebar-icon">🎨</span>
+                Design Studio
+            </div>
+            <div class="sidebar-item">
+                <span class="sidebar-icon">👁️</span>
+                Observatory
+            </div>
+            <div class="sidebar-item">
+                <span class="sidebar-icon">🤖</span>
+                ATLAS AI
+            </div>
+            <div class="sidebar-item active">
+                <span class="sidebar-icon">🏢</span>
+                MPN
+            </div>
+            <div class="sidebar-item">
+                <span class="sidebar-icon">🔧</span>
+                NAAVI
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">MPN Enterprise Dashboard</h1>
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn btn-primary" onclick="refreshDashboard()">🔄 Refresh</button>
+                    <button class="btn btn-secondary" onclick="exportDashboard()">📊 Export Dashboard</button>
+                </div>
+            </div>
+
+            <!-- Executive Dashboard Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">10,247</div>
+                    <div class="stat-label">Total Work Orders</div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-number">8,589</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-number">1,342</div>
+                    <div class="stat-label">In Progress</div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-number">316</div>
+                    <div class="stat-label">Failed</div>
+                </div>
+                <div class="stat-card priority">
+                    <div class="stat-number">23</div>
+                    <div class="stat-label">🚨 High Priority</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">47,892</div>
+                    <div class="stat-label">Network Functions</div>
+                </div>
+            </div>
+
+            <!-- Advanced Filters Section -->
+            <div class="filters-section">
+                <h3 style="margin-bottom: 16px;">🔍 Advanced Filters & Search</h3>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">Customer Name</label>
+                        <input type="text" class="filter-input" id="customerFilter" placeholder="Search by customer...">
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">APN Type</label>
+                        <select class="filter-select" id="apnFilter">
+                            <option value="">All APNs</option>
+                            <option value="lmasmfup5g.vzwentp">lmasmfup5g.vzwentp</option>
+                            <option value="custonet5g.vzwentp">custonet5g.vzwentp</option>
+                            <option value="iot.vzwentp">iot.vzwentp</option>
+                            <option value="enterprise.vzwentp">enterprise.vzwentp</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Network Type</label>
+                        <select class="filter-select" id="networkTypeFilter">
+                            <option value="">All Types</option>
+                            <option value="4G_5G">4G/5G</option>
+                            <option value="5G">5G Only</option>
+                            <option value="4G">4G Only</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Pool Type</label>
+                        <select class="filter-select" id="poolTypeFilter">
+                            <option value="">All Pools</option>
+                            <option value="static">Static</option>
+                            <option value="dynamic">Dynamic</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">CRUD Operation</label>
+                        <select class="filter-select" id="operationFilter">
+                            <option value="">All Operations</option>
+                            <option value="create">Create</option>
+                            <option value="update">Update</option>
+                            <option value="delete">Delete</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Status</label>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="completed">Completed</option>
+                            <option value="provisioning">In Progress</option>
+                            <option value="failed">Failed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <span id="resultsCount">Showing 3 of 10,247 work orders</span>
+                    <div>
+                        <button class="btn btn-secondary btn-sm" onclick="clearFilters()">Clear Filters</button>
+                        <button class="btn btn-primary btn-sm" onclick="applyFilters()">Apply Filters</button>
+                        <button class="btn btn-secondary btn-sm" onclick="saveFilterPreset()">Save Preset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work Orders Section -->
+            <div class="work-orders-section">
+                <div class="section-header">
+                    <h2 class="section-title">Enterprise Work Orders</h2>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-primary btn-sm" onclick="createNewWorkOrder()">+ New Work Order</button>
+                        <button class="btn btn-secondary btn-sm" onclick="bulkOperations()">Bulk Operations</button>
+                    </div>
+                </div>
+
+                <!-- Work Order 1 - BMW -->
+                <div class="work-order-item">
+                    <div class="work-order-header" onclick="toggleWorkOrder('wo1')">
+                        <div class="work-order-info">
+                            <div class="work-order-id">WO-12345</div>
+                            <div class="customer-name">BMW Enterprise</div>
+                            <div class="status-badge status-provisioning">Provisioning</div>
+                            <span class="priority-badge">HIGH</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span style="font-size: 12px; color: #666;">Customer ID: 01234 | APN: lmasmfup5g.vzwentp</span>
+                            <span class="chevron" id="chevron-wo1">▼</span>
+                        </div>
+                    </div>
+                    <div class="work-order-details" id="details-wo1">
+                        <div class="nf-grid">
+                            <!-- SMF Primary -->
+                            <div class="nf-card primary">
+                                <div class="nf-header">
+                                    <div>
+                                        <div class="nf-name">SMF Primary</div>
+                                        <div class="nf-type">Copperfield 5G-EXGW</div>
+                                    </div>
+                                </div>
+                                <div class="nf-status">
+                                    <span class="status-dot warning"></span>
+                                    <span>Configuring</span>
+                                    <span style="margin-left: auto; font-size: 12px;">Progress: 65%</span>
+                                </div>
+                                <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
+                                    CLLI: HSNOTX08VZWCSMF-Y-EC-ENTRP-001<br>
+                                    APN: lmasmfup5g.vzwentp | Pool: LMASMFUP5GONE001
+                                </div>
+                                <div class="nf-actions">
+                                    <button class="btn btn-outline btn-sm" onclick="pauseNF('smf-primary')">⏸️ Pause</button>
+                                    <button class="btn btn-outline btn-sm" onclick="retryNF('smf-primary')">🔄 Retry</button>
+                                    <button class="btn btn-outline btn-sm" onclick="viewConsoleLog('smf-primary', 'BMW')">📋 Console</button>
+                                </div>
+                            </div>
+
+                            <!-- UPF Primary -->
+                            <div class="nf-card primary">
+                                <div class="nf-header">
+                                    <div>
+                                        <div class="nf-name">UPF Primary</div>
+                                        <div class="nf-type">HSNOTX08VZWvUPF</div>
+                                    </div>
+                                </div>
+                                <div class="nf-status">
+                                    <span class="status-dot error"></span>
+                                    <span>Failed</span>
+                                    <span style="margin-left: auto; font-size: 12px;">Progress: 45%</span>
+                                </div>
+                                <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
+                                    VRF: MPN01234 | Transport: nativeIPv4<br>
+                                    Error: Connection timeout
+                                </div>
+                                <div class="nf-actions">
+                                    <button class="btn btn-outline btn-sm" onclick="retryNF('upf-primary')">🔄 Retry</button>
+                                    <button class="btn btn-outline btn-sm" onclick="debugNF('upf-primary')">🔍 Debug</button>
+                                    <button class="btn btn-outline btn-sm" onclick="viewConsoleLog('upf-primary', 'BMW')">📋 Console</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="action-bar">
+                            <div>
+                                <strong>Work Order Actions:</strong>
+                                <div class="bulk-actions">
+                                    <button class="btn btn-primary btn-sm" onclick="notifyVHAP('wo1')">📡 Notify VHAP</button>
+                                    <button class="btn btn-warning btn-sm" onclick="notifyOrchestration('wo1')">📧 Notify Orchestration</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Order 2 - Tesla -->
+                <div class="work-order-item">
+                    <div class="work-order-header" onclick="toggleWorkOrder('wo2')">
+                        <div class="work-order-info">
+                            <div class="work-order-id">WO-12346</div>
+                            <div class="customer-name">Tesla Motors</div>
+                            <div class="status-badge status-completed">Completed</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span style="font-size: 12px; color: #666;">Customer ID: 05422</span>
+                            <span class="chevron" id="chevron-wo2">▼</span>
+                        </div>
+                    </div>
+                    <div class="work-order-details" id="details-wo2">
+                        <div style="padding: 16px; text-align: center; color: #28a745;">
+                            ✅ All network functions successfully provisioned
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Order 3 - Walmart -->
+                <div class="work-order-item">
+                    <div class="work-order-header" onclick="toggleWorkOrder('wo3')">
+                        <div class="work-order-info">
+                            <div class="work-order-id">WO-12347</div>
+                            <div class="customer-name">Walmart Inc.</div>
+                            <div class="status-badge status-failed">Failed</div>
+                            <span class="priority-badge">HIGH</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span style="font-size: 12px; color: #666;">Customer ID: 05423</span>
+                            <span class="chevron" id="chevron-wo3">▼</span>
+                        </div>
+                    </div>
+                    <div class="work-order-details" id="details-wo3">
+                        <div style="padding: 16px; text-align: center; color: #dc3545;">
+                            ❌ Provisioning failed - Network configuration error
+                            <br><br>
+                            <button class="btn btn-primary btn-sm" onclick="retryWorkOrder('wo3')">🔄 Retry Work Order</button>
+                            <button class="btn btn-secondary btn-sm" onclick="viewErrorLogs('wo3')">📋 View Error Logs</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button onclick="previousPage()" id="prevBtn">← Previous</button>
+                    <button class="active" onclick="goToPage(1)">1</button>
+                    <button onclick="goToPage(2)">2</button>
+                    <button onclick="goToPage(3)">3</button>
+                    <span>...</span>
+                    <button onclick="goToPage(3415)">3415</button>
+                    <button onclick="nextPage()" id="nextBtn">Next →</button>
+                    <span style="margin-left: 16px; color: #666; font-size: 14px;">
+                        Showing 1-3 of 10,247 work orders
+                    </span>
+                </div>
+            </div>
+
+            <!-- AI Operations Copilot -->
+            <div class="ai-section">
+                <div class="ai-header">
+                    <div class="ai-icon">🤖</div>
+                    <div>
+                        <h3>AI Operations Copilot</h3>
+                        <p style="margin: 0; opacity: 0.9;">Intelligent troubleshooting and automation assistance</p>
+                    </div>
+                </div>
+                <div class="ai-actions">
+                    <button class="btn btn-ai" onclick="summarizePayloads()">📄 Summarize Payloads</button>
+                    <button class="btn btn-ai" onclick="troubleshootFailures()">🔍 Troubleshoot Failures</button>
+                    <button class="btn btn-ai" onclick="predictIssues()">🔮 Predict Issues</button>
+                    <button class="btn btn-ai" onclick="optimizeWorkflows()">⚡ Optimize Workflows</button>
+                    <button class="btn btn-ai" onclick="generateReports()">📊 Generate Reports</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Work Order Modal -->
+    <div class="modal" id="newWorkOrderModal">
+        <div class="modal-content" style="max-width: 1000px; max-height: 95vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h3>Create New Work Order Request</h3>
+                <button class="close-btn" onclick="closeNewWorkOrderModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="newWorkOrderForm">
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 16px; color: #1976d2;">📋 Basic Information</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 4px; font-weight: 500;">Work Order ID</label>
+                                <input type="text" id="workOrderId" placeholder="Auto-generated" readonly 
+                                       style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; background: #f8f9fa;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 4px; font-weight: 500;">Customer ID *</label>
+                                <input type="text" id="customerId" placeholder="e.g., 01234" required
+                                       style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; margin-bottom: 4px; font-weight: 500;">Customer Name *</label>
+                            <input type="text" id="customerName" placeholder="e.g., BMW Enterprise" required
+                                   style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 16px; color: #1976d2;">📄 VHAP JSON Payload</h4>
+                        <div style="border: 2px dashed #ddd; border-radius: 8px; padding: 24px; text-align: center; background: #fafafa;">
+                            <div id="uploadArea" style="cursor: pointer;" onclick="document.getElementById('jsonFile').click()">
+                                <div style="font-size: 48px; color: #ccc; margin-bottom: 16px;">📁</div>
+                                <p style="margin-bottom: 8px; font-weight: 500;">Click to upload VHAP JSON payload</p>
+                                <p style="font-size: 14px; color: #666;">Or drag and drop your JSON file here</p>
+                            </div>
+                            <input type="file" id="jsonFile" accept=".json" style="display: none;" onchange="handleFileUpload(event)">
+                        </div>
+                        
+                        <div id="filePreview" class="hidden" style="margin-top: 16px; border: 1px solid #ddd; border-radius: 4px; background: white;">
+                            <div style="padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong id="fileName">filename.json</strong>
+                                    <span id="fileSize" style="color: #666; margin-left: 8px;">(0 KB)</span>
+                                </div>
+                                <button type="button" onclick="removeFile()" style="background: none; border: none; color: #dc3545; cursor: pointer;">❌</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; justify-content: flex-end; padding-top: 16px; border-top: 1px solid #eee;">
+                        <button type="button" class="btn btn-secondary" onclick="closeNewWorkOrderModal()">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="validateJson()">Validate JSON</button>
+                        <button type="submit" class="btn btn-primary" onclick="submitWorkOrder(event)">Create Work Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Console Log Modal -->
+    <div class="modal" id="consoleLogModal">
+        <div class="modal-content" style="max-width: 1200px; max-height: 90vh;">
+            <div class="modal-header">
+                <h3 id="consoleLogTitle">Console Log - Network Function</h3>
+                <button class="close-btn" onclick="closeConsoleLogModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="background: #1a1a1a; color: #00ff00; padding: 16px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; height: 500px; overflow-y: auto;" id="consoleLogContent">
+                    <!-- Console log content will be populated here -->
+                </div>
+                <div style="margin-top: 16px; display: flex; gap: 12px; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-secondary btn-sm" onclick="clearConsoleLog()">🗑️ Clear Log</button>
+                        <button class="btn btn-secondary btn-sm" onclick="downloadConsoleLog()">💾 Download Log</button>
+                        <button class="btn btn-secondary btn-sm" onclick="refreshConsoleLog()">🔄 Refresh</button>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <label style="display: flex; align-items: center; gap: 4px; font-size: 12px;">
+                            <input type="checkbox" id="autoScrollLog" checked> Auto-scroll
+                        </label>
+                        <button class="btn btn-primary btn-sm" onclick="aiTroubleshootFromLog()">🤖 AI Troubleshoot</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
