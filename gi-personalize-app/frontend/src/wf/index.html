@@ -20,7 +20,7 @@
             <button class="btn btn-primary">Quick Start</button>
             <button class="btn btn-secondary">Labs</button>
             <div style="margin-left: 12px; display: flex; align-items: center; gap: 8px;">
-                <img src="/api/placeholder/32/32" alt="User" style="border-radius: 50%;">
+                <div style="width: 32px; height: 32px; background: #007bff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">AK</div>
                 <span>Abhishek Kumar</span>
             </div>
         </div>
@@ -44,7 +44,7 @@
                 <span class="sidebar-icon">🤖</span>
                 ATLAS AI
             </div>
-            <div class="sidebar-item active">
+            <div class="sidebar-item active" onclick="showMPNDashboard()">
                 <span class="sidebar-icon">🏢</span>
                 MPN
             </div>
@@ -169,13 +169,13 @@
                 <div class="work-order-item">
                     <div class="work-order-header" onclick="toggleWorkOrder('wo1')">
                         <div class="work-order-info">
-                            <div class="work-order-id">WO-12345</div>
+                            <div class="work-order-id">WO-4915</div>
                             <div class="customer-name">BMW Enterprise</div>
                             <div class="status-badge status-provisioning">Provisioning</div>
                             <span class="priority-badge">HIGH</span>
                         </div>
                         <div style="display: flex; align-items: center; gap: 16px;">
-                            <span style="font-size: 12px; color: #666;">Customer ID: 01234 | APN: lmasmfup5g.vzwentp</span>
+                            <span style="font-size: 12px; color: #666;">Customer ID: 05421 | APN: custonet5g.vzwentp</span>
                             <span class="chevron" id="chevron-wo1">▼</span>
                         </div>
                     </div>
@@ -186,7 +186,7 @@
                                 <div class="nf-header">
                                     <div>
                                         <div class="nf-name">SMF Primary</div>
-                                        <div class="nf-type">Copperfield 5G-EXGW</div>
+                                        <div class="nf-type">Rocklin</div>
                                     </div>
                                 </div>
                                 <div class="nf-status">
@@ -195,13 +195,38 @@
                                     <span style="margin-left: auto; font-size: 12px;">Progress: 65%</span>
                                 </div>
                                 <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
-                                    CLLI: HSNOTX08VZWCSMF-Y-EC-ENTRP-001<br>
-                                    APN: lmasmfup5g.vzwentp | Pool: LMASMFUP5GONE001
+                                    APN: custonet5g.vzwentp<br>
+                                    Pools: 3 configured
                                 </div>
                                 <div class="nf-actions">
                                     <button class="btn btn-outline btn-sm" onclick="pauseNF('smf-primary')">⏸️ Pause</button>
                                     <button class="btn btn-outline btn-sm" onclick="retryNF('smf-primary')">🔄 Retry</button>
+                                    <button class="btn btn-outline btn-sm" onclick="rollbackNF('smf-primary')">↩️ Rollback</button>
                                     <button class="btn btn-outline btn-sm" onclick="viewConsoleLog('smf-primary', 'BMW')">📋 Console</button>
+                                </div>
+                            </div>
+
+                            <!-- SMF Secondary -->
+                            <div class="nf-card secondary">
+                                <div class="nf-header">
+                                    <div>
+                                        <div class="nf-name">SMF Secondary</div>
+                                        <div class="nf-type">Sunnyvale</div>
+                                    </div>
+                                </div>
+                                <div class="nf-status">
+                                    <span class="status-dot success"></span>
+                                    <span>Completed</span>
+                                    <span style="margin-left: auto; font-size: 12px;">Progress: 100%</span>
+                                </div>
+                                <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
+                                    APN: custonet5g.vzwentp<br>
+                                    Pools: 3 configured
+                                </div>
+                                <div class="nf-actions">
+                                    <button class="btn btn-outline btn-sm" onclick="viewLogs('smf-secondary')">📋 View Logs</button>
+                                    <button class="btn btn-outline btn-sm" onclick="rollbackNF('smf-secondary')">↩️ Rollback</button>
+                                    <button class="btn btn-outline btn-sm" onclick="viewConsoleLog('smf-secondary', 'BMW')">📋 Console</button>
                                 </div>
                             </div>
 
@@ -210,7 +235,7 @@
                                 <div class="nf-header">
                                     <div>
                                         <div class="nf-name">UPF Primary</div>
-                                        <div class="nf-type">HSNOTX08VZWvUPF</div>
+                                        <div class="nf-type">Rocklin</div>
                                     </div>
                                 </div>
                                 <div class="nf-status">
@@ -219,13 +244,84 @@
                                     <span style="margin-left: auto; font-size: 12px;">Progress: 45%</span>
                                 </div>
                                 <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
-                                    VRF: MPN01234 | Transport: nativeIPv4<br>
+                                    VRF: MPN05421<br>
                                     Error: Connection timeout
                                 </div>
                                 <div class="nf-actions">
                                     <button class="btn btn-outline btn-sm" onclick="retryNF('upf-primary')">🔄 Retry</button>
                                     <button class="btn btn-outline btn-sm" onclick="debugNF('upf-primary')">🔍 Debug</button>
+                                    <button class="btn btn-outline btn-sm" onclick="rollbackNF('upf-primary')">↩️ Rollback</button>
                                     <button class="btn btn-outline btn-sm" onclick="viewConsoleLog('upf-primary', 'BMW')">📋 Console</button>
+                                </div>
+                            </div>
+
+                            <!-- UPF Secondary -->
+                            <div class="nf-card secondary">
+                                <div class="nf-header">
+                                    <div>
+                                        <div class="nf-name">UPF Secondary</div>
+                                        <div class="nf-type">Sunnyvale</div>
+                                    </div>
+                                </div>
+                                <div class="nf-status">
+                                    <span class="status-dot warning"></span>
+                                    <span>Pending</span>
+                                    <span style="margin-left: auto; font-size: 12px;">Waiting...</span>
+                                </div>
+                                <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
+                                    VRF: MPN05421<br>
+                                    Waiting for Primary UPF
+                                </div>
+                                <div class="nf-actions">
+                                    <button class="btn btn-outline btn-sm" onclick="startNF('upf-secondary')">▶️ Start</button>
+                                    <button class="btn btn-outline btn-sm" onclick="skipNF('upf-secondary')">⏭️ Skip</button>
+                                    <button class="btn btn-outline btn-sm" onclick="viewConsoleLog('upf-secondary', 'BMW')">📋 Console</button>
+                                </div>
+                            </div>
+
+                            <!-- ASR1K Primary -->
+                            <div class="nf-card primary">
+                                <div class="nf-header">
+                                    <div>
+                                        <div class="nf-name">ASR1K Primary</div>
+                                        <div class="nf-type">ROCKLIN77W</div>
+                                    </div>
+                                </div>
+                                <div class="nf-status">
+                                    <span class="status-dot success"></span>
+                                    <span>Completed</span>
+                                    <span style="margin-left: auto; font-size: 12px;">Progress: 100%</span>
+                                </div>
+                                <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
+                                    Customer VRF: E0000039815<br>
+                                    RD: 162169
+                                </div>
+                                <div class="nf-actions">
+                                    <button class="btn btn-outline btn-sm" onclick="viewConfig('asr1k-primary')">⚙️ View Config</button>
+                                    <button class="btn btn-outline btn-sm" onclick="rollbackNF('asr1k-primary')">↩️ Rollback</button>
+                                </div>
+                            </div>
+
+                            <!-- ASR1K Secondary -->
+                            <div class="nf-card secondary">
+                                <div class="nf-header">
+                                    <div>
+                                        <div class="nf-name">ASR1K Secondary</div>
+                                        <div class="nf-type">SUNNYVALE77W</div>
+                                    </div>
+                                </div>
+                                <div class="nf-status">
+                                    <span class="status-dot success"></span>
+                                    <span>Completed</span>
+                                    <span style="margin-left: auto; font-size: 12px;">Progress: 100%</span>
+                                </div>
+                                <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
+                                    Customer VRF: E0000039815<br>
+                                    RD: 167169
+                                </div>
+                                <div class="nf-actions">
+                                    <button class="btn btn-outline btn-sm" onclick="viewConfig('asr1k-secondary')">⚙️ View Config</button>
+                                    <button class="btn btn-outline btn-sm" onclick="rollbackNF('asr1k-secondary')">↩️ Rollback</button>
                                 </div>
                             </div>
                         </div>
@@ -234,9 +330,17 @@
                             <div>
                                 <strong>Work Order Actions:</strong>
                                 <div class="bulk-actions">
+                                    <button class="btn btn-primary btn-sm" onclick="showBulkModal()">⚙️ Configure Selected</button>
+                                    <button class="btn btn-secondary btn-sm" onclick="pauseAll()">⏸️ Pause All</button>
+                                    <button class="btn btn-secondary btn-sm" onclick="resumeAll()">▶️ Resume All</button>
+                                    <button class="btn btn-secondary btn-sm" onclick="rollbackAll()">↩️ Rollback All</button>
                                     <button class="btn btn-primary btn-sm" onclick="notifyVHAP('wo1')">📡 Notify VHAP</button>
-                                    <button class="btn btn-warning btn-sm" onclick="notifyOrchestration('wo1')">📧 Notify Orchestration</button>
+                                    <button class="btn btn-warning btn-sm" onclick="notifyUsers('wo1')">📧 Notify Users</button>
                                 </div>
+                            </div>
+                            <div class="bulk-actions">
+                                <button class="btn btn-outline btn-sm" onclick="editWorkOrder('wo1')">✏️ Edit</button>
+                                <button class="btn btn-outline btn-sm" onclick="deleteWorkOrder('wo1')" style="color: #dc3545; border-color: #dc3545;">🗑️ Delete</button>
                             </div>
                         </div>
                     </div>
@@ -246,7 +350,7 @@
                 <div class="work-order-item">
                     <div class="work-order-header" onclick="toggleWorkOrder('wo2')">
                         <div class="work-order-info">
-                            <div class="work-order-id">WO-12346</div>
+                            <div class="work-order-id">WO-4916</div>
                             <div class="customer-name">Tesla Motors</div>
                             <div class="status-badge status-completed">Completed</div>
                         </div>
@@ -266,7 +370,7 @@
                 <div class="work-order-item">
                     <div class="work-order-header" onclick="toggleWorkOrder('wo3')">
                         <div class="work-order-info">
-                            <div class="work-order-id">WO-12347</div>
+                            <div class="work-order-id">WO-4917</div>
                             <div class="customer-name">Walmart Inc.</div>
                             <div class="status-badge status-failed">Failed</div>
                             <span class="priority-badge">HIGH</span>
@@ -330,6 +434,7 @@
             </div>
             <div class="modal-body">
                 <form id="newWorkOrderForm">
+                    <!-- Basic Information -->
                     <div style="margin-bottom: 24px;">
                         <h4 style="margin-bottom: 16px; color: #1976d2;">📋 Basic Information</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
@@ -340,7 +445,7 @@
                             </div>
                             <div>
                                 <label style="display: block; margin-bottom: 4px; font-weight: 500;">Customer ID *</label>
-                                <input type="text" id="customerId" placeholder="e.g., 01234" required
+                                <input type="text" id="customerId" placeholder="e.g., 05421" required
                                        style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
                             </div>
                         </div>
@@ -349,8 +454,27 @@
                             <input type="text" id="customerName" placeholder="e.g., BMW Enterprise" required
                                    style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
                         </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 4px; font-weight: 500;">Priority</label>
+                                <select id="priority" style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                                    <option value="1">High (1)</option>
+                                    <option value="2" selected>Medium (2)</option>
+                                    <option value="3">Low (3)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 4px; font-weight: 500;">Network Type</label>
+                                <select id="networkType" style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                                    <option value="4G_5G" selected>4G/5G</option>
+                                    <option value="5G">5G Only</option>
+                                    <option value="4G">4G Only</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- VHAP JSON Payload Upload -->
                     <div style="margin-bottom: 24px;">
                         <h4 style="margin-bottom: 16px; color: #1976d2;">📄 VHAP JSON Payload</h4>
                         <div style="border: 2px dashed #ddd; border-radius: 8px; padding: 24px; text-align: center; background: #fafafa;">
@@ -358,24 +482,135 @@
                                 <div style="font-size: 48px; color: #ccc; margin-bottom: 16px;">📁</div>
                                 <p style="margin-bottom: 8px; font-weight: 500;">Click to upload VHAP JSON payload</p>
                                 <p style="font-size: 14px; color: #666;">Or drag and drop your JSON file here</p>
+                                <p style="font-size: 12px; color: #999; margin-top: 8px;">Supported formats: .json (Max 10MB)</p>
                             </div>
                             <input type="file" id="jsonFile" accept=".json" style="display: none;" onchange="handleFileUpload(event)">
                         </div>
                         
+                        <!-- File Preview -->
                         <div id="filePreview" class="hidden" style="margin-top: 16px; border: 1px solid #ddd; border-radius: 4px; background: white;">
-                            <div style="padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+                            <div style="padding: 12px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
                                 <div>
                                     <strong id="fileName">filename.json</strong>
                                     <span id="fileSize" style="color: #666; margin-left: 8px;">(0 KB)</span>
                                 </div>
                                 <button type="button" onclick="removeFile()" style="background: none; border: none; color: #dc3545; cursor: pointer;">❌</button>
                             </div>
+                            <div style="max-height: 200px; overflow-y: auto; padding: 16px;">
+                                <pre id="jsonPreview" style="font-size: 12px; color: #333; white-space: pre-wrap; margin: 0;"></pre>
+                            </div>
+                        </div>
+
+                        <!-- Manual JSON Input Alternative -->
+                        <div style="margin-top: 16px;">
+                            <label style="display: block; margin-bottom: 4px; font-weight: 500;">
+                                <input type="checkbox" id="manualJsonToggle" onchange="toggleManualInput()"> 
+                                Or paste JSON manually
+                            </label>
+                            <textarea id="manualJsonInput" class="hidden" placeholder="Paste your VHAP JSON payload here..." 
+                                     style="width: 100%; height: 200px; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; font-size: 12px;"></textarea>
                         </div>
                     </div>
 
+                    <!-- JSON Validation Results -->
+                    <div id="validationResults" class="hidden" style="margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 12px; color: #1976d2;">✅ JSON Validation Results</h4>
+                        <div id="validationContent" style="padding: 16px; border-radius: 8px;"></div>
+                    </div>
+
+                    <!-- Configuration Preview -->
+                    <div id="configPreview" class="hidden" style="margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 16px; color: #1976d2;">🔍 Configuration Preview</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                            <div style="background: #f8f9fa; padding: 16px; border-radius: 8px;">
+                                <h5 style="margin-bottom: 8px;">SMF Configuration</h5>
+                                <div id="smfPreview" style="font-size: 12px; color: #666;"></div>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 16px; border-radius: 8px;">
+                                <h5 style="margin-bottom: 8px;">UPF Configuration</h5>
+                                <div id="upfPreview" style="font-size: 12px; color: #666;"></div>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 16px; border-radius: 8px;">
+                                <h5 style="margin-bottom: 8px;">ASR1K Configuration</h5>
+                                <div id="asr1kPreview" style="font-size: 12px; color: #666;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Execution Options -->
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 16px; color: #1976d2;">⚙️ Execution Options</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500;">Execution Mode</label>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <label style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="radio" name="executionMode" value="immediate" checked>
+                                        Immediate Execution
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="radio" name="executionMode" value="scheduled">
+                                        Scheduled Execution
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="radio" name="executionMode" value="preview">
+                                        Preview Only (No Execution)
+                                    </label>
+                                </div>
+                                <div id="scheduledDateTime" class="hidden" style="margin-top: 12px;">
+                                    <label style="display: block; margin-bottom: 4px; font-size: 14px;">Schedule Date & Time</label>
+                                    <input type="datetime-local" id="scheduleTime" style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                                </div>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 8px; font-weight: 500;">Safety Options</label>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <label style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="autoRollback" checked>
+                                        Auto-rollback on failure
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="preValidation" checked>
+                                        Pre-execution validation
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="sequentialExecution">
+                                        Sequential execution (safer)
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="emailNotifications" checked>
+                                        Email notifications
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assignment -->
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 16px; color: #1976d2;">👥 Assignment</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <label style="display: block; margin-bottom: 4px; font-weight: 500;">DSE Name</label>
+                                <input type="text" id="dseName" value="Abhishek Kumar" 
+                                       style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 4px; font-weight: 500;">DSE Group</label>
+                                <select id="dseGroup" style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                                    <option value="NATIONAL_SET_SUPPORT" selected>NATIONAL_SET_SUPPORT</option>
+                                    <option value="MPN_ENGINEERING">MPN_ENGINEERING</option>
+                                    <option value="REGIONAL_SUPPORT">REGIONAL_SUPPORT</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
                     <div style="display: flex; gap: 12px; justify-content: flex-end; padding-top: 16px; border-top: 1px solid #eee;">
                         <button type="button" class="btn btn-secondary" onclick="closeNewWorkOrderModal()">Cancel</button>
-                        <button type="button" class="btn btn-primary" onclick="validateJson()">Validate JSON</button>
+                        <button type="button" class="btn btn-secondary" onclick="validateJson()">Validate JSON</button>
+                        <button type="button" class="btn btn-secondary" onclick="saveAsDraft()">Save as Draft</button>
                         <button type="submit" class="btn btn-primary" onclick="submitWorkOrder(event)">Create Work Order</button>
                     </div>
                 </form>
@@ -406,6 +641,163 @@
                         </label>
                         <button class="btn btn-primary btn-sm" onclick="aiTroubleshootFromLog()">🤖 AI Troubleshoot</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Work Order Form Modal (Edit/Delete) -->
+    <div class="modal" id="workOrderFormModal">
+        <div class="modal-content" style="max-width: 900px; max-height: 90vh;">
+            <div class="modal-header">
+                <h3 id="workOrderFormTitle">Edit Work Order</h3>
+                <button class="close-btn" onclick="closeWorkOrderFormModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="workOrderFormBody">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal" id="notificationModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 id="notificationTitle">Send Notifications</h3>
+                <button class="close-btn" onclick="closeNotificationModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 24px;">
+                    <h4 style="margin-bottom: 12px;">📧 Email Notifications</h4>
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; margin-bottom: 4px; font-weight: 500;">Recipients</label>
+                        <input type="email" id="emailRecipients" placeholder="Enter email addresses separated by commas" 
+                               style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; margin-bottom: 4px; font-weight: 500;">Subject</label>
+                        <input type="text" id="emailSubject" value="Work Order Status Update" 
+                               style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h4 style="margin-bottom: 12px;">💬 Slack Notifications</h4>
+                    <div style="margin-bottom: 16px;">
+                        <label style="display: block; margin-bottom: 4px; font-weight: 500;">Slack Channels</label>
+                        <input type="text" id="slackChannels" placeholder="#mpn-alerts, #operations" 
+                               style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <h4 style="margin-bottom: 12px;">📋 Message Template</h4>
+                    <textarea id="notificationMessage" 
+                              style="width: 100%; height: 120px; padding: 12px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                    <button class="btn btn-secondary" onclick="closeNotificationModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="sendNotifications()">Send Notifications</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Operations Modal -->
+    <div class="modal" id="bulkModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Bulk Network Function Operations</h3>
+                <button class="close-btn" onclick="closeBulkModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="checkbox-group">
+                    <h4>Select Network Functions:</h4>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bulk-smf-primary" value="smf-primary">
+                        <label for="bulk-smf-primary">SMF Primary (Rocklin)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bulk-smf-secondary" value="smf-secondary">
+                        <label for="bulk-smf-secondary">SMF Secondary (Sunnyvale)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bulk-upf-primary" value="upf-primary">
+                        <label for="bulk-upf-primary">UPF Primary (Rocklin)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bulk-upf-secondary" value="upf-secondary">
+                        <label for="bulk-upf-secondary">UPF Secondary (Sunnyvale)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bulk-asr1k-primary" value="asr1k-primary">
+                        <label for="bulk-asr1k-primary">ASR1K Primary (ROCKLIN77W)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bulk-asr1k-secondary" value="asr1k-secondary">
+                        <label for="bulk-asr1k-secondary">ASR1K Secondary (SUNNYVALE77W)</label>
+                    </div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <h4>Select Operation:</h4>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px;">
+                        <label style="display: flex; align-items: center; gap: 8px;">
+                            <input type="radio" name="bulk-operation" value="configure">
+                            Configure
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px;">
+                            <input type="radio" name="bulk-operation" value="pause">
+                            Pause
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px;">
+                            <input type="radio" name="bulk-operation" value="resume">
+                            Resume
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px;">
+                            <input type="radio" name="bulk-operation" value="rollback">
+                            Rollback
+                        </label>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; display: flex; gap: 12px; justify-content: flex-end;">
+                    <button class="btn btn-secondary" onclick="closeBulkModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="executeBulkOperation()">Execute Operation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Summary Modal -->
+    <div class="modal" id="aiSummaryModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>AI Payload Summary</h3>
+                <button class="close-btn" onclick="closeAiSummaryModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="background: #f8f9fa; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                    <h4>🤖 AI Analysis Summary</h4>
+                    <p><strong>Work Order:</strong> WO-4915 (BMW Enterprise)</p>
+                    <p><strong>Customer ID:</strong> 05421</p>
+                    <p><strong>Network Type:</strong> 4G/5G Dual Stack</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h4>📊 Configuration Summary</h4>
+                    <ul style="padding-left: 20px;">
+                        <li><strong>SMF Services:</strong> Configured for Primary (Rocklin) and Secondary (Sunnyvale) with APN custonet5g.vzwentp</li>
+                        <li><strong>UPF Services:</strong> VRF MPN05421 with dual-stack transport</li>
+                        <li><strong>ASR1K Routers:</strong> Customer VRF configured with RD values</li>
+                        <li><strong>IP Pools:</strong> 3 pools configured (Static, Private IPv4, Private IPv6)</li>
+                        <li><strong>Authentication:</strong> IMS-GX and DCCA-GY enabled</li>
+                    </ul>
+                </div>
+
+                <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                    <button class="btn btn-secondary" onclick="closeAiSummaryModal()">Close</button>
                 </div>
             </div>
         </div>
